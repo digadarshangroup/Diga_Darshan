@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
