@@ -1,67 +1,68 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { LanguageToggle } from "./language-toggle"
-import { useLanguage } from "@/contexts/language-context"
-import { Menu, X, Fish, User, LogOut, ChevronDown } from "lucide-react"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { LanguageToggle } from "./language-toggle";
+import { useLanguage } from "@/contexts/language-context";
+import { Menu, X, Fish, User, LogOut, ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
-  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false)
-  const { t } = useLanguage()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
-    checkAuthStatus()
-  }, [])
+    checkAuthStatus();
+  }, []);
 
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch("/api/auth/check")
-      const data = await response.json()
-      setIsAuthenticated(data.isAuthenticated)
+      const response = await fetch("/api/auth/check");
+      const data = await response.json();
+      setIsAuthenticated(data.isAuthenticated);
     } catch (error) {
-      console.error("Failed to check auth status:", error)
-      setIsAuthenticated(false)
+      console.error("Failed to check auth status:", error);
+      setIsAuthenticated(false);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleSignOut = async () => {
     try {
-      await fetch("/api/auth/signout", { method: "POST" })
-      setIsAuthenticated(false)
-      window.location.href = "/"
+      await fetch("/api/auth/signout", { method: "POST" });
+      setIsAuthenticated(false);
+      window.location.href = "/";
     } catch (error) {
-      console.error("Sign out error:", error)
+      console.error("Sign out error:", error);
     }
-  }
+  };
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/95 backdrop-blur-sm">
-      <div className="container mx-auto px-4">
+      <div className="mx-2 lg:mx-20 px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 w-auto h-auto relative"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-teal-500">
-              <Fish className="h-5 w-5 text-white" />
-            </div>
-            <div>
-              <h1 className="text-lg font-bold text-gray-900">
-                <span className="hidden sm:inline">DIGA DARSHAN</span>
-                <span className="sm:hidden">Fisheries</span>
-              </h1>
-              <p className="text-xs text-gray-500">Enterprise Solutions</p>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Diga Darshan Logo"
+              width={1024}
+              height={1024}
+              className="object-center w-14 h-14"
+            />
+            <span className="uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+              Diga Darshan
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -80,7 +81,11 @@ export function Header() {
                 className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 rounded-lg hover:bg-gray-50"
               >
                 Solutions
-                <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isSolutionsOpen ? "rotate-180" : ""}`} />
+                <ChevronDown
+                  className={`ml-1 h-4 w-4 transition-transform duration-200 ${
+                    isSolutionsOpen ? "rotate-180" : ""
+                  }`}
+                />
               </button>
 
               {isSolutionsOpen && (
@@ -165,9 +170,7 @@ export function Header() {
             ) : isAuthenticated ? (
               <div className="flex items-center space-x-3">
                 <Link href="/dashboard">
-                  <Button
-                    className="bg-gradient-to-r from-blue-600 to-teal-500 text-white hover:from-blue-700 hover:to-teal-600 transition-all duration-200 shadow-sm hover:shadow"
-                  >
+                  <Button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white hover:from-blue-700 hover:to-teal-600 transition-all duration-200 shadow-sm hover:shadow">
                     <User className="mr-2 h-4 w-4" />
                     Dashboard
                   </Button>
@@ -215,8 +218,11 @@ export function Header() {
 
         {/* Mobile Navigation */}
         <div
-          className={`lg:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? "max-h-[calc(100vh-4rem)] opacity-100 py-4" : "max-h-0 opacity-0 overflow-hidden"
-            }`}
+          className={`lg:hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen
+              ? "max-h-[calc(100vh-4rem)] opacity-100 py-4"
+              : "max-h-0 opacity-0 overflow-hidden"
+          }`}
         >
           <div className="space-y-1 border-t border-gray-100 pt-4">
             <Link
@@ -233,7 +239,11 @@ export function Header() {
                 className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600"
               >
                 Solutions
-                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isSolutionsOpen ? "rotate-180" : ""}`} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform duration-200 ${
+                    isSolutionsOpen ? "rotate-180" : ""
+                  }`}
+                />
               </button>
               {isSolutionsOpen && (
                 <div className="ml-4 space-y-1 border-l border-gray-100 pl-2">
@@ -323,8 +333,8 @@ export function Header() {
                   <Button
                     variant="outline"
                     onClick={() => {
-                      handleSignOut()
-                      setIsMenuOpen(false)
+                      handleSignOut();
+                      setIsMenuOpen(false);
                     }}
                     className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
                   >
@@ -354,5 +364,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }

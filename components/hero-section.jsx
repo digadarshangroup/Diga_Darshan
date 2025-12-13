@@ -272,7 +272,7 @@ export function HeroSection() {
                   <div className="max-w-full w-full">
                     <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                       {/* Left Column - Main Content - Centered */}
-                      <div className="text-center lg:text-left space-y-6 lg:space-y-8">
+                      <div className="text-left space-y-6 lg:space-y-8">
                         {/* Odia Title - Elegant Badge */}
                         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20 mx-auto lg:mx-0">
                           <span className="text-white font-semibold text-sm tracking-wider">
@@ -282,12 +282,12 @@ export function HeroSection() {
                         </div>
 
                         {/* Main English Title */}
-                        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight text-center lg:text-left">
+                        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight text-left">
                           {category.title}
                         </h1>
 
                         {/* Description - Centered */}
-                        <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+                        <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed max-w-2xl mx-auto lg:mx-0 text-left">
                           {category.description}
                         </p>
 
@@ -315,15 +315,6 @@ export function HeroSection() {
                               </svg>
                             </button>
                           </Link>
-
-                          <button
-                            onClick={() =>
-                              goToSlide((activeSlide + 1) % categories.length)
-                            }
-                            className="px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/50 transition-all duration-300"
-                          >
-                            View Next
-                          </button>
                         </div>
                       </div>
 
@@ -369,7 +360,7 @@ export function HeroSection() {
 
                 {/* Slide Number Indicator */}
                 <div className="absolute bottom-12 right-12">
-                  <div className="text-white/60 text-sm">
+                  <div className="text-white/60 text-sm hidden md:block">
                     <span className="text-4xl font-bold text-white">
                       {String(index + 1).padStart(2, "0")}
                     </span>
@@ -460,10 +451,10 @@ export function HeroSection() {
               <p className="about-description text-lg md:text-xl text-gray-700 leading-relaxed pl-6 md:pl-8 text-center">
                 Government schemes and subsidies are key for farmers to set up
                 or expand their practices in agriculture and allied sectors.
-                diga darshan is Odisha's single-window platform for farmers and
-                agri-preneurs, aligning with the Government of Odisha's vision
-                to transform lives through technology and teamwork, enabling
-                timely and transparent delivery of benefits.
+                diga darshan is Odisha&apos;s single-window platform for farmers
+                and agri-preneurs, aligning with the Government of Odisha&apos;s
+                vision to transform lives through technology and teamwork,
+                enabling timely and transparent delivery of benefits.
               </p>
             </div>
 
@@ -518,7 +509,7 @@ export function HeroSection() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4">
               Empowering{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
-                Odisha's Growth
+                Odisha&apos;s Growth
               </span>
             </h2>
             <p className="text-slate-600 text-lg max-w-3xl mx-auto">

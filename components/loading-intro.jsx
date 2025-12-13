@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export function LoadingIntro({ onComplete, durationMs = 2600 }) {
   const [progress, setProgress] = useState(0);
@@ -101,24 +102,22 @@ export function LoadingIntro({ onComplete, durationMs = 2600 }) {
                   ease: [0.2, 0.9, 0.3, 1],
                   delay: 0.05,
                 }}
-                className="w-20 h-20 rounded-full bg-gradient-to-r from-slate-800 to-slate-600 flex items-center justify-center shadow-lg relative"
+                className="w-20 h-20 rounded-full overflow-hidden shadow-lg relative bg-transparent"
               >
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.45, duration: 0.35 }}
-                  className="text-white font-semibold text-xl tracking-wider"
+                  className="absolute inset-0"
                 >
-                  DD
+                  <Image
+                    src="/logo.png"
+                    alt="Diga Darshan Logo"
+                    fill
+                    priority
+                    className="object-cover"
+                  />
                 </motion.div>
-
-                {/* thin animated ring */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [0, 1.06, 1] }}
-                  transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
-                  className="absolute inset-0 rounded-full border-2 border-slate-800 border-opacity-25"
-                />
               </motion.div>
             </div>
 
@@ -183,7 +182,6 @@ export function LoadingIntro({ onComplete, durationMs = 2600 }) {
           </div>
 
           {/* Bottom area: compact loading bar + text */}
-          
         </motion.div>
       )}
     </AnimatePresence>
