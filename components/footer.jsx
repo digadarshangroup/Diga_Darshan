@@ -1,6 +1,16 @@
-"use client"
+"use client";
 
-import { Fish, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react"
+import {
+  Fish,
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+} from "lucide-react";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -34,9 +44,13 @@ export function Footer() {
           {/* Company Info */}
           <div className="transform hover:scale-105 transition-all duration-300 hover:translate-z-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full flex items-center justify-center shadow-lg transform hover:rotate-y-12 transition-transform duration-500">
-                <Fish className="w-7 h-7 text-white animate-fish-wiggle" />
-              </div>
+              <Image
+                src="/logo.png"
+                alt="Diga Darshan Logo"
+                width={1024}
+                height={1024}
+                className="object-center w-14 h-16"
+              />
               <div>
                 <h3 className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
                   Fisheries
@@ -45,8 +59,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-blue-200 mb-4 leading-relaxed">
-              Empowering fisheries businesses with comprehensive government scheme solutions and expert guidance for
-              sustainable growth.
+              Empowering fisheries businesses with comprehensive government
+              scheme solutions and expert guidance for sustainable growth.
             </p>
             <div className="flex space-x-4">
               {[Facebook, Twitter, Linkedin, Instagram].map((Icon, index) => (
@@ -68,19 +82,23 @@ export function Footer() {
               <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 animate-gradient-x"></div>
             </h4>
             <ul className="space-y-3">
-              {["Government Schemes", "Eligibility Check", "Application Process", "Success Stories", "Resources"].map(
-                (link, index) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-blue-200 hover:text-white transition-all duration-300 transform hover:translate-x-2 hover:scale-105 inline-block"
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ),
-              )}
+              {[
+                "Government Schemes",
+                "Eligibility Check",
+                "Application Process",
+                "Success Stories",
+                "Resources",
+              ].map((link, index) => (
+                <li key={link}>
+                  <a
+                    href="#"
+                    className="text-blue-200 hover:text-white transition-all duration-300 transform hover:translate-x-2 hover:scale-105 inline-block"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    {link}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -123,7 +141,7 @@ export function Footer() {
                   <Mail className="w-4 h-4 text-blue-200 group-hover:text-white" />
                 </div>
                 <span className="text-blue-200 group-hover:text-white transition-colors duration-300">
-                  info@fisheries.gov.in
+                  digadarshangroup@gmail.com
                 </span>
               </div>
               <div className="flex items-center space-x-3 group">
@@ -131,7 +149,7 @@ export function Footer() {
                   <Phone className="w-4 h-4 text-blue-200 group-hover:text-white" />
                 </div>
                 <span className="text-blue-200 group-hover:text-white transition-colors duration-300">
-                  +91 1800-XXX-XXXX
+                  +91 9040626617
                 </span>
               </div>
               <div className="flex items-center space-x-3 group">
@@ -139,7 +157,7 @@ export function Footer() {
                   <MapPin className="w-4 h-4 text-blue-200 group-hover:text-white" />
                 </div>
                 <span className="text-blue-200 group-hover:text-white transition-colors duration-300">
-                  New Delhi, India
+                  Bhubaneswar, Odisha
                 </span>
               </div>
             </div>
@@ -149,18 +167,22 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-blue-800/50 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-blue-200 text-sm">© 2024 Fisheries Business Solutions. All rights reserved.</p>
+            <p className="text-blue-200 text-sm">
+              © 2024 Fisheries Business Solutions. All rights reserved.
+            </p>
             <div className="flex space-x-6">
-              {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((link, index) => (
-                <a
-                  key={link}
-                  href="#"
-                  className="text-blue-200 hover:text-white text-sm transition-all duration-300 transform hover:scale-105"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {link}
-                </a>
-              ))}
+              {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
+                (link, index) => (
+                  <a
+                    key={link}
+                    href="#"
+                    className="text-blue-200 hover:text-white text-sm transition-all duration-300 transform hover:scale-105"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    {link}
+                  </a>
+                )
+              )}
             </div>
           </div>
         </div>
@@ -182,5 +204,5 @@ export function Footer() {
         ))}
       </div>
     </footer>
-  )
+  );
 }

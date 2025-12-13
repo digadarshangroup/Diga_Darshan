@@ -43,7 +43,7 @@ export function HeroSection() {
         "https://www.globalseafood.org/wp-content/uploads/2024/08/KARUNAKARAN_photo-1_1500.jpg",
       gradient: "from-blue-600/20 via-blue-800/40 to-blue-900/80",
       icon: "🐟",
-      link: "/fisheries",
+      link: "https://aquanivesh.digadarshan.com/",
     },
     {
       id: "pharmacy",
