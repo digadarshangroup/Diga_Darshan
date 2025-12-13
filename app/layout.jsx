@@ -58,7 +58,7 @@ export const metadata = {
       "ମତ୍ସ୍ୟ ପାଲନ, ଉଦ୍ୟାନିକୀ, ଫାର୍ମାସି, ଓ ବାଣିଜ୍ୟ କ୍ଷେତ୍ରରେ ସର୍ବୋଚ୍ଚ ସେବା | ସରକାରୀ ସବସିଡି, ବ୍ୟବସାୟ ପରାମର୍ଶ, ଓ କାଗଜପତ୍ର ସହାୟତା |",
     images: [
       {
-        url: "https://digadarshan.com/digadarshan-group-logo.png",
+        url: "https://digadarshan.com/logoFull.png",
         width: 1200,
         height: 630,
         alt: "Digadarshan Group - ଓଡିଶାର ବହୁମୁଖୀ ବ୍ୟବସାୟ",
@@ -71,7 +71,7 @@ export const metadata = {
     title: "Digadarshan Group | ଓଡିଶାର ବହୁମୁଖୀ ସେବା",
     description:
       "ମତ୍ସ୍ୟ, ଉଦ୍ୟାନିକୀ, ଫାର୍ମାସି, ଓ ବାଣିଜ୍ୟ କ୍ଷେତ୍ରରେ ସର୍ବୋଚ୍ଚ ସେବା | ସରକାରୀ ସବସିଡି, ବ୍ୟବସାୟ ପରାମର୍ଶ |",
-    images: ["https://digadarshan.com/digadarshan-group-logo.png"],
+    images: ["https://digadarshan.com/logoFull.png"],
   },
 
   alternates: {
@@ -96,7 +96,7 @@ const jsonLd = {
   description:
     "ଓଡିଶାର ଏକ ପ୍ରଗତିଶୀଳ ବହୁମୁଖୀ ବ୍ୟବସାୟିକ ସଂସ୍ଥା ଯାହା ମତ୍ସ୍ୟ ପାଲନ, ଉଦ୍ୟାନିକୀ, ଫାର୍ମାସି ବ୍ୟବସାୟ, ଓ ବାଣିଜ୍ୟ ସେବା କ୍ଷେତ୍ରରେ ସର୍ବୋଚ୍ଚ ସେବା ପ୍ରଦାନ କରେ",
   url: "https://digadarshan.com",
-  logo: "https://digadarshan.com/digadarshan-group-logo.png",
+  logo: "https://digadarshan.com/logoFull.png",
   foundingDate: "2023",
   founders: [
     {
@@ -199,7 +199,7 @@ const jsonLd = {
     name: "Digadarshan Group",
     alternateName: "ଦିଗଦର୍ଶନ ଗ୍ରୁପ୍",
     slogan: "ଓଡିଶାର ଅର୍ଥନୈତିକ ବିକାଶର ସହଯୋଗୀ",
-    logo: "https://digadarshan.com/digadarshan-group-logo.png",
+    logo: "https://digadarshan.com/logoFull.png",
   },
 
   award: [
