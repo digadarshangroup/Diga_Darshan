@@ -14,8 +14,8 @@ export default function HomePage() {
     <div className="min-h-screen relative overflow-hidden">
       {/* Content container with slide-down intro */}
       <motion.div
-        initial={{ y: -60, opacity: 0 }}
-        animate={isLoading ? { y: 200, opacity: 0 } : { y: 0, opacity: 1 }}
+        initial={{ y: 0, opacity: 0 }}
+        animate={isLoading ? { y: 0, opacity: 0 } : { y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="min-h-screen"
       >

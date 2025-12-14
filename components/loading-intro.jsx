@@ -65,7 +65,7 @@ export function LoadingIntro({ onComplete, durationMs = 2600 }) {
             opacity: 0,
             transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] },
           }}
-          className="fixed inset-0 from-slate-50 to-slate-100 flex items-center justify-center text-slate-900 select-none overflow-hidden z-50"
+          className="fixed inset-0 from-slate-50 to-slate-100 flex items-center justify-center text-slate-900 select-none overflow-hidden z-50 bg-white"
         >
           {/* Particle background */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
