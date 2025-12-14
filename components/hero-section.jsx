@@ -31,6 +31,16 @@ export function HeroSection() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // WhatsApp redirect function
+  const redirectToWhatsApp = () => {
+    const phoneNumber = "919040626617"; // Your WhatsApp number without +
+    const message = encodeURIComponent(
+      "Hello Diga Darshan Team,\n\nI'm interested in learning more about your solutions (fisheries, pharmacy, trading, horticulture). Could you please provide me with more information?\n\nThank you."
+    );
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
   // Categories with improved data structure
   const categories = [
     {
@@ -660,13 +670,14 @@ export function HeroSection() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 lg:mb-12">
-                <Link
-                  href="/get-started"
+                <button
+                  onClick={redirectToWhatsApp}
                   className="group relative overflow-hidden px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:shadow-2xl transition-all duration-300"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-white to-blue-100 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white to-green-100 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
                   <span className="relative flex items-center gap-3">
-                    Get Free Consultation
+                    <span className="inline-block mr-1">💬</span>
+                    Get Free Consultation on WhatsApp
                     <svg
                       className="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-2"
                       fill="none"
@@ -681,7 +692,7 @@ export function HeroSection() {
                       />
                     </svg>
                   </span>
-                </Link>
+                </button>
 
                 <Link
                   href="/contact"
