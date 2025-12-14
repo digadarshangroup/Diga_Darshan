@@ -637,7 +637,9 @@ export function HeroSection() {
                   RK
                 </div>
                 <div>
-                  <div className="font-bold text-slate-800">Rajesh Kumar</div>
+                  <div className="font-bold text-slate-800">
+                    Bhabani Sankar Patnaik
+                  </div>
                   <div className="text-sm text-slate-600">
                     Fisheries Entrepreneur
                   </div>
@@ -694,12 +696,14 @@ export function HeroSection() {
                   </span>
                 </button>
 
-                <Link
-                  href="/contact"
+                <a
+                  href="https://mail.google.com/mail/?view=cm&to=digadarshansupport@gmail.com&su=Support%20Request%20-%20Diga%20Darshan&body=Hello%20Diga%20Darshan%20Team,%0D%0A%0D%0AI%20am%20interested%20in%20learning%20more%20about%20your%20government%20scheme%20support%20and%20consultation%20services.%0D%0A%0D%0APlease%20find%20my%20details%20below:%0D%0A%0D%0AName:%0D%0APhone%20Number:%0D%0ADistrict:%0D%0ASector%20(Fisheries%20/%20Pharmacy%20/%20Trading%20/%20Horticulture):%0D%0ABusiness%20Stage%20(New%20/%20Existing):%0D%0A%0D%0AI%20would%20appreciate%20guidance%20on%20eligible%20schemes,%20documentation,%20and%20next%20steps.%0D%0A%0D%0AThank%20you,%0D%0A%0D%0ARegards,"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/50 transition-all duration-300"
                 >
                   Contact Support
-                </Link>
+                </a>
               </div>
 
               {/* Contact Info */}

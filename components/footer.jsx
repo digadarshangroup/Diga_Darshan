@@ -175,7 +175,7 @@ export function Footer() {
                   <MapPin className="w-4 h-4 text-blue-200 group-hover:text-white" />
                 </div>
                 <span className="text-blue-200 group-hover:text-white transition-colors duration-300">
-                  Berhampur, Odisha
+                  Berhampur Ganjam Odisha
                 </span>
               </div>
             </div>
