@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Geist_Mono } from "next/font/google";
 import { LanguageProvider } from "@/contexts/language-context";
 import "./globals.css";
+import Script from "next/script";
 
 // ================================
 // PROFESSIONAL SEO METADATA
@@ -80,10 +81,6 @@ export const metadata = {
       "or-IN": "https://digadarshan.com/or",
       "en-IN": "https://digadarshan.com/en",
     },
-  },
-
-  verification: {
-    google: "your-google-verification-code",
   },
 };
 
@@ -222,6 +219,13 @@ const jsonLd = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          id="jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-sans">
         <LanguageProvider>
           <Suspense>{children}</Suspense>

@@ -1,0 +1,23 @@
+import { MetadataRoute } from 'next'
+
+export default function robots(): MetadataRoute.Robots {
+  const baseUrl = 'https://digadarshan.com'
+  
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      disallow: [
+        '/private/',
+        '/admin/',
+        '/api/',
+        '/dashboard/',
+        '/_next/',
+      ],
+    },
+    sitemap: `${baseUrl}/sitemap.xml`,
+    
+    // Optional: Add host directive for canonicalization
+    host: baseUrl,
+  }
+}

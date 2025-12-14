@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Fish,
   Mail,
@@ -13,19 +14,36 @@ import {
 import Image from "next/image";
 
 export function Footer() {
+  const [fishPositions] = useState(() =>
+    Array.from({ length: 8 }).map((_, i) => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${i * 0.8}s`,
+      scale: 0.3 + Math.random() * 0.4,
+    }))
+  );
+
+  const [bubbles] = useState(() =>
+    Array.from({ length: 12 }).map(() => ({
+      left: `${Math.random() * 100}%`,
+      animationDuration: `${4 + Math.random() * 3}s`,
+      animationDelay: `${Math.random() * 2}s`,
+    }))
+  );
+
   return (
     <footer className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900 text-white overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 opacity-5">
-        {[...Array(8)].map((_, i) => (
+        {fishPositions.map((pos, i) => (
           <div
             key={i}
             className="absolute animate-float-3d-small"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.8}s`,
-              transform: `scale(${0.3 + Math.random() * 0.4})`,
+              left: pos.left,
+              top: pos.top,
+              animationDelay: pos.animationDelay,
+              transform: `scale(${pos.scale})`,
             }}
           >
             <Fish className="w-12 h-12 text-white animate-fish-wiggle" />
@@ -157,7 +175,7 @@ export function Footer() {
                   <MapPin className="w-4 h-4 text-blue-200 group-hover:text-white" />
                 </div>
                 <span className="text-blue-200 group-hover:text-white transition-colors duration-300">
-                  Bhubaneswar, Odisha
+                  Berhampur, Odisha
                 </span>
               </div>
             </div>
@@ -190,15 +208,15 @@ export function Footer() {
 
       {/* Floating Bubbles */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(12)].map((_, i) => (
+        {bubbles.map((b, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-white/30 rounded-full animate-bubble-trail"
             style={{
-              left: `${Math.random() * 100}%`,
+              left: b.left,
               bottom: "0px",
-              animationDuration: `${4 + Math.random() * 3}s`,
-              animationDelay: `${Math.random() * 2}s`,
+              animationDuration: b.animationDuration,
+              animationDelay: b.animationDelay,
             }}
           />
         ))}

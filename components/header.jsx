@@ -156,52 +156,6 @@ export function Header() {
             </Link>
           </nav>
 
-          {/* Right side buttons */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <div className="mr-2">
-              <LanguageToggle />
-            </div>
-
-            {isLoading ? (
-              <div className="flex items-center space-x-3">
-                <div className="h-9 w-24 rounded-lg bg-gray-200 animate-pulse"></div>
-                <div className="h-9 w-24 rounded-lg bg-gray-200 animate-pulse"></div>
-              </div>
-            ) : isAuthenticated ? (
-              <div className="flex items-center space-x-3">
-                <Link href="/dashboard">
-                  <Button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white hover:from-blue-700 hover:to-teal-600 transition-all duration-200 shadow-sm hover:shadow">
-                    <User className="mr-2 h-4 w-4" />
-                    Dashboard
-                  </Button>
-                </Link>
-                <Button
-                  variant="ghost"
-                  onClick={handleSignOut}
-                  className="text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-                >
-                  <LogOut className="h-4 w-4" />
-                </Button>
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                <Link href="/signin">
-                  <Button
-                    variant="ghost"
-                    className="text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-                  >
-                    Sign In
-                  </Button>
-                </Link>
-                <Link href="/signup">
-                  <Button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white hover:from-blue-700 hover:to-teal-600 transition-all duration-200 shadow-sm hover:shadow">
-                    Get Started Free
-                  </Button>
-                </Link>
-              </div>
-            )}
-          </div>
-
           {/* Mobile Menu Button */}
           <button
             className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
@@ -310,56 +264,6 @@ export function Header() {
             >
               {t("contact")}
             </Link>
-
-            {/* Auth Buttons for Mobile */}
-            <div className="space-y-3 border-t border-gray-100 pt-4">
-              <div className="flex justify-center">
-                <LanguageToggle />
-              </div>
-
-              {isLoading ? (
-                <div className="space-y-2">
-                  <div className="h-10 w-full rounded-lg bg-gray-200 animate-pulse"></div>
-                  <div className="h-10 w-full rounded-lg bg-gray-200 animate-pulse"></div>
-                </div>
-              ) : isAuthenticated ? (
-                <div className="space-y-2">
-                  <Link href="/dashboard" onClick={() => setIsMenuOpen(false)}>
-                    <Button className="w-full bg-gradient-to-r from-blue-600 to-teal-500 text-white hover:from-blue-700 hover:to-teal-600">
-                      <User className="mr-2 h-4 w-4" />
-                      Dashboard
-                    </Button>
-                  </Link>
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      handleSignOut();
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
-                  >
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Sign Out
-                  </Button>
-                </div>
-              ) : (
-                <div className="space-y-2">
-                  <Link href="/signin" onClick={() => setIsMenuOpen(false)}>
-                    <Button
-                      variant="outline"
-                      className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
-                    >
-                      Sign In
-                    </Button>
-                  </Link>
-                  <Link href="/signup" onClick={() => setIsMenuOpen(false)}>
-                    <Button className="w-full bg-gradient-to-r from-blue-600 to-teal-500 text-white hover:from-blue-700 hover:to-teal-600">
-                      Get Started Free
-                    </Button>
-                  </Link>
-                </div>
-              )}
-            </div>
           </div>
         </div>
       </div>
