@@ -11,7 +11,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Content container with slide-down intro */}
       <motion.div
         initial={{ y: 0, opacity: 0 }}
@@ -20,7 +20,7 @@ export default function HomePage() {
         className="min-h-screen"
       >
         <Header />
-        <main>
+        <main className="relative z-10">
           <HeroSection />
         </main>
         <Footer />

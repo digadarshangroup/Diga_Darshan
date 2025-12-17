@@ -1,29 +1,38 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 export function LoadingIntro({ onComplete, durationMs = 2600 }) {
   const [progress, setProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
+  const hasInitialized = useRef(false);
 
-  // Stable particle configuration (computed once, lazily)
-  const [particleConfigs] = useState(() => {
-    if (typeof window === "undefined") return [];
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    const count = 12;
-    const pad = 40;
-    return Array.from({ length: count }).map(() => ({
-      x0: pad + Math.random() * (w - pad * 2),
-      y0: pad + Math.random() * (h - pad * 2),
-      x1: pad + Math.random() * (w - pad * 2),
-      y1: pad + Math.random() * (h - pad * 2),
-      delay: Math.random() * 1.2,
-      duration: 3.2 + Math.random() * 1.2,
-    }));
-  });
+  // Client-only particle generation
+  const [particleConfigs, setParticleConfigs] = useState([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && !hasInitialized.current) {
+      hasInitialized.current = true;
+      
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const count = 12;
+      const pad = 40;
+      
+      const configs = Array.from({ length: count }).map(() => ({
+        x0: pad + Math.random() * (w - pad * 2),
+        y0: pad + Math.random() * (h - pad * 2),
+        x1: pad + Math.random() * (w - pad * 2),
+        y1: pad + Math.random() * (h - pad * 2),
+        delay: Math.random() * 1.2,
+        duration: 3.2 + Math.random() * 1.2,
+      }));
+      
+      setParticleConfigs(configs);
+    }
+  }, []);
 
   useEffect(() => {
     const start = performance.now();
@@ -65,29 +74,31 @@ export function LoadingIntro({ onComplete, durationMs = 2600 }) {
             opacity: 0,
             transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] },
           }}
-          className="fixed inset-0 from-slate-50 to-slate-100 flex items-center justify-center text-slate-900 select-none overflow-hidden z-50 bg-white"
+          className="fixed inset-0 flex items-center justify-center text-slate-900 select-none overflow-hidden z-50 bg-gradient-to-br from-slate-50 to-slate-100"
         >
-          {/* Particle background */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {particleConfigs.map((cfg, i) => (
-              <motion.div
-                key={`p-${i}`}
-                className="absolute w-1.5 h-1.5 bg-slate-300 rounded-full"
-                initial={{ x: cfg.x0, y: cfg.y0, opacity: 0 }}
-                animate={{
-                  x: [cfg.x0, cfg.x1],
-                  y: [cfg.y0, cfg.y1],
-                  opacity: [0, 0.35, 0],
-                }}
-                transition={{
-                  duration: cfg.duration,
-                  repeat: Infinity,
-                  delay: cfg.delay + i * 0.06,
-                  ease: "easeInOut",
-                }}
-              />
-            ))}
-          </div>
+          {/* Particle background (only renders on client) */}
+          {particleConfigs.length > 0 && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              {particleConfigs.map((cfg, i) => (
+                <motion.div
+                  key={`p-${i}`}
+                  className="absolute w-1.5 h-1.5 bg-slate-300 rounded-full"
+                  initial={{ x: cfg.x0, y: cfg.y0, opacity: 0 }}
+                  animate={{
+                    x: [cfg.x0, cfg.x1],
+                    y: [cfg.y0, cfg.y1],
+                    opacity: [0, 0.35, 0],
+                  }}
+                  transition={{
+                    duration: cfg.duration,
+                    repeat: Infinity,
+                    delay: cfg.delay + i * 0.06,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Center content */}
           <div className="relative z-10 flex flex-col items-center justify-center px-6">
@@ -163,8 +174,10 @@ export function LoadingIntro({ onComplete, durationMs = 2600 }) {
               </p>
             </motion.div>
 
+            
+
             {/* Decorative chips */}
-            <div className="flex gap-3 mt-6">
+            <div className="flex gap-3 mt-4">
               {["Security", "Speed", "Reliability"].map((t, i) => (
                 <motion.div
                   key={t}
@@ -181,7 +194,20 @@ export function LoadingIntro({ onComplete, durationMs = 2600 }) {
             </div>
           </div>
 
-          {/* Bottom area: compact loading bar + text */}
+          {/* Bottom loading status */}
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="text-xs text-slate-500 font-medium px-4 py-2 bg-white/50 backdrop-blur-sm rounded-full border border-slate-200/50"
+            >
+              {progress < 30 && "Initializing..."}
+              {progress >= 30 && progress < 70 && "Loading resources..."}
+              {progress >= 70 && progress < 90 && "Preparing interface..."}
+              {progress >= 90 && "Almost ready..."}
+            </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
