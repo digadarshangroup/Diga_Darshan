@@ -75,7 +75,7 @@ export function Header() {
             </Link>
 
             {/* Solutions Dropdown */}
-            <div className="relative">
+            {/* <div className="relative">
               <button
                 onClick={() => setIsSolutionsOpen(!isSolutionsOpen)}
                 className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 rounded-lg hover:bg-gray-50"
@@ -122,32 +122,27 @@ export function Header() {
                   </div>
                 </>
               )}
-            </div>
+            </div> */}
 
             <Link
-              href="/products"
+              href="/about-us"
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 rounded-lg hover:bg-gray-50"
             >
-              Products
+              About Us
             </Link>
             <Link
-              href="/industries"
+              href="/blog"
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 rounded-lg hover:bg-gray-50"
             >
-              Industries
+              Blog
             </Link>
             <Link
-              href="/resources"
+              href="/pricing"
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 rounded-lg hover:bg-gray-50"
             >
-              Resources
+              Pricing
             </Link>
-            <Link
-              href="/company"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 rounded-lg hover:bg-gray-50"
-            >
-              Company
-            </Link>
+            
             <Link
               href="/contact"
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 rounded-lg hover:bg-gray-50"
