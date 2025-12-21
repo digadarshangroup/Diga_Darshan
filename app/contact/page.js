@@ -7,6 +7,7 @@ import {
   Shield, CheckCircle, ArrowRight, Send, Building,
   PhoneCall, MessageCircle, Headphones, Globe
 } from "lucide-react";
+import { Header } from "@/components/header";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -189,6 +190,7 @@ Please contact me for further discussion.`;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <Header />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-r from-blue-900 to-emerald-900">
         <div className="absolute inset-0 bg-black/20" />

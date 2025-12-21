@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, Shield, TrendingUp, Users, Clock, Award, Star, Zap, Building, Phone, MessageSquare, ArrowRight } from "lucide-react";
+import { Header } from "@/components/header";
 
 export default function PricingPage() {
   const [activeCategory, setActiveCategory] = useState("fisheries");
@@ -188,6 +189,7 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <Header />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-r from-blue-900 to-emerald-900">
         <div className="absolute inset-0 bg-black/20" />

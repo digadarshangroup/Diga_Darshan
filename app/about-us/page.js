@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Header } from "@/components/header";
 
 export default function AboutUsPage() {
   const [activeMilestone, setActiveMilestone] = useState(0);
@@ -103,6 +104,7 @@ export default function AboutUsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <Header />
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-emerald-900/20" />

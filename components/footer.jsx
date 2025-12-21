@@ -71,7 +71,7 @@ export function Footer() {
               />
               <div>
                 <h3 className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  Fisheries
+                  Diga-Darshan
                 </h3>
                 <p className="text-sm text-blue-200">Business Solutions</p>
               </div>
