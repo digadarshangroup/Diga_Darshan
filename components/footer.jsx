@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Fish,
   Mail,
@@ -12,27 +12,39 @@ import {
   Instagram,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { serviceCategories } from "@/lib/service-categories";
 
 export function Footer() {
-  const [fishPositions] = useState(() =>
-    Array.from({ length: 8 }).map((_, i) => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${i * 0.8}s`,
-      scale: 0.3 + Math.random() * 0.4,
-    }))
-  );
+  // Randomized decorative positions are generated client-side only (after
+  // mount) so the server-rendered markup and the first client render match
+  // exactly and avoid a hydration mismatch.
+  const [fishPositions, setFishPositions] = useState([]);
+  const [bubbles, setBubbles] = useState([]);
 
-  const [bubbles] = useState(() =>
-    Array.from({ length: 12 }).map(() => ({
-      left: `${Math.random() * 100}%`,
-      animationDuration: `${4 + Math.random() * 3}s`,
-      animationDelay: `${Math.random() * 2}s`,
-    }))
-  );
+  useEffect(() => {
+    setFishPositions(
+      Array.from({ length: 5 }).map((_, i) => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${i * 0.8}s`,
+        scale: 0.3 + Math.random() * 0.4,
+      }))
+    );
+    setBubbles(
+      Array.from({ length: 8 }).map(() => ({
+        left: `${Math.random() * 100}%`,
+        animationDuration: `${4 + Math.random() * 3}s`,
+        animationDelay: `${Math.random() * 2}s`,
+      }))
+    );
+  }, []);
 
   return (
-    <footer className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900 text-white overflow-hidden">
+    <footer
+      className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900 text-white overflow-hidden"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "1px 700px" }}
+    >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 opacity-5">
         {fishPositions.map((pos, i) => (
@@ -63,22 +75,24 @@ export function Footer() {
           <div className="transform hover:scale-105 transition-all duration-300 hover:translate-z-2">
             <div className="flex items-center space-x-3 mb-6">
               <Image
-                src="/logo.png"
-                alt="Diga Darshan Logo"
-                width={1024}
-                height={1024}
-                className="object-center w-14 h-16"
+                src="/logo-matrubhoomi.svg"
+                alt="Matrubhoomi Farms & Developers Logo"
+                width={64}
+                height={64}
+                className="object-center w-14 h-14"
               />
               <div>
                 <h3 className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  Diga-Darshan
+                  Matrubhoomi Farms &amp; Developers
                 </h3>
-                <p className="text-sm text-blue-200">Business Solutions</p>
+                <p className="text-sm text-blue-200">Private Limited</p>
               </div>
             </div>
             <p className="text-blue-200 mb-4 leading-relaxed">
-              Empowering fisheries businesses with comprehensive government
-              scheme solutions and expert guidance for sustainable growth.
+              Empowering entrepreneurs with comprehensive business solutions —
+              CA &amp; banking, farming &amp; construction, real estate, trading,
+              software, manufacturing and retail — backed by expert guidance
+              and government scheme facilitation.
             </p>
             <div className="flex space-x-4">
               {[Facebook, Twitter, Linkedin, Instagram].map((Icon, index) => (
@@ -101,20 +115,20 @@ export function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                "Government Schemes",
-                "Eligibility Check",
-                "Application Process",
-                "Success Stories",
-                "Resources",
+                { label: "Home", href: "/" },
+                { label: "About Us", href: "/about-us" },
+                { label: "Blog", href: "/blog" },
+                { label: "Pricing", href: "/pricing" },
+                { label: "Contact", href: "/contact" },
               ].map((link, index) => (
-                <li key={link}>
-                  <a
-                    href="#"
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
                     className="text-blue-200 hover:text-white transition-all duration-300 transform hover:translate-x-2 hover:scale-105 inline-block"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    {link}
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -127,21 +141,15 @@ export function Footer() {
               <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-teal-400 to-blue-400 animate-gradient-x"></div>
             </h4>
             <ul className="space-y-3">
-              {[
-                "Scheme Consultation",
-                "Application Support",
-                "Documentation Help",
-                "Financial Planning",
-                "Business Advisory",
-              ].map((service, index) => (
-                <li key={service}>
-                  <a
-                    href="#"
+              {serviceCategories.map((category, index) => (
+                <li key={category.slug}>
+                  <Link
+                    href={category.href ?? `/services/${category.slug}`}
                     className="text-blue-200 hover:text-white transition-all duration-300 transform hover:translate-x-2 hover:scale-105 inline-block"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    {service}
-                  </a>
+                    {category.shortTitle}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -159,7 +167,7 @@ export function Footer() {
                   <Mail className="w-4 h-4 text-blue-200 group-hover:text-white" />
                 </div>
                 <span className="text-blue-200 group-hover:text-white transition-colors duration-300">
-                  digadarshangroup@gmail.com
+                  info@matrubhoomifarms.com
                 </span>
               </div>
               <div className="flex items-center space-x-3 group">
@@ -186,7 +194,7 @@ export function Footer() {
         <div className="border-t border-blue-800/50 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-blue-200 text-sm">
-              © 2024 Fisheries Business Solutions. All rights reserved.
+              © {new Date().getFullYear()} Matrubhoomi Farms &amp; Developers Private Limited. All rights reserved.
             </p>
             <div className="flex space-x-6">
               {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(

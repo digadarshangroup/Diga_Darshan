@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next";
+import { serviceCategories, getCategoryHref, getServiceHref } from "@/lib/service-categories";
 
 // Base URL - Use your canonical URL
-const baseUrl = "https://digadarshan.com";
+const baseUrl = "https://matrubhoomifarms.com";
 
 // Common metadata for pages
 const defaultChangeFreq: MetadataRoute.Sitemap[0]["changeFrequency"] = "weekly";
@@ -60,36 +61,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Business division routes
-  const businessDivisions = [
-    {
-      slug: "fisheries",
-      name: "Fisheries Division",
-      priority: 0.9,
-    },
-    {
-      slug: "aqua-nivesh",
-      name: "Aqua-Nivesh Fisheries",
-      priority: 0.9,
-      note: "Main fisheries portal",
-    },
-    {
-      slug: "pharmacy",
-      name: "Pharmacy Division",
-      priority: 0.9,
-    },
-    {
-      slug: "trading",
-      name: "Trading Division",
-      priority: 0.9,
-    },
-    {
-      slug: "horticulture",
-      name: "Horticulture Division",
-      priority: 0.9,
-    },
+  // Business division (category) routes, generated from the shared category data
+  const businessDivisions = serviceCategories.map((category) => ({
+    url: `${baseUrl}${getCategoryHref(category)}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.9,
+  }));
+
+  // Individual service detail pages within each category
+  const serviceDetailPages = serviceCategories.flatMap((category) =>
+    category.subcategories
+      .filter((s) => s.slug)
+      .map((s) => ({
+        url: `${baseUrl}${getServiceHref(category, s.slug)}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      }))
+  );
+
+  const topLevelDivisions = [
+    { path: "/fisheries", priority: 0.9 },
+    { path: "/horticulture", priority: 0.9 },
   ].map((division) => ({
-    url: `${baseUrl}/services/${division.slug}`,
+    url: `${baseUrl}${division.path}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: division.priority,
@@ -364,6 +360,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Highest priority pages first
     ...staticRoutes,
     ...businessDivisions,
+    ...serviceDetailPages,
+    ...topLevelDivisions,
     ...schemePages,
     ...specializedServices,
     ...resourcePages,

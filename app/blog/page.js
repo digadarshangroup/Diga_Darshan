@@ -11,13 +11,12 @@ export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const blogCategories = [
-    { id: "all", name: "All Articles", count: 24 },
-    { id: "fisheries", name: "Fisheries", count: 8 },
-    { id: "trading", name: "Trading", count: 5 },
-    { id: "agriculture", name: "Agriculture", count: 6 },
-    { id: "msme", name: "MSME", count: 4 },
-    { id: "government", name: "Government Schemes", count: 7 },
-    { id: "success", name: "Success Stories", count: 3 }
+    { id: "all", name: "All Articles" },
+    { id: "fisheries", name: "Fisheries" },
+    { id: "trading", name: "Trading" },
+    { id: "agriculture", name: "Agriculture" },
+    { id: "msme", name: "MSME" },
+    { id: "government", name: "Government Schemes" },
   ];
 
   const popularTags = [
@@ -32,19 +31,19 @@ export default function BlogPage() {
       title: "How to Get 40% Subsidy for Fish Farming in Odisha - Complete Guide",
       excerpt: "Learn step-by-step process to avail PMMSY scheme benefits for fisheries business with Aqua-Nivesh platform support.",
       category: "fisheries",
-      author: "Rajesh Mohanty",
+      author: "Fisheries Team",
       date: "Jan 15, 2024",
       readTime: "8 min read",
       image: "🐟",
       featured: true,
-      whatsappMessage: "Hello Diga Darshan, I want to know more about fisheries subsidy. Please guide me."
+      whatsappMessage: "Hello Matrubhoomi Farms & Developers, I want to know more about fisheries subsidy. Please guide me."
     },
     {
       id: 2,
       title: "Top 5 Government Schemes for MSME Business in 2024",
       excerpt: "Comprehensive overview of PMEGP, CGTMSE, PMFME and other schemes with eligibility criteria and application process.",
       category: "government",
-      author: "Priyanka Das",
+      author: "Finance Team",
       date: "Jan 12, 2024",
       readTime: "10 min read",
       image: "📋",
@@ -63,8 +62,6 @@ export default function BlogPage() {
       date: "Jan 10, 2024",
       readTime: "6 min read",
       image: "📈",
-      views: "1.2k",
-      comments: 24
     },
     {
       id: 4,
@@ -75,20 +72,6 @@ export default function BlogPage() {
       date: "Jan 8, 2024",
       readTime: "12 min read",
       image: "📊",
-      views: "890",
-      comments: 18
-    },
-    {
-      id: 5,
-      title: "From 2 Acres to 10 Acres: Success Story of Fish Farmer in Berhampur",
-      excerpt: "How Bhabani Sankar transformed his small fish farm into a profitable business with Diga Darshan's support.",
-      category: "success",
-      author: "Success Stories",
-      date: "Jan 5, 2024",
-      readTime: "7 min read",
-      image: "🌟",
-      views: "1.5k",
-      comments: 32
     },
     {
       id: 6,
@@ -99,8 +82,6 @@ export default function BlogPage() {
       date: "Jan 3, 2024",
       readTime: "9 min read",
       image: "🌱",
-      views: "720",
-      comments: 15
     },
     {
       id: 7,
@@ -111,8 +92,6 @@ export default function BlogPage() {
       date: "Dec 28, 2023",
       readTime: "5 min read",
       image: "🏘️",
-      views: "650",
-      comments: 12
     },
     {
       id: 8,
@@ -123,8 +102,6 @@ export default function BlogPage() {
       date: "Dec 25, 2023",
       readTime: "11 min read",
       image: "🏗️",
-      views: "540",
-      comments: 8
     }
   ];
 
@@ -163,7 +140,7 @@ export default function BlogPage() {
     return matchesCategory && matchesSearch;
   });
 
-  const redirectToWhatsApp = (message = "Hello Diga Darshan Team, I want to learn more about your services.") => {
+  const redirectToWhatsApp = (message = "Hello Matrubhoomi Farms & Developers Team, I want to learn more about your services.") => {
     const phoneNumber = "919040626617";
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -187,7 +164,7 @@ export default function BlogPage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
               <BookOpen className="w-4 h-4 text-white" />
-              <span className="text-white font-bold text-sm tracking-wider">DIGADARSHAN KNOWLEDGE HUB</span>
+              <span className="text-white font-bold text-sm tracking-wider">MATRUBHOOMI KNOWLEDGE HUB</span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6">
@@ -214,7 +191,7 @@ export default function BlogPage() {
                 />
                 <button 
                   onClick={() => {
-                    const message = `Hello Diga Darshan, I'm searching for information about: ${searchQuery}`;
+                    const message = `Hello Matrubhoomi Farms & Developers, I'm searching for information about: ${searchQuery}`;
                     redirectToWhatsApp(message);
                   }}
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-gradient-to-r from-blue-500 to-emerald-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
@@ -288,7 +265,9 @@ export default function BlogPage() {
                       <span className="font-medium">{category.name}</span>
                     </div>
                     <span className="text-sm bg-slate-100 px-2 py-1 rounded-full">
-                      {category.count}
+                      {category.id === "all"
+                        ? featuredPosts.length + blogPosts.length
+                        : [...featuredPosts, ...blogPosts].filter((p) => p.category === category.id).length}
                     </span>
                   </button>
                 ))}
@@ -359,7 +338,7 @@ export default function BlogPage() {
               </p>
               
               <button
-                onClick={() => redirectToWhatsApp("Hello Diga Darshan Team, I need expert advice for my business.")}
+                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers Team, I need expert advice for my business.")}
                 className="w-full px-4 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 mb-4"
               >
                 <span className="text-xl">💬</span>
@@ -370,7 +349,7 @@ export default function BlogPage() {
               <div className="text-sm text-slate-600">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                  <span>Instant response within 5 minutes</span>
+                  <span>Quick response on WhatsApp</span>
                 </div>
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
@@ -481,12 +460,8 @@ export default function BlogPage() {
                             <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">
                               {post.category.toUpperCase()}
                             </span>
-                            <div className="flex items-center gap-4 text-sm text-slate-500">
-                              <span>👁️ {post.views}</span>
-                              <span>💬 {post.comments}</span>
-                            </div>
                           </div>
-                          
+
                           <div className="text-4xl mb-4">{post.image}</div>
                           
                           <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
@@ -563,7 +538,7 @@ export default function BlogPage() {
                   
                   <div className="mt-6">
                     <button
-                      onClick={() => redirectToWhatsApp("Hello Diga Darshan, I want to subscribe to business updates and need guidance.")}
+                      onClick={() => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers, I want to subscribe to business updates and need guidance.")}
                       className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 mx-auto"
                     >
                       <span>📱</span>
@@ -575,41 +550,6 @@ export default function BlogPage() {
               </div>
             </motion.div>
 
-            {/* Pagination */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-8"
-            >
-              <div className="flex justify-center items-center gap-4">
-                <button className="px-4 py-2 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-all duration-300">
-                  Previous
-                </button>
-                <div className="flex items-center gap-2">
-                  {[1, 2, 3, 4, 5].map((page) => (
-                    <button
-                      key={page}
-                      className={`w-10 h-10 rounded-lg transition-all duration-300 ${
-                        page === 1
-                          ? 'bg-gradient-to-r from-blue-600 to-emerald-600 text-white'
-                          : 'bg-white border border-slate-300 hover:bg-slate-50'
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  ))}
-                  <span className="text-slate-400">...</span>
-                  <button className="w-10 h-10 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-all duration-300">
-                    12
-                  </button>
-                </div>
-                <button className="px-4 py-2 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-all duration-300 flex items-center gap-2">
-                  Next
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </motion.div>
           </div>
         </div>
       </div>
@@ -620,6 +560,7 @@ export default function BlogPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
@@ -634,7 +575,7 @@ export default function BlogPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => redirectToWhatsApp("Hello Diga Darshan Team, I need business consultation and want to discuss my requirements.")}
+                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers Team, I need business consultation and want to discuss my requirements.")}
                 className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
               >
                 <span className="text-xl">💬</span>
@@ -652,7 +593,7 @@ export default function BlogPage() {
             </div>
             
             <div className="mt-8 text-sm text-slate-500">
-              Response time: Within 5 minutes | Available: 24/7 for urgent queries
+              Available 24/7 on WhatsApp for urgent queries
             </div>
           </motion.div>
         </div>

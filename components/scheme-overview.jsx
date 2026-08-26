@@ -133,7 +133,12 @@ export function SchemeOverview() {
                     <div className="flex justify-between p-2 rounded bg-gray-50 transition-colors duration-500 group-hover:bg-blue-50/50">
                       <span className="text-gray-600">Deadline:</span>
                       <span className="font-medium text-gray-900">
-                        {new Date(scheme.deadline).toLocaleDateString()}
+                        {new Date(scheme.deadline).toLocaleDateString("en-IN", {
+                          timeZone: "UTC",
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })}
                       </span>
                     </div>
                     <div className="flex justify-between p-2 rounded bg-gray-50 transition-colors duration-500 group-hover:bg-blue-50/50">

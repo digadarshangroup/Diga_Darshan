@@ -98,8 +98,7 @@ export default function PricingPage() {
       ],
       investmentRange: "₹5 Lakhs - ₹50 Lakhs",
       roiTimeframe: "12-18 months",
-      successRate: "95%",
-      whatsappMessage: "Hello Diga Darshan, I'm interested in fisheries business. Please share investment details and subsidy options."
+      whatsappMessage: "Hello Matrubhoomi Farms & Developers, I'm interested in fisheries business. Please share investment details and subsidy options."
     },
     trading: {
       title: "Trading Education Programs",
@@ -115,7 +114,6 @@ export default function PricingPage() {
       ],
       investmentRange: "₹25,000 - ₹2,00,000",
       roiTimeframe: "6-12 months",
-      successRate: "85%",
       whatsappMessage: "Hello, I want to learn trading. Please share course details and fee structure."
     },
     msme: {
@@ -132,7 +130,6 @@ export default function PricingPage() {
       ],
       investmentRange: "₹1 Lakh - ₹5 Crores",
       roiTimeframe: "18-36 months",
-      successRate: "90%",
       whatsappMessage: "Hello, I need MSME registration and loan assistance. Please guide me."
     },
     agriculture: {
@@ -149,7 +146,6 @@ export default function PricingPage() {
       ],
       investmentRange: "₹3 Lakhs - ₹25 Lakhs",
       roiTimeframe: "12-24 months",
-      successRate: "92%",
       whatsappMessage: "Hello, I want to start/expand my agriculture business. Need guidance on subsidies."
     },
     infrastructure: {
@@ -166,19 +162,18 @@ export default function PricingPage() {
       ],
       investmentRange: "₹10 Lakhs - ₹1 Crore",
       roiTimeframe: "24-36 months",
-      successRate: "98%",
       whatsappMessage: "Hello, I need construction services for my business. Please share project details."
     }
   };
 
   const successMetrics = [
-    { value: "10,000+", label: "Entrepreneurs Served", icon: <Users className="w-6 h-6" /> },
-    { value: "₹500Cr+", label: "Business Value Created", icon: <TrendingUp className="w-6 h-6" /> },
-    { value: "95%", label: "Success Rate", icon: <Award className="w-6 h-6" /> },
-    { value: "24/7", label: "Support Available", icon: <Clock className="w-6 h-6" /> }
+    { value: "7", label: "Business Domains", icon: <Users className="w-6 h-6" /> },
+    { value: "1", label: "Single Point of Contact", icon: <TrendingUp className="w-6 h-6" /> },
+    { value: "Custom", label: "Quote Per Project", icon: <Award className="w-6 h-6" /> },
+    { value: "24/7", label: "WhatsApp Support", icon: <Clock className="w-6 h-6" /> }
   ];
 
-  const redirectToWhatsApp = (message = "Hello Diga Darshan Team, I want to know about your services and pricing.") => {
+  const redirectToWhatsApp = (message = "Hello Matrubhoomi Farms & Developers Team, I want to know about your services and pricing.") => {
     const phoneNumber = "919040626617";
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -304,24 +299,18 @@ export default function PricingPage() {
                   <Zap className="w-5 h-5 text-blue-600" />
                   Investment Highlights
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-slate-900 mb-1">
                       {currentService.investmentRange}
                     </div>
-                    <div className="text-sm text-slate-600">Investment Range</div>
+                    <div className="text-sm text-slate-600">Approximate Investment Range</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-slate-900 mb-1">
                       {currentService.roiTimeframe}
                     </div>
-                    <div className="text-sm text-slate-600">Expected ROI Timeframe</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-slate-900 mb-1">
-                      {currentService.successRate}
-                    </div>
-                    <div className="text-sm text-slate-600">Success Rate</div>
+                    <div className="text-sm text-slate-600">Typical ROI Timeframe</div>
                   </div>
                 </div>
               </div>
@@ -445,7 +434,7 @@ export default function PricingPage() {
                       </div>
                       <div className="flex items-center gap-2">
                         <Award className="w-4 h-4 text-amber-500" />
-                        <span>10,000+ Clients</span>
+                        <span>Free Initial Consultation</span>
                       </div>
                     </div>
                   </div>
@@ -484,7 +473,7 @@ export default function PricingPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Why Entrepreneurs{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
-                Trust Diga Darshan
+                Trust Matrubhoomi Farms & Developers
               </span>
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -519,6 +508,7 @@ export default function PricingPage() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 border border-slate-200 hover:shadow-xl transition-all duration-500"
               >
@@ -566,6 +556,7 @@ export default function PricingPage() {
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="relative"
                 >
@@ -628,14 +619,15 @@ export default function PricingPage() {
                 a: "Yes, we assist with complete loan processing including DPR preparation, bank coordination, and CGTMSE scheme utilization for collateral-free loans up to ₹2 Crores."
               },
               {
-                q: "What is your success rate for business approvals?",
-                a: "We maintain a 95% success rate across all our services due to our systematic approach, proper documentation, and strong government connections."
+                q: "What is your approach to business approvals?",
+                a: "We follow a systematic approach — proper documentation, direct liaison with banks and government authorities, and regular follow-up — to keep your application on track."
               }
             ].map((faq, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-gradient-to-r from-blue-50 to-emerald-50 rounded-2xl p-6 border border-blue-100"
               >
@@ -669,6 +661,7 @@ export default function PricingPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
@@ -683,7 +676,7 @@ export default function PricingPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => redirectToWhatsApp("Hello Diga Darshan Team, I'm ready to start my business. Need complete guidance.")}
+                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers Team, I'm ready to start my business. Need complete guidance.")}
                 className="px-8 py-4 bg-white text-blue-900 font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
               >
                 <MessageSquare className="w-5 h-5" />

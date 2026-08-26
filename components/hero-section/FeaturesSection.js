@@ -19,7 +19,7 @@ export default function FeaturesSection() {
         "Export documentation support"
       ],
       cta: "Visit Aqua-Nivesh",
-      link: "https://aquanivesh.digadarshan.com"
+      link: "https://aquanivesh.matrubhoomifarms.com"
     },
     {
       title: "For Trading Aspirants",
@@ -47,7 +47,7 @@ export default function FeaturesSection() {
         "Government scheme availing"
       ],
       cta: "Get MSME Support",
-      link: "/msme"
+      link: "/services/entrepreneur-manufacturing"
     }
   ];
 
@@ -57,6 +57,7 @@ export default function FeaturesSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
@@ -130,22 +131,20 @@ export default function FeaturesSection() {
             </div>
             
             <div className="bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl p-8 border border-blue-100">
-              <h4 className="text-xl font-bold text-slate-900 mb-4">Success Story</h4>
-              <div className="space-y-4">
-                <p className="text-slate-700 italic">
-                  "With Diga Darshan's support, we expanded our fish farm from 2 to 10 acres and 
-                  secured 40% subsidy. Their end-to-end guidance made the journey smooth."
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 flex items-center justify-center text-white font-bold">
-                    BS
-                  </div>
-                  <div>
-                    <div className="font-bold text-slate-900">Bhabani Sankar Patnaik</div>
-                    <div className="text-slate-600 text-sm">Aquaculture Entrepreneur, Berhampur</div>
-                  </div>
-                </div>
-              </div>
+              <h4 className="text-xl font-bold text-slate-900 mb-4">Why Work With Us</h4>
+              <ul className="space-y-3">
+                {[
+                  "Single point of contact across every step",
+                  "Direct liaison with banks and scheme authorities",
+                  "Transparent process — no hidden charges",
+                  "Local presence across Odisha",
+                ].map((point) => (
+                  <li key={point} className="flex items-start gap-3 text-slate-700">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </motion.div>

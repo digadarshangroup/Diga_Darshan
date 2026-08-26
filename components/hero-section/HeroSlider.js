@@ -17,15 +17,15 @@ export default function HeroSlider() {
       subtitle: "Fisheries Platform",
       odiaTitle: "ମତ୍ସ୍ୟ",
       description: "Complete fisheries ecosystem support from pond to market. We provide subsidies up to 40%, technical training, feed management, disease control, and market linkage for sustainable aquaculture.",
-      bgImage: "https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?q=80&w=2070&auto=format&fit=crop",
+      bgImage: "https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?q=75&w=1600&auto=format&fit=crop",
       gradient: "from-blue-900/70 via-blue-800/80 to-blue-900/90",
       icon: "🐟",
-      link: "https://aquanivesh.digadarshan.com/",
+      link: "https://aquanivesh.matrubhoomifarms.com/",
       stats: [
         { label: "Subsidy", value: "Up to 40%" },
         { label: "Training", value: "Certified" },
         { label: "Support", value: "24/7 Expert" },
-        { label: "Success", value: "95%" }
+        { label: "Scheme", value: "PMMSY" }
       ]
     },
     {
@@ -34,14 +34,14 @@ export default function HeroSlider() {
       subtitle: "Financial Education",
       odiaTitle: "ବାଣିଜ୍ୟ",
       description: "Transform your financial future with our structured trading education. Learn stock market, commodities, forex with expert mentorship, live trading sessions, and capital guidance.",
-      bgImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop",
+      bgImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=75&w=1600&auto=format&fit=crop",
       gradient: "from-purple-900/70 via-purple-800/80 to-purple-900/90",
       icon: "📈",
       link: "/trading",
       stats: [
-        { label: "Courses", value: "15+" },
+        { label: "Courses", value: "Structured" },
         { label: "Mentors", value: "Expert" },
-        { label: "Success", value: "85%" },
+        { label: "Sessions", value: "Live" },
         { label: "Campus", value: "Bhubaneswar" }
       ]
     },
@@ -51,15 +51,15 @@ export default function HeroSlider() {
       subtitle: "Agricultural Solutions",
       odiaTitle: "କୃଷି",
       description: "End-to-end agricultural support including PMFME, CGTMSE schemes, organic certification, soil testing, irrigation solutions, and direct market access for farmers.",
-      bgImage: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2070&auto=format&fit=crop",
+      bgImage: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=75&w=1600&auto=format&fit=crop",
       gradient: "from-green-900/70 via-green-800/80 to-green-900/90",
       icon: "🌾",
-      link: "/agriculture",
+      link: "/services/farming-construction",
       stats: [
-        { label: "Schemes", value: "50+" },
-        { label: "Farmers", value: "10,000+" },
+        { label: "Schemes", value: "Multiple" },
+        { label: "Support", value: "End-to-End" },
         { label: "Subsidy", value: "Up to 50%" },
-        { label: "Yield", value: "+200%" }
+        { label: "Coverage", value: "Odisha-wide" }
       ]
     },
     {
@@ -68,14 +68,14 @@ export default function HeroSlider() {
       subtitle: "Business Development",
       odiaTitle: "ବ୍ୟବସାୟ",
       description: "Complete MSME support including DPR preparation, project loans, Udyam registration, GST assistance, and government scheme facilitation for sustainable business growth.",
-      bgImage: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2074&auto=format&fit=crop",
+      bgImage: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=75&w=1600&auto=format&fit=crop",
       gradient: "from-amber-900/70 via-amber-800/80 to-amber-900/90",
       icon: "🏢",
-      link: "/msme",
+      link: "/services/entrepreneur-manufacturing",
       stats: [
-        { label: "Loans", value: "₹100Cr+" },
-        { label: "MSMEs", value: "500+" },
-        { label: "Success", value: "98%" },
+        { label: "Loans", value: "CGTMSE" },
+        { label: "Registration", value: "Udyam" },
+        { label: "Compliance", value: "GST" },
         { label: "Support", value: "E2E" }
       ]
     },
@@ -85,15 +85,15 @@ export default function HeroSlider() {
       subtitle: "Turnkey Solutions",
       odiaTitle: "ନିର୍ମାଣ",
       description: "Complete infrastructure solutions including borewell construction, shed development, cold storage setup, and farm construction with buy-back guarantee.",
-      bgImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop",
+      bgImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=75&w=1600&auto=format&fit=crop",
       gradient: "from-red-900/70 via-red-800/80 to-red-900/90",
       icon: "🏗️",
-      link: "/construction",
+      link: "/services/real-estate",
       stats: [
-        { label: "Projects", value: "200+" },
-        { label: "Buy-Back", value: "Guaranteed" },
-        { label: "Quality", value: "ISO" },
-        { label: "Time", value: "-30%" }
+        { label: "Construction", value: "Turnkey" },
+        { label: "Buy-Back", value: "Available" },
+        { label: "Quality", value: "Assured" },
+        { label: "Support", value: "End-to-End" }
       ]
     }
   ];
@@ -160,7 +160,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Content */}
-      <div className="relative h-full flex items-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+      <div className="relative h-full flex items-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24 pb-24 sm:pb-28">
         <div className="max-w-7xl w-full">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
@@ -175,7 +175,7 @@ export default function HeroSlider() {
                   {currentCategory.odiaTitle}
                 </span>
                 <div className="w-1.5 h-1.5 bg-white/60 rounded-full" />
-                <span className="text-white/80 text-xs">Diga Darshan Group</span>
+                <span className="text-white/80 text-xs">Matrubhoomi Farms & Developers</span>
               </motion.div>
 
               {/* Title */}
@@ -229,7 +229,7 @@ export default function HeroSlider() {
                   ))}
                 </div>
                 <div className="mt-8 pt-8 border-t border-white/20">
-                  <div className="text-white/80 text-sm">Part of Diga Darshan Group</div>
+                  <div className="text-white/80 text-sm">Part of Matrubhoomi Farms & Developers</div>
                   <div className="text-white font-bold mt-1">Berhampur • Bhubaneswar • Across Odisha</div>
                 </div>
               </div>

@@ -8,6 +8,7 @@ export default function CTASection() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 to-blue-900 p-8 md:p-12 lg:p-16 shadow-2xl"
       >
@@ -23,7 +24,7 @@ export default function CTASection() {
             </h3>
             
             <p className="text-xl text-slate-300 mb-8">
-              Join 10,000+ successful entrepreneurs who trust Diga Darshan Group for their business growth.
+              Talk to Matrubhoomi Farms &amp; Developers about your business growth — one team, seven domains.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -42,10 +43,10 @@ export default function CTASection() {
               </button>
               
               <a
-                href="mailto:digadarshangroup@gmail.com"
+                href="mailto:info@matrubhoomifarms.com"
                 className="px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/50 transition-all duration-300"
               >
-                Email: contact@digadarshan.com
+                Email: contact@matrubhoomifarms.com
               </a>
             </div>
           </div>
@@ -63,7 +64,7 @@ export default function CTASection() {
               {
                 icon: "🌐",
                 title: "Website",
-                primary: "https://digadarshan.com",
+                primary: "https://matrubhoomifarms.com",
                 secondary: "All Platform Links",
                 action: "Visit Website"
               },
@@ -79,6 +80,7 @@ export default function CTASection() {
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300"
               >
@@ -99,14 +101,14 @@ export default function CTASection() {
               <div className="text-white/80 text-sm mb-4">Our Comprehensive Services Include:</div>
               <div className="flex flex-wrap justify-center gap-4">
                 {[
-                  "PNEGP | CGTMSE | MKUY",
-                  "PMMSY | PMFME | MSME",
-                  "DPR Preparation",
-                  "Project Loans",
-                  "Civil Construction",
-                  "Mechanical Construction",
-                  "Borewell & Shed Construction",
-                  "Buy Back Facilities"
+                  "CA, Banking & Loans",
+                  "Farming & Farm Construction",
+                  "Real Estate",
+                  "Trading",
+                  "Software & Development",
+                  "Entrepreneur & Manufacturing",
+                  "Product & Retail",
+                  "PMEGP | CGTMSE | MKUY | PMMSY"
                 ].map((service, idx) => (
                   <span key={idx} className="px-4 py-2 bg-white/10 rounded-full text-white/90 text-sm">
                     {service}

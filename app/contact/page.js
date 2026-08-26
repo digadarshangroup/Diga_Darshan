@@ -33,7 +33,7 @@ export default function ContactPage() {
       color: "from-green-500 to-emerald-600",
       actionText: "On WhatsApp",
       details: "+91 9040626617",
-      action: () => redirectToWhatsApp("Hello Diga Darshan Team, I need to discuss about my business requirements.")
+      action: () => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers Team, I need to discuss about my business requirements.")
     },
     {
       id: "call",
@@ -56,8 +56,8 @@ export default function ContactPage() {
       availability: "24/7",
       color: "from-red-500 to-pink-500",
       actionText: "Send Email",
-      details: "contact@digadarshan.com",
-      action: () => window.location.href = "mailto:contact@digadarshan.com?subject=Business Inquiry - Diga Darshan Group"
+      details: "contact@matrubhoomifarms.com",
+      action: () => window.location.href = "mailto:contact@matrubhoomifarms.com?subject=Business Inquiry - Matrubhoomi Farms & Developers"
     },
     {
       id: "visit",
@@ -136,7 +136,7 @@ export default function ContactPage() {
     }
   ];
 
-  const redirectToWhatsApp = (message = "Hello Diga Darshan Team, I want to contact you regarding business services.") => {
+  const redirectToWhatsApp = (message = "Hello Matrubhoomi Farms & Developers Team, I want to contact you regarding business services.") => {
     const phoneNumber = "919040626617";
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -205,7 +205,7 @@ Please contact me for further discussion.`;
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
               <MessageCircle className="w-4 h-4 text-white" />
-              <span className="text-white font-bold text-sm tracking-wider">CONNECT WITH DIGADARSHAN</span>
+              <span className="text-white font-bold text-sm tracking-wider">CONNECT WITH MATRUBHOOMI</span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6">
@@ -222,10 +222,9 @@ Please contact me for further discussion.`;
             {/* Quick Contact Stats */}
             <div className="flex flex-wrap justify-center gap-6 mb-8">
               {[
-                { value: "5 min", label: "Avg. Response Time", icon: <Clock className="w-5 h-5" /> },
                 { value: "24/7", label: "WhatsApp Support", icon: <Headphones className="w-5 h-5" /> },
-                { value: "95%", label: "Query Resolution", icon: <CheckCircle className="w-5 h-5" /> },
-                { value: "10K+", label: "Clients Served", icon: <Users className="w-5 h-5" /> }
+                { value: "Free", label: "Initial Consultation", icon: <CheckCircle className="w-5 h-5" /> },
+                { value: "7", label: "Business Domains", icon: <Users className="w-5 h-5" /> }
               ].map((stat, index) => (
                 <motion.div
                   key={index}
@@ -639,17 +638,17 @@ Please contact me for further discussion.`;
             {[
               {
                 department: "Fisheries Division",
-                contact: "Rajesh Mohanty",
-                role: "Head - Aquaculture",
+                contact: "Fisheries Team",
+                role: "Aquaculture Specialists",
                 services: ["PMMSY Scheme", "Fish Farm Setup", "Market Linkage"],
-                whatsappMessage: "Hello Rajesh Sir, I need help with fisheries business setup."
+                whatsappMessage: "Hello, I need help with fisheries business setup."
               },
               {
                 department: "MSME & Finance",
-                contact: "Priyanka Das",
-                role: "Head - Business Finance",
+                contact: "Finance Team",
+                role: "Business Finance Specialists",
                 services: ["DPR Preparation", "Loan Assistance", "Registration"],
-                whatsappMessage: "Hello Priyanka Madam, I need help with MSME registration and loans."
+                whatsappMessage: "Hello, I need help with MSME registration and loans."
               },
               {
                 department: "Trading Education",
@@ -667,10 +666,10 @@ Please contact me for further discussion.`;
               },
               {
                 department: "Infrastructure",
-                contact: "Suresh Nayak",
-                role: "Head - Construction",
+                contact: "Construction Team",
+                role: "Civil & Infrastructure Specialists",
                 services: ["Borewell", "Shed Construction", "Cold Storage"],
-                whatsappMessage: "Hello Suresh Sir, I need construction services for my business."
+                whatsappMessage: "Hello, I need construction services for my business."
               },
               {
                 department: "Government Schemes",
@@ -684,6 +683,7 @@ Please contact me for further discussion.`;
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 border border-slate-200 hover:shadow-xl transition-all duration-500"
               >
@@ -726,6 +726,7 @@ Please contact me for further discussion.`;
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
@@ -790,6 +791,7 @@ Please contact me for further discussion.`;
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
@@ -803,7 +805,7 @@ Please contact me for further discussion.`;
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => redirectToWhatsApp("Hello Diga Darshan Team, I'm ready to start my business journey. Please guide me.")}
+                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers Team, I'm ready to start my business journey. Please guide me.")}
                 className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
               >
                 <MessageSquare className="w-5 h-5" />

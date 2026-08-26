@@ -122,11 +122,11 @@ export function LoadingIntro({ onComplete, durationMs = 2600 }) {
                   className="absolute inset-0"
                 >
                   <Image
-                    src="/logo.png"
-                    alt="Diga Darshan Logo"
+                    src="/logo-matrubhoomi.svg"
+                    alt="Matrubhoomi Farms & Developers Logo"
                     fill
                     priority
-                    className="object-cover"
+                    className="object-contain p-1"
                   />
                 </motion.div>
               </motion.div>
@@ -134,7 +134,7 @@ export function LoadingIntro({ onComplete, durationMs = 2600 }) {
 
             {/* Title with character reveal */}
             <div className="flex items-center justify-center mb-2 flex-wrap">
-              {"Diga Darshan".split("").map((ch, i) => (
+              {"Matrubhoomi Farms & Developers".split("").map((ch, i) => (
                 <motion.span
                   key={i}
                   initial={{ y: 22, opacity: 0 }}

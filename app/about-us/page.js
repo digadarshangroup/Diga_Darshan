@@ -5,77 +5,70 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/header";
+import { serviceCategories } from "@/lib/service-categories";
 
 export default function AboutUsPage() {
   const [activeMilestone, setActiveMilestone] = useState(0);
 
   const milestones = [
     {
-      year: "2018",
+      year: "Foundation",
       title: "Foundation in Berhampur",
-      description: "Started as a small business consultancy firm in Berhampur, focusing on government scheme facilitation for local entrepreneurs.",
+      description: "Started as a business consultancy firm in Berhampur, focusing on government scheme facilitation for local entrepreneurs.",
       icon: "🏢"
     },
     {
-      year: "2020",
+      year: "Growth",
       title: "Expansion to Fisheries",
-      description: "Launched Aqua-Nivesh platform to revolutionize fisheries sector with technology and government scheme integration.",
+      description: "Launched the Aqua-Nivesh platform to support the fisheries sector with technology and government scheme integration.",
       icon: "🐟"
     },
     {
-      year: "2021",
-      title: "MSME Division Launch",
-      description: "Established comprehensive MSME support division for DPR preparation, loan assistance, and business development.",
+      year: "Growth",
+      title: "Business Advisory Division",
+      description: "Established a dedicated division for DPR preparation, loan assistance, and business development support.",
       icon: "📊"
     },
     {
-      year: "2022",
-      title: "Bhubaneswar Headquarters",
-      description: "Opened new corporate headquarters in Saheed Nagar, Bhubaneswar, expanding reach across Odisha.",
+      year: "Expansion",
+      title: "Bhubaneswar Presence",
+      description: "Opened a presence in Saheed Nagar, Bhubaneswar, to expand reach across Odisha.",
       icon: "📍"
     },
     {
-      year: "2023",
+      year: "Today",
       title: "Multi-domain Platform",
-      description: "Transformed into a complete business ecosystem supporting 5 major domains with digital platforms.",
+      description: "Rebranded as Matrubhoomi Farms & Developers, bringing 7 business domains together under one roof.",
       icon: "🚀"
     },
     {
-      year: "2024",
+      year: "Ahead",
       title: "State-wide Network",
-      description: "Established presence across 30+ districts in Odisha with 10,000+ entrepreneurs onboarded.",
+      description: "Building out our presence across Odisha, one district and one entrepreneur at a time.",
       icon: "🌐"
     }
   ];
 
-  const teamMembers = [
+  const expertiseAreas = [
     {
-      name: "Bhabani Sankar Patnaik",
-      role: "Founder & CEO",
-      expertise: "Business Strategy & Government Liaison",
-      image: "👨‍💼",
-      description: "20+ years experience in business consultancy and government scheme implementation"
+      role: "CA, Banking & Loans",
+      expertise: "Chartered Accountancy & Government Liaison",
+      description: "Handles statutory registrations, tax filings and bank/scheme liaison for every client."
     },
     {
-      name: "Rajesh Mohanty",
-      role: "Head - Fisheries Division",
-      expertise: "Aquaculture & Marine Sciences",
-      image: "👨‍🔬",
-      description: "Expert in fisheries management and PMMSY scheme implementation"
+      role: "Farming & Aquaculture",
+      expertise: "Aquaculture & Agricultural Sciences",
+      description: "Guides fisheries, animal husbandry and agriculture projects from setup to scheme approval."
     },
     {
-      name: "Priyanka Das",
-      role: "Head - MSME & Finance",
+      role: "Business Finance",
       expertise: "Project Finance & DPR Preparation",
-      image: "👩‍💼",
-      description: "Specialized in project reports and financial assistance schemes"
+      description: "Prepares bank-ready project reports and manages loan/scheme applications end to end."
     },
     {
-      name: "Suresh Nayak",
-      role: "Head - Infrastructure",
+      role: "Real Estate & Construction",
       expertise: "Civil Construction & Project Management",
-      image: "👷‍♂️",
-      description: "15+ years in construction and infrastructure development"
+      description: "Oversees land development, farm construction and residential/commercial projects."
     }
   ];
 
@@ -119,7 +112,7 @@ export default function AboutUsPage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full mb-6">
               <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
-              <span className="text-blue-600 font-bold text-sm tracking-wider">ABOUT DIGADARSHAN GROUP</span>
+              <span className="text-blue-600 font-bold text-sm tracking-wider">ABOUT MATRUBHOOMI FARMS & DEVELOPERS</span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 mb-6">
@@ -145,6 +138,7 @@ export default function AboutUsPage() {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
@@ -156,22 +150,22 @@ export default function AboutUsPage() {
               
               <div className="space-y-6">
                 <p className="text-lg text-slate-700 leading-relaxed">
-                  Diga Darshan Group was founded in Berhampur, Odisha with a simple vision: 
+                  Matrubhoomi Farms & Developers was founded in Berhampur, Odisha with a simple vision: 
                   to make government schemes and business opportunities accessible to every 
                   entrepreneur in the state.
                 </p>
                 
                 <p className="text-lg text-slate-700 leading-relaxed">
-                  What started as a small consultancy firm has now transformed into Odisha's 
-                  premier multi-domain business platform. With our new headquarters in 
-                  Saheed Nagar, Bhubaneswar, we serve entrepreneurs across 30+ districts, 
-                  helping them navigate the complex world of business setup, expansion, 
-                  and government scheme utilization.
+                  What started as a business consultancy firm has grown into a multi-domain
+                  platform with a presence in Saheed Nagar, Bhubaneswar, helping entrepreneurs
+                  across Odisha navigate business setup, expansion, and government scheme
+                  utilization.
                 </p>
-                
+
                 <p className="text-lg text-slate-700 leading-relaxed">
-                  Today, we're proud to have facilitated over ₹500Cr in business value and 
-                  helped 10,000+ entrepreneurs achieve their dreams.
+                  Today, we bring CA &amp; banking, farming &amp; construction, real estate,
+                  trading, software, manufacturing and retail together under one roof — so you
+                  don't need a different consultant for every part of your business.
                 </p>
               </div>
               
@@ -196,21 +190,20 @@ export default function AboutUsPage() {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              {/* Stats Card */}
+              {/* Overview Card */}
               <div className="bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl p-8 border border-blue-100 shadow-xl">
-                <h3 className="text-2xl font-bold text-slate-900 mb-6">By The Numbers</h3>
-                
+                <h3 className="text-2xl font-bold text-slate-900 mb-6">At a Glance</h3>
+
                 <div className="grid grid-cols-2 gap-6">
                   {[
-                    { value: "10,000+", label: "Entrepreneurs Empowered" },
-                    { value: "₹500Cr+", label: "Business Value Created" },
-                    { value: "30+", label: "Districts Covered" },
-                    { value: "200+", label: "Projects Completed" },
-                    { value: "5", label: "Business Domains" },
-                    { value: "98%", label: "Success Rate" }
+                    { value: "7", label: "Business Domains" },
+                    { value: "34+", label: "Individual Services" },
+                    { value: "1", label: "Single Point of Contact" },
+                    { value: "Odisha", label: "Where We Operate" },
                   ].map((stat, idx) => (
                     <div key={idx} className="text-center">
                       <div className="text-2xl md:text-3xl font-black text-slate-900 mb-1">
@@ -222,13 +215,11 @@ export default function AboutUsPage() {
                     </div>
                   ))}
                 </div>
-                
+
                 <div className="mt-8 pt-8 border-t border-blue-200">
-                  <div className="text-slate-700">
-                    <span className="font-semibold">GSTIN:</span> 21BBGPP3031AIZI
-                  </div>
-                  <div className="text-sm text-slate-600 mt-1">
-                    Registered under MSME & Government of Odisha
+                  <div className="text-sm text-slate-600">
+                    Registration and compliance details are shared directly with clients during
+                    onboarding.
                   </div>
                 </div>
               </div>
@@ -262,6 +253,7 @@ export default function AboutUsPage() {
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className={`relative ${
                     index % 2 === 0 ? 'md:mt-0' : 'md:mt-12 lg:mt-24'
@@ -310,86 +302,41 @@ export default function AboutUsPage() {
               </span>
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              End-to-end support across 5 major business domains
+              End-to-end support across 7 core business domains
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Fisheries (Aqua-Nivesh)",
-                description: "Complete fisheries ecosystem from pond setup to market linkage with 40% subsidy support",
-                features: ["Aquaculture Setup", "Feed Management", "Disease Control", "Market Linkage", "PMMSY Scheme"],
-                icon: "🐟",
-                color: "from-blue-500 to-cyan-500"
-              },
-              {
-                title: "Trading Education",
-                description: "Professional trading courses with live market training and capital guidance",
-                features: ["Stock Market", "Commodities", "Forex Trading", "Live Sessions", "Mentorship"],
-                icon: "📈",
-                color: "from-purple-500 to-pink-500"
-              },
-              {
-                title: "Agriculture & Horticulture",
-                description: "Modern farming solutions with government subsidies and organic certification",
-                features: ["PMFME Support", "Organic Farming", "Irrigation", "Market Access", "Training"],
-                icon: "🌱",
-                color: "from-green-500 to-emerald-500"
-              },
-              {
-                title: "MSME Support",
-                description: "Complete MSME setup including DPR preparation, loans, and government registration",
-                features: ["DPR Preparation", "Loan Assistance", "Udyam Registration", "GST Support", "Compliance"],
-                icon: "🏢",
-                color: "from-amber-500 to-orange-500"
-              },
-              {
-                title: "Infrastructure",
-                description: "Turnkey construction solutions with buy-back guarantee and quality assurance",
-                features: ["Borewells", "Shed Construction", "Cold Storage", "Farm Setup", "Buy-Back"],
-                icon: "🏗️",
-                color: "from-red-500 to-rose-500"
-              },
-              {
-                title: "Government Schemes",
-                description: "Expert facilitation for all government schemes and subsidy programs",
-                features: ["PMEGP", "CGTMSE", "MKUY", "PMMSY", "PMFME", "MSME"],
-                icon: "📋",
-                color: "from-indigo-500 to-blue-500"
-              }
-            ].map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group"
-              >
-                <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 h-full border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-500">
-                  <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r ${service.color} mb-6`}>
-                    <span className="text-2xl">{service.icon}</span>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">
-                    {service.title}
-                  </h3>
-                  
-                  <p className="text-slate-600 mb-4">
-                    {service.description}
-                  </p>
-                  
-                  <div className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${service.color}`} />
-                        <span className="text-sm text-slate-700">{feature}</span>
+            {serviceCategories.map((category, index) => {
+              const Icon = category.icon;
+              const href = category.href ?? `/services/${category.slug}`;
+              return (
+                <motion.div
+                  key={category.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group"
+                >
+                  <Link href={href}>
+                    <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 h-full border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-500">
+                      <div
+                        className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r ${category.color} mb-6`}
+                      >
+                        <Icon className="w-6 h-6 text-white" />
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+
+                      <h3 className="text-xl font-bold text-slate-900 mb-3">
+                        {category.shortTitle}
+                      </h3>
+
+                      <p className="text-slate-600">{category.tagline}</p>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -399,50 +346,33 @@ export default function AboutUsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Meet Our{" "}
+              Our{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
-                Leadership Team
+                Expertise
               </span>
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Experienced professionals dedicated to your business success
+              Dedicated teams across every business domain we support
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teamMembers.map((member, index) => (
+            {expertiseAreas.map((area, index) => (
               <motion.div
-                key={index}
+                key={area.role}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group"
               >
                 <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 hover:shadow-xl transition-all duration-500">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 flex items-center justify-center text-2xl">
-                      {member.image}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900">{member.name}</h4>
-                      <div className="text-blue-600 font-semibold text-sm">{member.role}</div>
-                    </div>
-                  </div>
-                  
-                  <div className="mb-3">
+                  <h4 className="font-bold text-slate-900">{area.role}</h4>
+                  <div className="mt-3 mb-3">
                     <div className="text-sm font-medium text-slate-700 mb-1">Expertise:</div>
-                    <div className="text-slate-600 text-sm">{member.expertise}</div>
+                    <div className="text-slate-600 text-sm">{area.expertise}</div>
                   </div>
-                  
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {member.description}
-                  </p>
-                  
-                  <div className="mt-4 pt-4 border-t border-slate-200">
-                    <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-                      Connect on LinkedIn →
-                    </button>
-                  </div>
+                  <p className="text-slate-600 text-sm leading-relaxed">{area.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -471,6 +401,7 @@ export default function AboutUsPage() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 h-full border border-slate-200 hover:shadow-lg transition-all duration-300">
@@ -494,6 +425,7 @@ export default function AboutUsPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
@@ -502,8 +434,9 @@ export default function AboutUsPage() {
             </h2>
             
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Join thousands of successful entrepreneurs who trust Diga Darshan Group 
-              for their business growth journey.
+              Talk to Matrubhoomi Farms &amp; Developers about your business growth journey —
+              across CA &amp; banking, farming, real estate, trading, software, manufacturing
+              and retail.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -538,17 +471,17 @@ export default function AboutUsPage() {
                 <div>
                   <div className="font-bold text-white mb-2">Contact</div>
                   <div className="text-blue-100">+91 9040626617</div>
-                  <div className="text-sm">contact@digadarshan.com</div>
+                  <div className="text-sm">contact@matrubhoomifarms.com</div>
                 </div>
                 <div>
                   <div className="font-bold text-white mb-2">Website</div>
                   <a 
-                    href="https://digadarshan.com" 
+                    href="https://matrubhoomifarms.com" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-100 hover:text-white"
                   >
-                    www.digadarshan.com
+                    www.matrubhoomifarms.com
                   </a>
                   <div className="text-sm">Aqua-Nivesh Platform Available</div>
                 </div>
