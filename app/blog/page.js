@@ -36,7 +36,7 @@ export default function BlogPage() {
       readTime: "8 min read",
       image: "🐟",
       featured: true,
-      whatsappMessage: "Hello Matrubhoomi Farms & Developers, I want to know more about fisheries subsidy. Please guide me."
+      whatsappMessage: "Hello Matrubhoomi, I want to know more about fisheries subsidy. Please guide me."
     },
     {
       id: 2,
@@ -140,7 +140,7 @@ export default function BlogPage() {
     return matchesCategory && matchesSearch;
   });
 
-  const redirectToWhatsApp = (message = "Hello Matrubhoomi Farms & Developers Team, I want to learn more about your services.") => {
+  const redirectToWhatsApp = (message = "Hello Matrubhoomi Team, I want to learn more about your services.") => {
     const phoneNumber = "919040626617";
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -191,7 +191,7 @@ export default function BlogPage() {
                 />
                 <button 
                   onClick={() => {
-                    const message = `Hello Matrubhoomi Farms & Developers, I'm searching for information about: ${searchQuery}`;
+                    const message = `Hello Matrubhoomi, I'm searching for information about: ${searchQuery}`;
                     redirectToWhatsApp(message);
                   }}
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-gradient-to-r from-blue-500 to-emerald-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
@@ -338,7 +338,7 @@ export default function BlogPage() {
               </p>
               
               <button
-                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers Team, I need expert advice for my business.")}
+                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Team, I need expert advice for my business.")}
                 className="w-full px-4 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 mb-4"
               >
                 <span className="text-xl">💬</span>
@@ -538,7 +538,7 @@ export default function BlogPage() {
                   
                   <div className="mt-6">
                     <button
-                      onClick={() => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers, I want to subscribe to business updates and need guidance.")}
+                      onClick={() => redirectToWhatsApp("Hello Matrubhoomi, I want to subscribe to business updates and need guidance.")}
                       className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 mx-auto"
                     >
                       <span>📱</span>
@@ -575,7 +575,7 @@ export default function BlogPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers Team, I need business consultation and want to discuss my requirements.")}
+                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Team, I need business consultation and want to discuss my requirements.")}
                 className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
               >
                 <span className="text-xl">💬</span>

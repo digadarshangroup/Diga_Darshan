@@ -24,7 +24,7 @@ export default function CTASection() {
             </h3>
             
             <p className="text-xl text-slate-300 mb-8">
-              Talk to Matrubhoomi Farms &amp; Developers about your business growth — one team, seven domains.
+              Talk to Matrubhoomi about your business growth — one team, seven domains.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

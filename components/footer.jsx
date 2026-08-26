@@ -76,14 +76,14 @@ export function Footer() {
             <div className="flex items-center space-x-3 mb-6">
               <Image
                 src="/logo-matrubhoomi.svg"
-                alt="Matrubhoomi Farms & Developers Logo"
+                alt="Matrubhoomi Logo"
                 width={64}
                 height={64}
                 className="object-center w-14 h-14"
               />
               <div>
                 <h3 className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  Matrubhoomi Farms &amp; Developers
+                  Matrubhoomi
                 </h3>
                 <p className="text-sm text-blue-200">Private Limited</p>
               </div>
@@ -194,7 +194,7 @@ export function Footer() {
         <div className="border-t border-blue-800/50 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-blue-200 text-sm">
-              © {new Date().getFullYear()} Matrubhoomi Farms &amp; Developers Private Limited. All rights reserved.
+              © {new Date().getFullYear()} Matrubhoomi Private Limited. All rights reserved.
             </p>
             <div className="flex space-x-6">
               {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(

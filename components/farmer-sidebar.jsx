@@ -62,7 +62,7 @@ export function FarmerSidebar({ user }) {
               <span className="text-white font-bold text-sm">M</span>
             </div>
             <div>
-              <h1 className="text-lg font-bold text-gray-900">Matrubhoomi Farms & Developers</h1>
+              <h1 className="text-lg font-bold text-gray-900">Matrubhoomi</h1>
               <p className="text-xs text-gray-500">Farmer Portal</p>
             </div>
           </div>

@@ -175,7 +175,7 @@ export default function HeroSlider() {
                   {currentCategory.odiaTitle}
                 </span>
                 <div className="w-1.5 h-1.5 bg-white/60 rounded-full" />
-                <span className="text-white/80 text-xs">Matrubhoomi Farms & Developers</span>
+                <span className="text-white/80 text-xs">Matrubhoomi</span>
               </motion.div>
 
               {/* Title */}
@@ -229,7 +229,7 @@ export default function HeroSlider() {
                   ))}
                 </div>
                 <div className="mt-8 pt-8 border-t border-white/20">
-                  <div className="text-white/80 text-sm">Part of Matrubhoomi Farms & Developers</div>
+                  <div className="text-white/80 text-sm">Part of Matrubhoomi</div>
                   <div className="text-white font-bold mt-1">Berhampur • Bhubaneswar • Across Odisha</div>
                 </div>
               </div>

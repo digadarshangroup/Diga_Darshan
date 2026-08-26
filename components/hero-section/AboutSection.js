@@ -15,7 +15,7 @@ export default function AboutSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-emerald-50 rounded-full mb-6 border border-blue-100">
             <div className="w-2 h-2 bg-blue-500 rounded-full" />
-            <span className="text-blue-600 font-bold text-sm tracking-wider">MATRUBHOOMI FARMS & DEVELOPERS</span>
+            <span className="text-blue-600 font-bold text-sm tracking-wider">MATRUBHOOMI</span>
           </div>
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6">
@@ -72,7 +72,7 @@ export default function AboutSection() {
             <div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">Our Vision</h3>
               <p className="text-slate-700 leading-relaxed">
-                Based in Berhampur with a growing presence in Bhubaneswar, Matrubhoomi Farms &amp; Developers
+                Based in Berhampur with a growing presence in Bhubaneswar, Matrubhoomi
                 is building a single, trusted platform for entrepreneurs across Odisha — bringing CA and
                 banking support, farming and construction, real estate, trading, software, manufacturing
                 and retail together under one roof.

@@ -33,7 +33,7 @@ export default function ContactPage() {
       color: "from-green-500 to-emerald-600",
       actionText: "On WhatsApp",
       details: "+91 9040626617",
-      action: () => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers Team, I need to discuss about my business requirements.")
+      action: () => redirectToWhatsApp("Hello Matrubhoomi Team, I need to discuss about my business requirements.")
     },
     {
       id: "call",
@@ -57,7 +57,7 @@ export default function ContactPage() {
       color: "from-red-500 to-pink-500",
       actionText: "Send Email",
       details: "contact@matrubhoomifarms.com",
-      action: () => window.location.href = "mailto:contact@matrubhoomifarms.com?subject=Business Inquiry - Matrubhoomi Farms & Developers"
+      action: () => window.location.href = "mailto:contact@matrubhoomifarms.com?subject=Business Inquiry - Matrubhoomi"
     },
     {
       id: "visit",
@@ -136,7 +136,7 @@ export default function ContactPage() {
     }
   ];
 
-  const redirectToWhatsApp = (message = "Hello Matrubhoomi Farms & Developers Team, I want to contact you regarding business services.") => {
+  const redirectToWhatsApp = (message = "Hello Matrubhoomi Team, I want to contact you regarding business services.") => {
     const phoneNumber = "919040626617";
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -805,7 +805,7 @@ Please contact me for further discussion.`;
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers Team, I'm ready to start my business journey. Please guide me.")}
+                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Team, I'm ready to start my business journey. Please guide me.")}
                 className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
               >
                 <MessageSquare className="w-5 h-5" />

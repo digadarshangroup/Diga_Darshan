@@ -38,7 +38,7 @@ export default function AboutUsPage() {
     {
       year: "Today",
       title: "Multi-domain Platform",
-      description: "Rebranded as Matrubhoomi Farms & Developers, bringing 7 business domains together under one roof.",
+      description: "Rebranded as Matrubhoomi, bringing 7 business domains together under one roof.",
       icon: "🚀"
     },
     {
@@ -112,7 +112,7 @@ export default function AboutUsPage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full mb-6">
               <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
-              <span className="text-blue-600 font-bold text-sm tracking-wider">ABOUT MATRUBHOOMI FARMS & DEVELOPERS</span>
+              <span className="text-blue-600 font-bold text-sm tracking-wider">ABOUT MATRUBHOOMI</span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 mb-6">
@@ -150,7 +150,7 @@ export default function AboutUsPage() {
               
               <div className="space-y-6">
                 <p className="text-lg text-slate-700 leading-relaxed">
-                  Matrubhoomi Farms & Developers was founded in Berhampur, Odisha with a simple vision: 
+                  Matrubhoomi was founded in Berhampur, Odisha with a simple vision: 
                   to make government schemes and business opportunities accessible to every 
                   entrepreneur in the state.
                 </p>
@@ -434,7 +434,7 @@ export default function AboutUsPage() {
             </h2>
             
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Talk to Matrubhoomi Farms &amp; Developers about your business growth journey —
+              Talk to Matrubhoomi about your business growth journey —
               across CA &amp; banking, farming, real estate, trading, software, manufacturing
               and retail.
             </p>

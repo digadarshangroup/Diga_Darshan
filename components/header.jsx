@@ -35,14 +35,14 @@ export function Header() {
           >
             <Image
               src="/logo-matrubhoomi.svg"
-              alt="Matrubhoomi Farms & Developers Logo"
+              alt="Matrubhoomi Logo"
               width={56}
               height={56}
               className="object-center w-11 h-11 lg:w-14 lg:h-14"
               priority
             />
             <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-blue-600 leading-tight text-sm sm:text-base">
-              Matrubhoomi Farms &amp; Developers
+              Matrubhoomi
               <span className="block text-[10px] sm:text-xs font-medium text-slate-500 tracking-wide">
                 Private Limited
               </span>

@@ -98,7 +98,7 @@ export default function PricingPage() {
       ],
       investmentRange: "₹5 Lakhs - ₹50 Lakhs",
       roiTimeframe: "12-18 months",
-      whatsappMessage: "Hello Matrubhoomi Farms & Developers, I'm interested in fisheries business. Please share investment details and subsidy options."
+      whatsappMessage: "Hello Matrubhoomi, I'm interested in fisheries business. Please share investment details and subsidy options."
     },
     trading: {
       title: "Trading Education Programs",
@@ -173,7 +173,7 @@ export default function PricingPage() {
     { value: "24/7", label: "WhatsApp Support", icon: <Clock className="w-6 h-6" /> }
   ];
 
-  const redirectToWhatsApp = (message = "Hello Matrubhoomi Farms & Developers Team, I want to know about your services and pricing.") => {
+  const redirectToWhatsApp = (message = "Hello Matrubhoomi Team, I want to know about your services and pricing.") => {
     const phoneNumber = "919040626617";
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -473,7 +473,7 @@ export default function PricingPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Why Entrepreneurs{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
-                Trust Matrubhoomi Farms & Developers
+                Trust Matrubhoomi
               </span>
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -676,7 +676,7 @@ export default function PricingPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Farms & Developers Team, I'm ready to start my business. Need complete guidance.")}
+                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Team, I'm ready to start my business. Need complete guidance.")}
                 className="px-8 py-4 bg-white text-blue-900 font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
               >
                 <MessageSquare className="w-5 h-5" />

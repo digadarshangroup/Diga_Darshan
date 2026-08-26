@@ -12,11 +12,11 @@ const inter = Inter({
 export const metadata = {
   metadataBase: new URL("https://matrubhoomifarms.com"),
 
-  title: "Matrubhoomi Farms & Developers Pvt. Ltd. - CA, Banking, Farming, Real Estate & Business Solutions in Odisha",
-  description: "Matrubhoomi Farms & Developers Pvt. Ltd. provides complete business solutions across CA/Banking/Loans, Farming & Farm Construction, Real Estate, Trading, Software Development, Entrepreneurship/Manufacturing and Product/Retail in Odisha. We help entrepreneurs with PMEGP, CGTMSE, MKUY, PMMSY, GST, ITR and more.",
+  title: "Matrubhoomi Pvt. Ltd. - CA, Banking, Farming, Real Estate & Business Solutions in Odisha",
+  description: "Matrubhoomi Pvt. Ltd. provides complete business solutions across CA/Banking/Loans, Farming & Farm Construction, Real Estate, Trading, Software Development, Entrepreneurship/Manufacturing and Product/Retail in Odisha. We help entrepreneurs with PMEGP, CGTMSE, MKUY, PMMSY, GST, ITR and more.",
 
   keywords: [
-    "Matrubhoomi Farms & Developers", "Matrubhoomi", "Business Solutions Odisha",
+    "Matrubhoomi", "Business Solutions Odisha",
     "Government Schemes Odisha", "PMEGP Odisha", "CGTMSE Odisha",
     "MKUY Odisha", "PMMSY Odisha", "Fisheries Business Odisha",
     "Aqua-Nivesh", "Trading Education", "MSME Loan Odisha",
@@ -28,16 +28,16 @@ export const metadata = {
   
   // OPEN GRAPH
   openGraph: {
-    title: "Matrubhoomi Farms & Developers - Complete Business Solutions in Odisha",
+    title: "Matrubhoomi - Complete Business Solutions in Odisha",
     description: "Fisheries | Trading | Agriculture | MSME | Infrastructure | Government Schemes",
     url: "https://matrubhoomifarms.com",
-    siteName: "Matrubhoomi Farms & Developers",
+    siteName: "Matrubhoomi",
     images: [
       {
         url: "https://matrubhoomifarms.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Matrubhoomi Farms & Developers - Business Solutions",
+        alt: "Matrubhoomi - Business Solutions",
       },
     ],
     locale: "en_IN",
@@ -47,7 +47,7 @@ export const metadata = {
   // TWITTER CARD
   twitter: {
     card: "summary_large_image",
-    title: "Matrubhoomi Farms & Developers - Business Solutions in Odisha",
+    title: "Matrubhoomi - Business Solutions in Odisha",
     description: "Complete business support across Fisheries, Trading, Agriculture, MSME & Infrastructure Development",
     images: ["https://matrubhoomifarms.com/og-image.png"],
   },
@@ -57,7 +57,7 @@ export const metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Matrubhoomi Farms & Developers Private Limited",
+  "name": "Matrubhoomi Private Limited",
   "alternateName": "Matrubhoomi",
   "url": "https://matrubhoomifarms.com",
   "logo": "https://matrubhoomifarms.com/logo-matrubhoomi.svg",
@@ -105,18 +105,18 @@ export default function RootLayout({ children }) {
         />
         
         {/* Basic meta tags */}
-        <meta name="author" content="Matrubhoomi Farms & Developers" />
+        <meta name="author" content="Matrubhoomi" />
         
         {/* For WhatsApp sharing - kept simple */}
         <meta property="og:url" content="https://matrubhoomifarms.com" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Matrubhoomi Farms & Developers - Business Solutions in Odisha" />
+        <meta property="og:title" content="Matrubhoomi - Business Solutions in Odisha" />
         <meta property="og:description" content="Complete business support across Fisheries, Trading, Agriculture, MSME & Infrastructure Development" />
         <meta property="og:image" content="https://matrubhoomifarms.com/og-image.png" />
         
         {/* Basic Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Matrubhoomi Farms & Developers - Business Solutions in Odisha" />
+        <meta name="twitter:title" content="Matrubhoomi - Business Solutions in Odisha" />
         <meta name="twitter:description" content="Complete business support across Fisheries, Trading, Agriculture, MSME & Infrastructure Development" />
         <meta name="twitter:image" content="https://matrubhoomifarms.com/og-image.png" />
       </head>

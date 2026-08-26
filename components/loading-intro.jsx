@@ -123,7 +123,7 @@ export function LoadingIntro({ onComplete, durationMs = 2600 }) {
                 >
                   <Image
                     src="/logo-matrubhoomi.svg"
-                    alt="Matrubhoomi Farms & Developers Logo"
+                    alt="Matrubhoomi Logo"
                     fill
                     priority
                     className="object-contain p-1"
@@ -134,7 +134,7 @@ export function LoadingIntro({ onComplete, durationMs = 2600 }) {
 
             {/* Title with character reveal */}
             <div className="flex items-center justify-center mb-2 flex-wrap">
-              {"Matrubhoomi Farms & Developers".split("").map((ch, i) => (
+              {"Matrubhoomi".split("").map((ch, i) => (
                 <motion.span
                   key={i}
                   initial={{ y: 22, opacity: 0 }}
