@@ -4,6 +4,7 @@ import HeroSlider from "./hero-section/HeroSlider";
 import AboutSection from "./hero-section/AboutSection";
 import FeaturesSection from "./hero-section/FeaturesSection";
 import CTASection from "./hero-section/CTASection";
+import StackShowcase from "./hero-section/StackShowcase";
 import { HomeCategories } from "@/components/home-categories";
 
 export function HeroSection() {
@@ -16,6 +17,8 @@ export function HeroSection() {
 
       {/* Primary navigation into every service */}
       <HomeCategories />
+
+      <StackShowcase />
 
       <AboutSection />
       <FeaturesSection />
