@@ -6,14 +6,11 @@ import { Footer } from "@/components/footer";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
-      
-      <main className="relative z-10">
+      <main className="flex-1">
         <HeroSection />
-        {/* Add other sections here */}
       </main>
-      
       <Footer />
     </div>
   );

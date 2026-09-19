@@ -90,7 +90,7 @@ export default function RootLayout({ children }) {
       <head>
         {/* Favicon */}
         <link rel="icon" type="image/svg+xml" href="/logo-matrubhoomi.svg" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/logo-matrubhoomi.svg" />
         
         {/* Essential viewport */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />

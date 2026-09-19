@@ -3,8 +3,49 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Search, Calendar, User, ArrowRight, ChevronRight, TrendingUp, BookOpen, Share2 } from "lucide-react";
+import {
+  Search,
+  SearchX,
+  Calendar,
+  User,
+  ArrowRight,
+  ChevronRight,
+  Clock,
+  Tag,
+  BookOpen,
+  Mail,
+  MessageCircle,
+  Phone,
+} from "lucide-react";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { Section, SectionHeading, Reveal } from "@/components/ui/section";
+import {
+  btn,
+  btnSize,
+  surface,
+  container,
+  sectionY,
+  heading,
+  categoryAccent,
+} from "@/lib/ui";
+
+/**
+ * Low-saturation tint per domain, reused from the shared accent tokens so the
+ * blog stays in step with the rest of the site instead of inventing colours.
+ */
+const CATEGORY_HUE = {
+  fisheries: "blue",
+  trading: "amber",
+  agriculture: "green",
+  msme: "violet",
+  government: "teal",
+};
+
+const chipFor = (id) => (categoryAccent[CATEGORY_HUE[id]] ?? categoryAccent.green).chip;
+
+/** Shared touch-target floor for every tappable control on this page. */
+const TAP = "min-h-[44px]";
 
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -134,7 +175,7 @@ export default function BlogPage() {
 
   const filteredPosts = blogPosts.filter(post => {
     const matchesCategory = activeCategory === "all" || post.category === activeCategory;
-    const matchesSearch = searchQuery === "" || 
+    const matchesSearch = searchQuery === "" ||
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -147,457 +188,492 @@ export default function BlogPage() {
     window.open(whatsappUrl, "_blank");
   };
 
+  /** Display label for a category id — derived from the list above, never invented. */
+  const categoryName = (id) => blogCategories.find((c) => c.id === id)?.name ?? id;
+
+  /** Real counts across every article on the page. */
+  const allPosts = [...featuredPosts, ...blogPosts];
+  const countFor = (id) =>
+    id === "all" ? allPosts.length : allPosts.filter((p) => p.category === id).length;
+
+  const quickQueries = [
+    { emoji: "🐟", label: "Fisheries Query", message: "Hello, I want to discuss fisheries business opportunities." },
+    { emoji: "📈", label: "Trading Help", message: "Hello, I'm interested in learning trading and stock market." },
+    { emoji: "🏢", label: "MSME Support", message: "Hello, I need assistance with MSME registration and loan." },
+    { emoji: "📋", label: "Scheme Query", message: "Hello, I want to know about government schemes for my business." },
+  ];
+
+  // overflow-x-clip (not -hidden) guards against stray overflow without
+  // creating a scroll container, which would break the sticky sidebar.
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-white overflow-x-clip">
       <Header />
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-blue-900 to-emerald-900">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-slate-900">
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+            backgroundSize: "32px 32px",
+          }}
+          aria-hidden="true"
+        />
+
+        <div className={`relative ${container} py-14 sm:py-16 lg:py-20`}>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="max-w-3xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
-              <BookOpen className="w-4 h-4 text-white" />
-              <span className="text-white font-bold text-sm tracking-wider">MATRUBHOOMI KNOWLEDGE HUB</span>
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white mb-5">
+              <BookOpen className="w-3.5 h-3.5" />
+              Knowledge Hub
             </div>
-            
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6">
-              Business Insights &{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-emerald-200">
-                Success Guides
-              </span>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+              Business insights and success guides
             </h1>
-            
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Expert articles, success stories, and practical guides for entrepreneurs across fisheries, trading, agriculture, MSME, and government schemes.
+
+            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+              Practical articles for entrepreneurs across fisheries, trading, agriculture,
+              MSME and government schemes in Odisha.
             </p>
-            
-            {/* Search Bar */}
-            <div className="max-w-2xl mx-auto">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+
+            {/* Search */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-2xl">
+              <div className="relative flex-1 min-w-0">
+                <Search
+                  className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"
+                  aria-hidden="true"
+                />
                 <input
                   type="text"
-                  placeholder="Search for business guides, government schemes, success stories..."
-                  className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  aria-label="Search articles"
+                  placeholder="Search guides, schemes and topics"
+                  className="w-full h-12 pl-11 pr-4 rounded-xl bg-white text-base text-slate-900 placeholder:text-slate-400 border border-slate-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <button 
-                  onClick={() => {
-                    const message = `Hello Matrubhoomi, I'm searching for information about: ${searchQuery}`;
-                    redirectToWhatsApp(message);
-                  }}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-gradient-to-r from-blue-500 to-emerald-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
-                >
-                  Ask Expert
-                </button>
               </div>
-              
-              <div className="mt-6 flex flex-wrap gap-2 justify-center">
+              <button
+                onClick={() => {
+                  const message = `Hello Matrubhoomi, I'm searching for information about: ${searchQuery}`;
+                  redirectToWhatsApp(message);
+                }}
+                className={`${btn.primary} ${btnSize.lg} ${TAP} sm:flex-shrink-0`}
+              >
+                Ask Expert
+              </button>
+            </div>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              {quickQueries.map((q) => (
                 <button
-                  onClick={() => redirectToWhatsApp("Hello, I want to discuss fisheries business opportunities.")}
-                  className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition-all duration-300 text-sm font-medium"
+                  key={q.label}
+                  onClick={() => redirectToWhatsApp(q.message)}
+                  className={`${btn.onDarkOutline} ${btnSize.sm} ${TAP}`}
                 >
-                  🐟 Fisheries Query
+                  <span aria-hidden="true">{q.emoji}</span>
+                  {q.label}
                 </button>
-                <button
-                  onClick={() => redirectToWhatsApp("Hello, I'm interested in learning trading and stock market.")}
-                  className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition-all duration-300 text-sm font-medium"
-                >
-                  📈 Trading Help
-                </button>
-                <button
-                  onClick={() => redirectToWhatsApp("Hello, I need assistance with MSME registration and loan.")}
-                  className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition-all duration-300 text-sm font-medium"
-                >
-                  🏢 MSME Support
-                </button>
-                <button
-                  onClick={() => redirectToWhatsApp("Hello, I want to know about government schemes for my business.")}
-                  className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition-all duration-300 text-sm font-medium"
-                >
-                  📋 Scheme Query
-                </button>
-              </div>
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            {/* Categories */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 mb-6"
-            >
-              <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-blue-600" />
-                Categories
-              </h3>
-              <div className="space-y-2">
-                {blogCategories.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => setActiveCategory(category.id)}
-                    className={`w-full flex items-center justify-between p-3 rounded-lg transition-all duration-300 ${
-                      activeCategory === category.id
-                        ? 'bg-gradient-to-r from-blue-50 to-emerald-50 text-blue-700 border border-blue-200'
-                        : 'hover:bg-slate-50 text-slate-700'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-2 h-2 rounded-full ${
-                        activeCategory === category.id ? 'bg-blue-600' : 'bg-slate-300'
-                      }`} />
-                      <span className="font-medium">{category.name}</span>
-                    </div>
-                    <span className="text-sm bg-slate-100 px-2 py-1 rounded-full">
-                      {category.id === "all"
-                        ? featuredPosts.length + blogPosts.length
-                        : [...featuredPosts, ...blogPosts].filter((p) => p.category === category.id).length}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </motion.div>
+      {/* Main content */}
+      <section className={`${sectionY} bg-slate-50`}>
+        <div className={container}>
+          <div className="grid lg:grid-cols-3 gap-10 lg:gap-12">
+            {/* Articles column */}
+            <div className="lg:col-span-2 space-y-14 lg:space-y-16 min-w-0">
+              {/* Featured */}
+              <div>
+                <SectionHeading
+                  eyebrow="Editor's picks"
+                  title="Featured articles"
+                  subtitle="The guides our team is asked about most often."
+                  align="left"
+                  className="mb-7"
+                />
 
-            {/* Popular Tags */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 mb-6"
-            >
-              <h3 className="text-lg font-bold text-slate-900 mb-4">Popular Topics</h3>
-              <div className="flex flex-wrap gap-2">
-                {popularTags.map((tag, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setSearchQuery(tag);
-                      setActiveCategory("all");
-                    }}
-                    className="px-3 py-1.5 bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 rounded-lg text-sm transition-all duration-300"
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Recent Posts */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200"
-            >
-              <h3 className="text-lg font-bold text-slate-900 mb-4">Recent Articles</h3>
-              <div className="space-y-4">
-                {recentPosts.map((post) => (
-                  <div key={post.id} className="border-b border-slate-100 last:border-0 pb-4 last:pb-0">
-                    <Link href={`/blog/${post.id}`} className="group">
-                      <h4 className="font-medium text-slate-800 group-hover:text-blue-600 transition-colors duration-300 mb-1">
-                        {post.title}
-                      </h4>
-                      <div className="flex items-center justify-between text-sm text-slate-500">
-                        <span className="px-2 py-1 bg-slate-100 rounded text-xs">
-                          {post.category}
-                        </span>
-                        <span>{post.date}</span>
-                      </div>
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* WhatsApp CTA Sidebar */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-6 bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl p-6 border border-blue-200 shadow-lg"
-            >
-              <h3 className="text-lg font-bold text-slate-900 mb-4">Need Expert Advice?</h3>
-              <p className="text-slate-700 mb-6">
-                Connect with our business experts directly on WhatsApp for personalized guidance.
-              </p>
-              
-              <button
-                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Team, I need expert advice for my business.")}
-                className="w-full px-4 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 mb-4"
-              >
-                <span className="text-xl">💬</span>
-                Chat with Expert
-                <ArrowRight className="w-5 h-5" />
-              </button>
-              
-              <div className="text-sm text-slate-600">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                  <span>Quick response on WhatsApp</span>
-                </div>
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                  <span>Free initial consultation</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                  <span>24/7 support available</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Main Blog Content */}
-          <div className="lg:col-span-2">
-            {/* Featured Posts */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-12"
-            >
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <div className="w-3 h-8 bg-gradient-to-b from-blue-500 to-emerald-500 rounded-full" />
-                Featured Articles
-              </h2>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                {featuredPosts.map((post) => (
-                  <div key={post.id} className="group">
-                    <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 hover:shadow-2xl transition-all duration-500 h-full">
-                      <div className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="px-3 py-1 bg-gradient-to-r from-blue-100 to-emerald-100 text-blue-700 rounded-full text-sm font-medium">
-                            {post.category.toUpperCase()}
+                <div className="grid sm:grid-cols-2 gap-5">
+                  {featuredPosts.map((post, index) => (
+                    <Reveal key={post.id} delay={Math.min(index * 0.06, 0.2)} className="h-full">
+                      <article className={`group h-full flex flex-col ${surface.cardInteractive} p-5 sm:p-6`}>
+                        <div className="flex items-start justify-between gap-3">
+                          <span
+                            className={`grid place-items-center w-12 h-12 rounded-xl text-2xl leading-none ${chipFor(post.category)}`}
+                            aria-hidden="true"
+                          >
+                            {post.image}
                           </span>
-                          <span className="text-slate-500 text-sm">{post.readTime}</span>
+                          <span
+                            className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${chipFor(post.category)}`}
+                          >
+                            {categoryName(post.category)}
+                          </span>
                         </div>
-                        
-                        <div className="text-5xl mb-4">{post.image}</div>
-                        
-                        <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+
+                        <h3 className="mt-4 text-base sm:text-lg font-semibold text-slate-900 leading-snug">
                           {post.title}
                         </h3>
-                        
-                        <p className="text-slate-600 mb-6">
+                        <p className="mt-2 text-sm text-slate-600 leading-relaxed">
                           {post.excerpt}
                         </p>
-                        
-                        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                          <div className="flex items-center gap-3">
-                            <User className="w-5 h-5 text-slate-400" />
-                            <span className="text-slate-700 font-medium">{post.author}</span>
-                            <Calendar className="w-5 h-5 text-slate-400 ml-2" />
-                            <span className="text-slate-500 text-sm">{post.date}</span>
-                          </div>
-                          
-                          <button
-                            onClick={() => redirectToWhatsApp(post.whatsappMessage)}
-                            className="px-4 py-2 bg-gradient-to-r from-blue-50 to-emerald-50 text-blue-700 font-medium rounded-lg hover:shadow-md transition-all duration-300 text-sm"
-                          >
-                            Ask Question
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
 
-            {/* All Articles */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 flex items-center gap-2">
-                  <div className="w-3 h-8 bg-gradient-to-b from-blue-500 to-emerald-500 rounded-full" />
-                  Latest Articles
-                </h2>
-                
-                <div className="text-sm text-slate-600">
-                  Showing {filteredPosts.length} of {blogPosts.length} articles
-                </div>
-              </div>
-              
-              {filteredPosts.length === 0 ? (
-                <div className="text-center py-12">
-                  <div className="text-4xl mb-4">🔍</div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">No articles found</h3>
-                  <p className="text-slate-600 mb-6">Try searching for a different topic or browse categories</p>
-                  <button
-                    onClick={() => redirectToWhatsApp("Hello, I'm looking for information about: " + searchQuery)}
-                    className="px-6 py-3 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
-                  >
-                    Ask Our Expert
-                  </button>
-                </div>
-              ) : (
-                <div className="grid md:grid-cols-2 gap-6">
-                  {filteredPosts.map((post) => (
-                    <div key={post.id} className="group">
-                      <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 hover:shadow-xl transition-all duration-500 h-full">
-                        <div className="p-6">
-                          <div className="flex items-center justify-between mb-4">
-                            <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">
-                              {post.category.toUpperCase()}
+                        {/* mt-auto pins the meta + action row to the same height on every card */}
+                        <div className="mt-auto pt-5">
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500">
+                            <span className="inline-flex items-center gap-1.5">
+                              <User className="w-3.5 h-3.5 text-slate-400" />
+                              {post.author}
+                            </span>
+                            <span className="inline-flex items-center gap-1.5">
+                              <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                              {post.date}
+                            </span>
+                            <span className="inline-flex items-center gap-1.5">
+                              <Clock className="w-3.5 h-3.5 text-slate-400" />
+                              {post.readTime}
                             </span>
                           </div>
 
-                          <div className="text-4xl mb-4">{post.image}</div>
-                          
-                          <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
+                          <div className="mt-4 pt-4 border-t border-slate-100">
+                            <button
+                              onClick={() => redirectToWhatsApp(post.whatsappMessage)}
+                              className={`${btn.secondary} ${btnSize.sm} ${TAP} w-full sm:w-auto`}
+                            >
+                              <MessageCircle className="w-4 h-4" />
+                              Ask a question
+                            </button>
+                          </div>
+                        </div>
+                      </article>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+
+              {/* Latest */}
+              <div>
+                <SectionHeading
+                  eyebrow="Library"
+                  title="Latest articles"
+                  subtitle="Filter by domain or search above to narrow things down."
+                  align="left"
+                  className="mb-6"
+                />
+
+                {/* Category filters */}
+                <div className="flex flex-wrap gap-2" role="group" aria-label="Filter articles by category">
+                  {blogCategories.map((category) => {
+                    const isActive = activeCategory === category.id;
+                    return (
+                      <button
+                        key={category.id}
+                        onClick={() => setActiveCategory(category.id)}
+                        aria-pressed={isActive}
+                        className={`inline-flex items-center gap-2 ${TAP} px-4 rounded-xl border text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
+                          isActive
+                            ? "bg-brand-700 text-white border-brand-700"
+                            : "bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                        }`}
+                      >
+                        {category.name}
+                        <span
+                          className={`rounded-full px-1.5 py-0.5 text-[11px] font-semibold ${
+                            isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"
+                          }`}
+                        >
+                          {countFor(category.id)}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <p className="mt-4 mb-6 text-sm text-slate-500" aria-live="polite">
+                  Showing {filteredPosts.length} of {blogPosts.length} articles
+                </p>
+
+                {filteredPosts.length === 0 ? (
+                  <div className={`${surface.panel} px-5 py-12 sm:px-8 sm:py-16 text-center`}>
+                    <div className="mx-auto grid place-items-center w-14 h-14 rounded-2xl bg-white ring-1 ring-slate-200 mb-5">
+                      <SearchX className="w-6 h-6 text-slate-400" aria-hidden="true" />
+                    </div>
+
+                    <h3 className={heading.h3}>No articles found</h3>
+
+                    <p className="mt-2 mx-auto max-w-md text-sm text-slate-600 leading-relaxed">
+                      {searchQuery
+                        ? <>Nothing in the library matches <span className="font-medium text-slate-900 break-words">&ldquo;{searchQuery}&rdquo;</span>. Try a broader term, clear the filters, or ask our team directly.</>
+                        : <>There are no articles in this category yet. Browse all articles, or ask our team directly.</>}
+                    </p>
+
+                    <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+                      <button
+                        onClick={() => {
+                          setSearchQuery("");
+                          setActiveCategory("all");
+                        }}
+                        className={`${btn.secondary} ${btnSize.md} ${TAP}`}
+                      >
+                        Clear filters
+                      </button>
+                      <button
+                        onClick={() => redirectToWhatsApp("Hello, I'm looking for information about: " + searchQuery)}
+                        className={`${btn.whatsapp} ${btnSize.md} ${TAP}`}
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        Ask our expert
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    {filteredPosts.map((post, index) => (
+                      <Reveal key={post.id} delay={Math.min(index * 0.05, 0.2)} className="h-full">
+                        <article className={`group h-full flex flex-col ${surface.cardInteractive} p-5 sm:p-6`}>
+                          <div className="flex items-start justify-between gap-3">
+                            <span
+                              className={`grid place-items-center w-11 h-11 rounded-xl text-xl leading-none ${chipFor(post.category)}`}
+                              aria-hidden="true"
+                            >
+                              {post.image}
+                            </span>
+                            <span
+                              className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${chipFor(post.category)}`}
+                            >
+                              {categoryName(post.category)}
+                            </span>
+                          </div>
+
+                          <h3 className="mt-4 text-base font-semibold text-slate-900 leading-snug">
                             {post.title}
                           </h3>
-                          
-                          <p className="text-slate-600 mb-4 line-clamp-3">
+                          <p className="mt-2 text-sm text-slate-600 leading-relaxed line-clamp-3">
                             {post.excerpt}
                           </p>
-                          
-                          <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                            <div className="flex items-center gap-4 text-sm text-slate-500">
-                              <div className="flex items-center gap-1">
-                                <Calendar className="w-4 h-4" />
+
+                          <div className="mt-auto pt-5">
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500">
+                              <span className="inline-flex items-center gap-1.5">
+                                <User className="w-3.5 h-3.5 text-slate-400" />
+                                {post.author}
+                              </span>
+                              <span className="inline-flex items-center gap-1.5">
+                                <Calendar className="w-3.5 h-3.5 text-slate-400" />
                                 {post.date}
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <BookOpen className="w-4 h-4" />
+                              </span>
+                              <span className="inline-flex items-center gap-1.5">
+                                <Clock className="w-3.5 h-3.5 text-slate-400" />
                                 {post.readTime}
-                              </div>
+                              </span>
                             </div>
-                            
-                            <div className="flex items-center gap-2">
+
+                            <div className="mt-4 pt-4 border-t border-slate-100">
                               <button
                                 onClick={() => {
                                   const message = `Hello, I'm interested in this article: "${post.title}"`;
                                   redirectToWhatsApp(message);
                                 }}
-                                className="px-3 py-1.5 bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 rounded-lg text-sm transition-all duration-300"
+                                className={`${btn.secondary} ${btnSize.sm} ${TAP} w-full sm:w-auto`}
                               >
-                                💬 Ask
-                              </button>
-                              <button className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm transition-all duration-300">
-                                <Share2 className="w-4 h-4" />
+                                <MessageCircle className="w-4 h-4" />
+                                Ask a question
                               </button>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </motion.div>
-
-            {/* Newsletter & CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-12"
-            >
-              <div className="bg-gradient-to-r from-blue-900 to-emerald-900 rounded-2xl p-8 text-center">
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Get Business Insights Directly
-                </h3>
-                
-                <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                  Subscribe to our newsletter for the latest updates on government schemes, 
-                  business opportunities, and success stories from Odisha.
-                </p>
-                
-                <div className="max-w-md mx-auto">
-                  <div className="flex gap-4">
-                    <input
-                      type="email"
-                      placeholder="Your email address"
-                      className="flex-1 px-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <button className="px-6 py-3 bg-white text-blue-900 font-bold rounded-xl hover:shadow-lg transition-all duration-300">
-                      Subscribe
-                    </button>
+                        </article>
+                      </Reveal>
+                    ))}
                   </div>
-                  
-                  <div className="mt-6">
+                )}
+              </div>
+
+              {/* Newsletter */}
+              <Reveal>
+                <div className="relative overflow-hidden rounded-2xl bg-slate-900 px-5 py-10 sm:px-10 sm:py-12">
+                  <div
+                    className="absolute inset-0 opacity-[0.07]"
+                    style={{
+                      backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+                      backgroundSize: "32px 32px",
+                    }}
+                    aria-hidden="true"
+                  />
+
+                  <div className="relative max-w-xl">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white mb-4">
+                      <Mail className="w-3.5 h-3.5" />
+                      Newsletter
+                    </div>
+
+                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                      Get business insights directly
+                    </h3>
+                    <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+                      Updates on government schemes, business opportunities and practical
+                      guidance from our team in Odisha.
+                    </p>
+
+                    <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                      <input
+                        type="email"
+                        aria-label="Your email address"
+                        placeholder="Your email address"
+                        className="flex-1 min-w-0 h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-base text-white placeholder:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                      />
+                      <button className={`${btn.onDark} ${btnSize.lg} ${TAP} sm:flex-shrink-0`}>
+                        Subscribe
+                      </button>
+                    </div>
+
                     <button
                       onClick={() => redirectToWhatsApp("Hello Matrubhoomi, I want to subscribe to business updates and need guidance.")}
-                      className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 mx-auto"
+                      className={`${btn.whatsapp} ${btnSize.md} ${TAP} mt-3 w-full sm:w-auto`}
                     >
-                      <span>📱</span>
-                      Get Updates on WhatsApp
-                      <ArrowRight className="w-5 h-5" />
+                      <MessageCircle className="w-4 h-4" />
+                      Get updates on WhatsApp
+                      <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </Reveal>
+            </div>
 
+            {/* Sidebar — below the articles on mobile, alongside them from lg up */}
+            <aside className="space-y-5 lg:sticky lg:top-24 lg:self-start min-w-0">
+              {/* Popular topics */}
+              <Reveal>
+                <div className={`${surface.card} p-5 sm:p-6`}>
+                  <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-900 mb-4">
+                    <Tag className="w-4 h-4 text-slate-400" />
+                    Popular topics
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {popularTags.map((tag, index) => {
+                      const isActive = searchQuery === tag;
+                      return (
+                        <button
+                          key={index}
+                          onClick={() => {
+                            setSearchQuery(tag);
+                            setActiveCategory("all");
+                          }}
+                          aria-pressed={isActive}
+                          className={`inline-flex items-center ${TAP} px-3 rounded-lg text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
+                            isActive
+                              ? "bg-brand-700 text-white"
+                              : "bg-slate-100 text-slate-700 hover:bg-brand-50 hover:text-brand-800"
+                          }`}
+                        >
+                          {tag}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Recent articles */}
+              <Reveal delay={0.05}>
+                <div className={`${surface.card} p-5 sm:p-6`}>
+                  <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-900 mb-2">
+                    <Clock className="w-4 h-4 text-slate-400" />
+                    Recent articles
+                  </h3>
+                  <ul className="-mx-2">
+                    {recentPosts.map((post) => (
+                      <li key={post.id}>
+                        <Link
+                          href={`/blog/${post.id}`}
+                          className="group block rounded-lg px-2 py-3 hover:bg-slate-50 transition-colors"
+                        >
+                          <div className="flex items-start justify-between gap-2">
+                            <span className="text-sm font-medium text-slate-800 group-hover:text-brand-700 transition-colors leading-snug">
+                              {post.title}
+                            </span>
+                            <ChevronRight className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-300 transition-transform group-hover:translate-x-0.5" />
+                          </div>
+                          <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                            <span className={`inline-flex items-center rounded-full px-2 py-0.5 font-medium ${chipFor(post.category)}`}>
+                              {categoryName(post.category)}
+                            </span>
+                            <span>{post.date}</span>
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+
+              {/* Expert advice */}
+              <Reveal delay={0.1}>
+                <div className={`${surface.card} p-5 sm:p-6`}>
+                  <h3 className="text-sm font-semibold text-slate-900">Need expert advice?</h3>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                    Talk to our business team on WhatsApp for guidance on your specific case.
+                  </p>
+
+                  <button
+                    onClick={() => redirectToWhatsApp("Hello Matrubhoomi Team, I need expert advice for my business.")}
+                    className={`${btn.whatsapp} ${btnSize.md} ${TAP} w-full mt-4`}
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    Chat with an expert
+                  </button>
+
+                  <ul className="mt-4 space-y-2 text-sm text-slate-600">
+                    {["Quick response on WhatsApp", "Free initial consultation", "Support available 24/7"].map((point) => (
+                      <li key={point} className="flex items-center gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-600 flex-shrink-0" aria-hidden="true" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            </aside>
           </div>
         </div>
-      </div>
-
-      {/* Bottom CTA Section */}
-      <section className="py-12 bg-gradient-to-b from-white to-slate-50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
-              Ready to Apply These Insights to Your Business?
-            </h2>
-            
-            <p className="text-lg text-slate-600 mb-8 max-w-3xl mx-auto">
-              Our experts are ready to help you implement these strategies and guide you 
-              through every step of your business journey.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Team, I need business consultation and want to discuss my requirements.")}
-                className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
-              >
-                <span className="text-xl">💬</span>
-                Start WhatsApp Consultation
-                <ArrowRight className="w-5 h-5" />
-              </button>
-              
-              <a
-                href="tel:+919040626617"
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
-              >
-                <span className="text-xl">📞</span>
-                Call: +91 9040626617
-              </a>
-            </div>
-            
-            <div className="mt-8 text-sm text-slate-500">
-              Available 24/7 on WhatsApp for urgent queries
-            </div>
-          </motion.div>
-        </div>
       </section>
+
+      {/* Bottom CTA */}
+      <Section tone="default" tight className="border-t border-slate-200">
+        <div className="flex flex-col items-center text-center">
+          <SectionHeading
+            title="Ready to apply these insights to your business?"
+            subtitle="Our team can help you implement these strategies and guide you through every step."
+          />
+
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <button
+              onClick={() => redirectToWhatsApp("Hello Matrubhoomi Team, I need business consultation and want to discuss my requirements.")}
+              className={`${btn.whatsapp} ${btnSize.lg} ${TAP}`}
+            >
+              <MessageCircle className="w-5 h-5" />
+              Start WhatsApp consultation
+            </button>
+
+            <a href="tel:+919040626617" className={`${btn.secondary} ${btnSize.lg} ${TAP}`}>
+              <Phone className="w-5 h-5" />
+              Call +91 9040626617
+            </a>
+          </div>
+
+          <p className="mt-6 text-sm text-slate-500">
+            Available 24/7 on WhatsApp for urgent queries
+          </p>
+        </div>
+      </Section>
+
+      <Footer />
     </div>
   );
 }

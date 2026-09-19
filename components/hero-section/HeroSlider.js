@@ -3,262 +3,214 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { ArrowRight, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
+import { serviceCategories, getCategoryHref } from "@/lib/service-categories";
+import { btn, btnSize } from "@/lib/ui";
+
+const AUTOPLAY_MS = 6000;
+
+/** Every business domain gets a slide, straight from the shared category data. */
+const SLIDES = serviceCategories.map((category) => ({
+  id: category.slug,
+  href: getCategoryHref(category),
+  description: category.description,
+  ...category.hero,
+}));
 
 export default function HeroSlider() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+  // Only slides that have actually been shown get their background fetched,
+  // so the first paint pulls one image instead of all seven.
+  const [loadedSlides, setLoadedSlides] = useState(() => new Set([0]));
   const autoPlayRef = useRef(null);
 
-  const categories = [
-    {
-      id: "fisheries",
-      title: "AQUA-NIVESH",
-      subtitle: "Fisheries Platform",
-      odiaTitle: "ମତ୍ସ୍ୟ",
-      description: "Complete fisheries ecosystem support from pond to market. We provide subsidies up to 40%, technical training, feed management, disease control, and market linkage for sustainable aquaculture.",
-      bgImage: "https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?q=75&w=1600&auto=format&fit=crop",
-      gradient: "from-blue-900/70 via-blue-800/80 to-blue-900/90",
-      icon: "🐟",
-      link: "https://aquanivesh.matrubhoomifarms.com/",
-      stats: [
-        { label: "Subsidy", value: "Up to 40%" },
-        { label: "Training", value: "Certified" },
-        { label: "Support", value: "24/7 Expert" },
-        { label: "Scheme", value: "PMMSY" }
-      ]
-    },
-    {
-      id: "trading",
-      title: "DIGA TRADING HUB",
-      subtitle: "Financial Education",
-      odiaTitle: "ବାଣିଜ୍ୟ",
-      description: "Transform your financial future with our structured trading education. Learn stock market, commodities, forex with expert mentorship, live trading sessions, and capital guidance.",
-      bgImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=75&w=1600&auto=format&fit=crop",
-      gradient: "from-purple-900/70 via-purple-800/80 to-purple-900/90",
-      icon: "📈",
-      link: "/trading",
-      stats: [
-        { label: "Courses", value: "Structured" },
-        { label: "Mentors", value: "Expert" },
-        { label: "Sessions", value: "Live" },
-        { label: "Campus", value: "Bhubaneswar" }
-      ]
-    },
-    {
-      id: "agriculture",
-      title: "KRISHI SAHAYAK",
-      subtitle: "Agricultural Solutions",
-      odiaTitle: "କୃଷି",
-      description: "End-to-end agricultural support including PMFME, CGTMSE schemes, organic certification, soil testing, irrigation solutions, and direct market access for farmers.",
-      bgImage: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=75&w=1600&auto=format&fit=crop",
-      gradient: "from-green-900/70 via-green-800/80 to-green-900/90",
-      icon: "🌾",
-      link: "/services/farming-construction",
-      stats: [
-        { label: "Schemes", value: "Multiple" },
-        { label: "Support", value: "End-to-End" },
-        { label: "Subsidy", value: "Up to 50%" },
-        { label: "Coverage", value: "Odisha-wide" }
-      ]
-    },
-    {
-      id: "msme",
-      title: "MSME GROWTH PARTNER",
-      subtitle: "Business Development",
-      odiaTitle: "ବ୍ୟବସାୟ",
-      description: "Complete MSME support including DPR preparation, project loans, Udyam registration, GST assistance, and government scheme facilitation for sustainable business growth.",
-      bgImage: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=75&w=1600&auto=format&fit=crop",
-      gradient: "from-amber-900/70 via-amber-800/80 to-amber-900/90",
-      icon: "🏢",
-      link: "/services/entrepreneur-manufacturing",
-      stats: [
-        { label: "Loans", value: "CGTMSE" },
-        { label: "Registration", value: "Udyam" },
-        { label: "Compliance", value: "GST" },
-        { label: "Support", value: "E2E" }
-      ]
-    },
-    {
-      id: "infrastructure",
-      title: "CONSTRUCTION & SETUP",
-      subtitle: "Turnkey Solutions",
-      odiaTitle: "ନିର୍ମାଣ",
-      description: "Complete infrastructure solutions including borewell construction, shed development, cold storage setup, and farm construction with buy-back guarantee.",
-      bgImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=75&w=1600&auto=format&fit=crop",
-      gradient: "from-red-900/70 via-red-800/80 to-red-900/90",
-      icon: "🏗️",
-      link: "/services/real-estate",
-      stats: [
-        { label: "Construction", value: "Turnkey" },
-        { label: "Buy-Back", value: "Available" },
-        { label: "Quality", value: "Assured" },
-        { label: "Support", value: "End-to-End" }
-      ]
-    }
-  ];
+  useEffect(() => {
+    setLoadedSlides((prev) => {
+      if (prev.has(activeSlide)) return prev;
+      const next = new Set(prev);
+      next.add(activeSlide);
+      return next;
+    });
+  }, [activeSlide]);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  useEffect(() => {
-    if (isAutoPlaying) {
-      autoPlayRef.current = setInterval(() => {
-        setActiveSlide((prev) => (prev + 1) % categories.length);
-      }, 5000);
-    }
-    return () => {
-      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-    };
-  }, [isAutoPlaying, categories.length]);
-
-  const handleMouseEnter = () => {
-    setIsAutoPlaying(false);
-    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-  };
-
-  const handleMouseLeave = () => {
-    setIsAutoPlaying(true);
-  };
+    if (!isAutoPlaying) return undefined;
+    autoPlayRef.current = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % SLIDES.length);
+    }, AUTOPLAY_MS);
+    return () => clearInterval(autoPlayRef.current);
+  }, [isAutoPlaying]);
 
   const goToSlide = (index) => {
-    setActiveSlide(index);
+    setActiveSlide((index + SLIDES.length) % SLIDES.length);
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 5000);
+    setTimeout(() => setIsAutoPlaying(true), AUTOPLAY_MS);
   };
 
-  const currentCategory = categories[activeSlide];
+  const goToPrev = () => goToSlide(activeSlide - 1);
+  const goToNext = () => goToSlide(activeSlide + 1);
+
+  const current = SLIDES[activeSlide];
 
   return (
-    <div 
+    <div
       className="relative w-full h-full"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setIsAutoPlaying(false)}
+      onMouseLeave={() => setIsAutoPlaying(true)}
     >
-      {/* Background Image */}
+      {/* Backgrounds */}
       <div className="absolute inset-0">
-        {categories.map((category, index) => (
+        {SLIDES.map((slide, index) => (
           <div
-            key={category.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-700 ${
               index === activeSlide ? "opacity-100" : "opacity-0"
             }`}
+            aria-hidden={index !== activeSlide}
           >
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url('${category.bgImage}')` }}
-            />
-            <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient}`} />
+            {loadedSlides.has(index) && (
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url('${slide.bgImage}')` }}
+              />
+            )}
+            <div className={`absolute inset-0 bg-gradient-to-br ${slide.overlay}`} />
           </div>
         ))}
       </div>
 
       {/* Content */}
-      <div className="relative h-full flex items-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24 pb-24 sm:pb-28">
-        <div className="max-w-7xl w-full">
+      <div className="relative h-full flex items-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24 pb-28 sm:pb-32">
+        <div className="max-w-7xl w-full mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-6 md:space-y-8">
-              {/* Odia Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-3 bg-white/15 backdrop-blur-md rounded-full px-6 py-3 border border-white/25"
-              >
-                <span className="text-white font-bold text-sm tracking-wider">
-                  {currentCategory.odiaTitle}
-                </span>
-                <div className="w-1.5 h-1.5 bg-white/60 rounded-full" />
-                <span className="text-white/80 text-xs">Matrubhoomi</span>
-              </motion.div>
+            {/* Left */}
+            <motion.div
+              key={current.id}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="space-y-5 sm:space-y-6"
+            >
+              <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 ring-1 ring-white/20">
+                <span className="text-white font-semibold text-sm">{current.odiaTitle}</span>
+                <span className="w-1 h-1 bg-white/50 rounded-full" />
+                <span className="text-white/70 text-xs font-medium">Matrubhoomi</span>
+              </div>
 
-              {/* Title */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight">
-                {currentCategory.title}
-                <span className="block text-2xl sm:text-3xl md:text-4xl text-white/80 font-semibold mt-2">
-                  {currentCategory.subtitle}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
+                {current.headline}
+                <span className="block text-lg sm:text-xl md:text-2xl text-white/70 font-medium mt-3">
+                  {current.subtitle}
                 </span>
               </h1>
 
-              {/* Description */}
-              <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed max-w-2xl">
-                {currentCategory.description}
+              <p className="text-base sm:text-lg text-white/80 leading-relaxed max-w-xl">
+                {current.description}
               </p>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <Link
-                  href={currentCategory.link}
-                  className="group relative overflow-hidden"
+                  href={current.href}
+                  className={`${btn.onDark} ${btnSize.lg} whitespace-nowrap`}
                 >
-                  <button className="relative px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-3">
-                    <div className="absolute inset-0 bg-gradient-to-r from-white to-green-100 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
-                    <span className="relative flex items-center gap-3">
-                      Explore Platform
-                      <svg className="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
-                  </button>
+                  Explore services
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
-
-                <button 
-                  onClick={() => window.open(`https://wa.me/919040626617?text=Hello%20Diga%20Darshan%20Team,%20I'm%20interested%20in%20${currentCategory.title}`, '_blank')}
-                  className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300"
+                <button
+                  onClick={() =>
+                    window.open(
+                      `https://wa.me/919040626617?text=${encodeURIComponent(
+                        `Hello Matrubhoomi Team, I'm interested in ${current.headline}.`
+                      )}`,
+                      "_blank"
+                    )
+                  }
+                  className={`${btn.onDarkOutline} ${btnSize.lg} whitespace-nowrap`}
                 >
-                  WhatsApp Consultation
+                  <MessageCircle className="w-4 h-4" />
+                  WhatsApp consultation
                 </button>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Right Stats */}
+            {/* Right */}
             <div className="hidden lg:block">
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-                <div className="grid grid-cols-2 gap-6">
-                  {currentCategory.stats.map((stat, idx) => (
-                    <div key={idx} className="text-center">
-                      <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                      <div className="text-sm text-white/70 uppercase tracking-wider">{stat.label}</div>
+              <motion.div
+                key={`${current.id}-stats`}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-8 ring-1 ring-white/20"
+              >
+                <div className="grid grid-cols-2 gap-x-6 gap-y-8">
+                  {current.stats.map((stat) => (
+                    <div key={stat.label} className="text-center">
+                      <div className="text-2xl font-bold text-white tracking-tight">
+                        {stat.value}
+                      </div>
+                      <div className="mt-1 text-xs text-white/60 uppercase tracking-wider">
+                        {stat.label}
+                      </div>
                     </div>
                   ))}
                 </div>
-                <div className="mt-8 pt-8 border-t border-white/20">
-                  <div className="text-white/80 text-sm">Part of Matrubhoomi</div>
-                  <div className="text-white font-bold mt-1">Berhampur • Bhubaneswar • Across Odisha</div>
+
+                <div className="mt-8 pt-6 border-t border-white/15">
+                  <div className="text-white/60 text-sm">Part of Matrubhoomi</div>
+                  <div className="text-white font-semibold mt-1 text-sm">
+                    Berhampur • Bhubaneswar • Across Odisha
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-4">
-        {categories.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`transition-all duration-300 rounded-full ${
-              index === activeSlide
-                ? "w-10 h-2 bg-white"
-                : "w-2 h-2 bg-white/40 hover:bg-white/60"
-            }`}
-          />
-        ))}
-      </div>
+      {/* Controls */}
+      <div className="absolute bottom-5 sm:bottom-7 inset-x-0 z-20 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={goToPrev}
+              aria-label="Previous slide"
+              className="grid place-items-center w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-md ring-1 ring-white/20 text-white transition-all duration-200 hover:scale-105 active:scale-95"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={goToNext}
+              aria-label="Next slide"
+              className="grid place-items-center w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-md ring-1 ring-white/20 text-white transition-all duration-200 hover:scale-105 active:scale-95"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
 
-      {/* Slide Counter */}
-      <div className="absolute bottom-8 right-8">
-        <div className="text-white/60 text-sm">
-          <span className="text-3xl font-bold text-white">{String(activeSlide + 1).padStart(2, '0')}</span>
-          <span className="mx-2">/</span>
-          <span>{String(categories.length).padStart(2, '0')}</span>
+          <div className="flex items-center gap-2">
+            {SLIDES.map((slide, index) => (
+              <button
+                key={slide.id}
+                onClick={() => goToSlide(index)}
+                aria-label={`Go to ${slide.headline}`}
+                aria-current={index === activeSlide}
+                className={`transition-all duration-300 rounded-full ${
+                  index === activeSlide
+                    ? "w-7 sm:w-9 h-1.5 bg-white"
+                    : "w-1.5 h-1.5 bg-white/40 hover:bg-white/70"
+                }`}
+              />
+            ))}
+          </div>
+
+          <div className="hidden sm:block text-white/50 text-sm tabular-nums">
+            <span className="text-xl font-bold text-white">
+              {String(activeSlide + 1).padStart(2, "0")}
+            </span>
+            <span className="mx-1">/</span>
+            <span>{String(SLIDES.length).padStart(2, "0")}</span>
+          </div>
         </div>
       </div>
     </div>

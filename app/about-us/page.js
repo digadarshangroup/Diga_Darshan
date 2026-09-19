@@ -5,7 +5,9 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import { serviceCategories } from "@/lib/service-categories";
+import { accentFor } from "@/lib/ui";
 
 export default function AboutUsPage() {
   const [activeMilestone, setActiveMilestone] = useState(0);
@@ -96,12 +98,12 @@ export default function AboutUsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-emerald-900/20" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-slate-50" />
+        
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
           <motion.div
@@ -110,19 +112,19 @@ export default function AboutUsPage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full mb-6">
-              <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
-              <span className="text-blue-600 font-bold text-sm tracking-wider">ABOUT MATRUBHOOMI</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-50 text-brand-800 ring-1 ring-brand-100 rounded-full mb-6">
+              <span className="w-1.5 h-1.5 bg-brand-600 rounded-full" />
+              <span className="text-xs font-semibold tracking-wide uppercase">About Matrubhoomi</span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 mb-6">
               Building Odisha's{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+              <span className="text-brand-700">
                 Business Ecosystem
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
               From our humble beginnings in Berhampur to becoming Odisha's most trusted 
               business solutions platform, we're on a mission to empower every entrepreneur 
               with technology, expertise, and government support.
@@ -143,7 +145,7 @@ export default function AboutUsPage() {
             >
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
                 Our Journey: From{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+                <span className="text-brand-700">
                   Berhampur to Bhubaneswar
                 </span>
               </h2>
@@ -172,7 +174,7 @@ export default function AboutUsPage() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/contact"
-                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-700 text-white font-semibold rounded-xl shadow-sm hover:bg-brand-800 hover:shadow-md transition-all duration-200"
                 >
                   Join Our Network
                 </Link>
@@ -180,7 +182,7 @@ export default function AboutUsPage() {
                   href="https://wa.me/919040626617"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-900 border border-slate-200 font-semibold rounded-xl shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-all duration-200"
                 >
                   WhatsApp Consultation
                 </a>
@@ -234,7 +236,7 @@ export default function AboutUsPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Our Growth{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+              <span className="text-brand-700">
                 Timeline
               </span>
             </h2>
@@ -245,7 +247,7 @@ export default function AboutUsPage() {
           
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-0 right-0 top-12 h-0.5 bg-gradient-to-r from-blue-200 via-emerald-200 to-blue-200" />
+            <div className="absolute left-0 right-0 top-12 h-px bg-slate-200" />
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {milestones.map((milestone, index) => (
@@ -269,8 +271,8 @@ export default function AboutUsPage() {
                     {/* Year indicator */}
                     <div className="absolute -top-6 left-6">
                       <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full" />
-                        <span className="text-blue-600 font-bold text-sm">
+                        <div className="w-2.5 h-2.5 bg-brand-600 rounded-full" />
+                        <span className="text-brand-700 font-semibold text-sm">
                           {milestone.year}
                         </span>
                       </div>
@@ -297,7 +299,7 @@ export default function AboutUsPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Comprehensive{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+              <span className="text-brand-700">
                 Business Solutions
               </span>
             </h2>
@@ -322,9 +324,9 @@ export default function AboutUsPage() {
                   <Link href={href}>
                     <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 h-full border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-500">
                       <div
-                        className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r ${category.color} mb-6`}
+                        className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-5 ${accentFor(category).chip}`}
                       >
-                        <Icon className="w-6 h-6 text-white" />
+                        <Icon className="w-5 h-5" strokeWidth={2} />
                       </div>
 
                       <h3 className="text-xl font-bold text-slate-900 mb-3">
@@ -347,7 +349,7 @@ export default function AboutUsPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Our{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+              <span className="text-brand-700">
                 Expertise
               </span>
             </h2>
@@ -386,7 +388,7 @@ export default function AboutUsPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Our Core{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+              <span className="text-brand-700">
                 Values
               </span>
             </h2>
@@ -420,7 +422,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-900 to-emerald-900">
+      <section className="py-16 md:py-24 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -433,7 +435,7 @@ export default function AboutUsPage() {
               Ready to Grow Your Business?
             </h2>
             
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
               Talk to Matrubhoomi about your business growth journey —
               across CA &amp; banking, farming, real estate, trading, software, manufacturing
               and retail.
@@ -465,12 +467,12 @@ export default function AboutUsPage() {
               <div className="grid md:grid-cols-3 gap-8 text-white/80">
                 <div>
                   <div className="font-bold text-white mb-2">Headquarters</div>
-                  <div className="text-blue-100">Saheed Nagar, Bhubaneswar</div>
+                  <div className="text-slate-300">Saheed Nagar, Bhubaneswar</div>
                   <div className="text-sm">Berhampur, Odisha</div>
                 </div>
                 <div>
                   <div className="font-bold text-white mb-2">Contact</div>
-                  <div className="text-blue-100">+91 9040626617</div>
+                  <div className="text-slate-300">+91 9040626617</div>
                   <div className="text-sm">contact@matrubhoomifarms.com</div>
                 </div>
                 <div>
@@ -479,7 +481,7 @@ export default function AboutUsPage() {
                     href="https://matrubhoomifarms.com" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-100 hover:text-white"
+                    className="text-slate-300 hover:text-white"
                   >
                     www.matrubhoomifarms.com
                   </a>
@@ -490,6 +492,8 @@ export default function AboutUsPage() {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

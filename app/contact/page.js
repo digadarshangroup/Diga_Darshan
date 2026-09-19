@@ -2,12 +2,51 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  Phone, Mail, MapPin, MessageSquare, Clock, Users, 
-  Shield, CheckCircle, ArrowRight, Send, Building,
-  PhoneCall, MessageCircle, Headphones, Globe
+import {
+  Phone,
+  Mail,
+  MapPin,
+  MessageSquare,
+  Clock,
+  Shield,
+  CheckCircle2,
+  ArrowRight,
+  Send,
+  Building2,
+  PhoneCall,
+  MessageCircle,
+  ChevronDown,
+  ExternalLink,
 } from "lucide-react";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { Section, SectionHeading, Reveal } from "@/components/ui/section";
+import {
+  badge,
+  btn,
+  btnSize,
+  categoryAccent,
+  container,
+  containerNarrow,
+  heading,
+  sectionY,
+  surface,
+} from "@/lib/ui";
+
+/* Form field tokens — one definition so every input, select and textarea
+   shares the same height, type size (16px, so iOS doesn't zoom) and focus ring. */
+const fieldBase =
+  "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-400 shadow-sm transition-colors hover:border-slate-400 focus:outline-none focus:border-brand-600 focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:border-brand-600";
+const selectBase = `${fieldBase} appearance-none pr-11 cursor-pointer`;
+const labelBase = "block text-sm font-medium text-slate-800 mb-1.5";
+
+function Required() {
+  return (
+    <span className="text-brand-700" aria-hidden="true">
+      *
+    </span>
+  );
+}
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -26,11 +65,11 @@ export default function ContactPage() {
     {
       id: "whatsapp",
       name: "WhatsApp Business",
-      icon: "💬",
+      icon: MessageCircle,
+      accent: categoryAccent.green,
       description: "Instant response, file sharing, voice messages",
       responseTime: "Within 5 minutes",
       availability: "24/7",
-      color: "from-green-500 to-emerald-600",
       actionText: "On WhatsApp",
       details: "+91 9040626617",
       action: () => redirectToWhatsApp("Hello Matrubhoomi Team, I need to discuss about my business requirements.")
@@ -38,11 +77,11 @@ export default function ContactPage() {
     {
       id: "call",
       name: "Direct Call",
-      icon: "📞",
+      icon: Phone,
+      accent: categoryAccent.blue,
       description: "Voice consultation for detailed discussions",
       responseTime: "Immediate",
       availability: "9 AM - 8 PM",
-      color: "from-blue-500 to-cyan-500",
       actionText: "Call Now",
       details: "+91 9040626617",
       action: () => window.location.href = "tel:+919040626617"
@@ -50,11 +89,11 @@ export default function ContactPage() {
     {
       id: "email",
       name: "Email Support",
-      icon: "📧",
+      icon: Mail,
+      accent: categoryAccent.amber,
       description: "Detailed project discussions and documents",
       responseTime: "Within 2 hours",
       availability: "24/7",
-      color: "from-red-500 to-pink-500",
       actionText: "Send Email",
       details: "contact@matrubhoomifarms.com",
       action: () => window.location.href = "mailto:contact@matrubhoomifarms.com?subject=Business Inquiry - Matrubhoomi"
@@ -62,11 +101,11 @@ export default function ContactPage() {
     {
       id: "visit",
       name: "Office Visit",
-      icon: "🏢",
+      icon: Building2,
+      accent: categoryAccent.violet,
       description: "In-person consultation at our headquarters",
       responseTime: "By appointment",
       availability: "Mon-Sat, 10 AM - 6 PM",
-      color: "from-purple-500 to-violet-500",
       actionText: "Book Appointment",
       details: "Bhubaneswar",
       action: () => redirectToWhatsApp("Hello, I want to book an appointment for office visit at Bhubaneswar headquarters.")
@@ -112,7 +151,6 @@ export default function ContactPage() {
       timing: "Mon-Sat: 9:00 AM - 8:00 PM",
       services: ["All Services", "Executive Meetings", "Training Sessions"],
       mapLink: "https://maps.app.goo.gl/",
-      color: "from-blue-600 to-emerald-600"
     },
     {
       city: "Berhampur",
@@ -122,7 +160,6 @@ export default function ContactPage() {
       timing: "Mon-Sat: 10:00 AM - 7:00 PM",
       services: ["Fisheries Support", "Agriculture", "Local Projects"],
       mapLink: "https://maps.app.goo.gl/",
-      color: "from-green-600 to-blue-600"
     },
     {
       city: "District Centers",
@@ -132,7 +169,6 @@ export default function ContactPage() {
       timing: "By Appointment",
       services: ["Field Visits", "Site Surveys", "Local Support"],
       mapLink: "",
-      color: "from-purple-600 to-pink-600"
     }
   ];
 
@@ -145,10 +181,10 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Prepare WhatsApp message with form data
     const whatsappMessage = `*New Contact Form Submission*
-    
+
 *Name:* ${formData.name}
 *Phone:* ${formData.phone}
 *Email:* ${formData.email}
@@ -158,9 +194,9 @@ export default function ContactPage() {
 *Message:* ${formData.message}
 
 Please contact me for further discussion.`;
-    
+
     redirectToWhatsApp(whatsappMessage);
-    
+
     // Reset form
     setFormData({
       name: "",
@@ -171,7 +207,7 @@ Please contact me for further discussion.`;
       message: "",
       serviceInterest: "",
     });
-    
+
     // Show success message
     alert("Thank you! Your details have been shared with our team. We'll contact you shortly on WhatsApp.");
   };
@@ -188,584 +224,665 @@ Please contact me for further discussion.`;
     redirectToWhatsApp(message);
   };
 
+  const quickMessages = [
+    {
+      text: "Fisheries business query",
+      message: "Hello, I need information about fisheries business and PMMSY scheme."
+    },
+    {
+      text: "Trading course details",
+      message: "Hello, I want to learn about your trading education programs."
+    },
+    {
+      text: "MSME registration help",
+      message: "Hello, I need assistance with MSME registration and loan process."
+    },
+    {
+      text: "Agriculture subsidy info",
+      message: "Hello, I want to know about agriculture subsidies and setup."
+    },
+    {
+      text: "Government schemes",
+      message: "Hello, please guide me about available government schemes."
+    },
+    {
+      text: "Business consultation",
+      message: "Hello, I need a detailed business consultation meeting."
+    }
+  ];
+
+  const departments = [
+    {
+      department: "Fisheries Division",
+      contact: "Fisheries Team",
+      role: "Aquaculture Specialists",
+      services: ["PMMSY Scheme", "Fish Farm Setup", "Market Linkage"],
+      whatsappMessage: "Hello, I need help with fisheries business setup."
+    },
+    {
+      department: "MSME & Finance",
+      contact: "Finance Team",
+      role: "Business Finance Specialists",
+      services: ["DPR Preparation", "Loan Assistance", "Registration"],
+      whatsappMessage: "Hello, I need help with MSME registration and loans."
+    },
+    {
+      department: "Trading Education",
+      contact: "Trading Department",
+      role: "Expert Mentors",
+      services: ["Stock Market", "Commodities", "Forex Trading"],
+      whatsappMessage: "Hello Trading Team, I want to learn about trading courses."
+    },
+    {
+      department: "Agriculture",
+      contact: "Agriculture Team",
+      role: "Farm Experts",
+      services: ["Organic Farming", "Irrigation", "Subsidy Support"],
+      whatsappMessage: "Hello Agriculture Team, I need guidance for farm setup."
+    },
+    {
+      department: "Infrastructure",
+      contact: "Construction Team",
+      role: "Civil & Infrastructure Specialists",
+      services: ["Borewell", "Shed Construction", "Cold Storage"],
+      whatsappMessage: "Hello, I need construction services for my business."
+    },
+    {
+      department: "Government Schemes",
+      contact: "Govt. Liaison Team",
+      role: "Scheme Experts",
+      services: ["PMEGP", "CGTMSE", "PMFME", "MUKY"],
+      whatsappMessage: "Hello Scheme Team, I need help with government scheme applications."
+    }
+  ];
+
+  const businessHours = [
+    { day: "Monday - Saturday", time: "9:00 AM - 8:00 PM", type: "Office Hours" },
+    { day: "Sunday", time: "10:00 AM - 5:00 PM", type: "WhatsApp Only" },
+    { day: "Emergency Support", time: "24/7 Available", type: "Phone & WhatsApp" }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-white">
       <Header />
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-blue-900 to-emerald-900">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+
+      {/* ── Hero ───────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-slate-900">
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+            backgroundSize: "32px 32px",
+          }}
+          aria-hidden="true"
+        />
+
+        <div className={`relative ${container} py-14 sm:py-20`}>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="max-w-3xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
-              <MessageCircle className="w-4 h-4 text-white" />
-              <span className="text-white font-bold text-sm tracking-wider">CONNECT WITH MATRUBHOOMI</span>
+            <div className={badge.onDark}>
+              <MessageCircle className="w-3.5 h-3.5" />
+              Contact Matrubhoomi
             </div>
-            
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6">
-              Let's Build Your{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-emerald-200">
-                Business Success
-              </span>
+
+            <h1 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+              Talk to us about your business
             </h1>
-            
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Get expert guidance for your business journey. Multiple contact options available for your convenience.
+
+            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+              Get expert guidance for your business journey. Reach our team by WhatsApp, phone,
+              email or in person — whichever suits you best.
             </p>
-            
-            {/* Quick Contact Stats */}
-            <div className="flex flex-wrap justify-center gap-6 mb-8">
-              {[
-                { value: "24/7", label: "WhatsApp Support", icon: <Headphones className="w-5 h-5" /> },
-                { value: "Free", label: "Initial Consultation", icon: <CheckCircle className="w-5 h-5" /> },
-                { value: "7", label: "Business Domains", icon: <Users className="w-5 h-5" /> }
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3"
-                >
-                  <div className="text-white">
-                    {stat.icon}
-                  </div>
-                  <div className="text-left">
-                    <div className="text-2xl font-bold text-white">{stat.value}</div>
-                    <div className="text-sm text-blue-200">{stat.label}</div>
-                  </div>
-                </motion.div>
-              ))}
+
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Team, I need to discuss about my business requirements.")}
+                className={`${btn.whatsapp} ${btnSize.lg}`}
+              >
+                <MessageCircle className="w-4 h-4" />
+                Message on WhatsApp
+              </button>
+              <a href="tel:+919040626617" className={`${btn.onDarkOutline} ${btnSize.lg}`}>
+                <Phone className="w-4 h-4" />
+                +91 9040626617
+              </a>
             </div>
+
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2.5 text-sm text-slate-300">
+              {[
+                "24/7 WhatsApp support",
+                "Free initial consultation",
+                "7 business domains",
+              ].map((point) => (
+                <li key={point} className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-brand-400 flex-shrink-0" />
+                  {point}
+                </li>
+              ))}
+            </ul>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Options Grid */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Choose Your Preferred{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
-                Contact Method
-              </span>
-            </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              We're available through multiple channels for your convenience
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {contactOptions.map((option, index) => (
-              <motion.div
-                key={option.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className={`bg-gradient-to-br ${option.color} rounded-2xl p-6 text-white h-full`}>
-                  <div className="text-4xl mb-4">{option.icon}</div>
-                  
-                  <h3 className="text-xl font-bold mb-2">{option.name}</h3>
-                  <p className="text-white/80 text-sm mb-4">{option.description}</p>
-                  
-                  <div className="space-y-2 mb-6">
-                    <div className="flex items-center gap-2 text-sm">
-                      <Clock className="w-4 h-4" />
-                      <span>{option.responseTime} response</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <Globe className="w-4 h-4" />
-                      <span>{option.availability}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="text-center mb-4">
-                    <div className="text-lg font-bold">{option.details}</div>
-                  </div>
-                  
-                  <button
-                    onClick={option.action}
-                    className="w-full px-4 py-3 bg-white text-slate-900 font-bold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
-                  >
-                    {option.actionText}
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      {/* ── Contact channels ───────────────────────────────────── */}
+      <Section tone="muted">
+        <SectionHeading
+          eyebrow="Ways to reach us"
+          title="Choose your preferred contact method"
+          subtitle="We're available through multiple channels — pick the one that works for you."
+          className="mb-10 lg:mb-14"
+        />
 
-          {/* Quick Message Buttons */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold text-slate-900 mb-6 text-center">
-              Quick Message Options
-            </h3>
-            <div className="flex flex-wrap justify-center gap-3">
-              {[
-                {
-                  text: "🐟 Fisheries Business Query",
-                  message: "Hello, I need information about fisheries business and PMMSY scheme."
-                },
-                {
-                  text: "📈 Trading Course Details",
-                  message: "Hello, I want to learn about your trading education programs."
-                },
-                {
-                  text: "🏢 MSME Registration Help",
-                  message: "Hello, I need assistance with MSME registration and loan process."
-                },
-                {
-                  text: "🌱 Agriculture Subsidy Info",
-                  message: "Hello, I want to know about agriculture subsidies and setup."
-                },
-                {
-                  text: "📋 Government Schemes",
-                  message: "Hello, please guide me about available government schemes."
-                },
-                {
-                  text: "💼 Business Consultation",
-                  message: "Hello, I need a detailed business consultation meeting."
-                }
-              ].map((button, index) => (
-                <motion.button
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  onClick={() => handleQuickMessage(button.message)}
-                  className="px-4 py-3 bg-white border border-slate-200 text-slate-700 rounded-xl hover:shadow-md hover:border-blue-300 hover:text-blue-700 transition-all duration-300"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          {contactOptions.map((option, index) => {
+            const Icon = option.icon;
+            const isSelected = selectedContact === option.id;
+
+            return (
+              <Reveal key={option.id} delay={Math.min(index * 0.05, 0.2)} className="h-full">
+                <article
+                  className={`h-full flex flex-col ${surface.cardInteractive} p-5 sm:p-6 ${
+                    isSelected ? "ring-1 ring-brand-200 border-brand-200" : ""
+                  }`}
                 >
+                  <div
+                    className={`inline-flex items-center justify-center w-11 h-11 rounded-xl mb-4 ${option.accent.chip}`}
+                  >
+                    <Icon className="w-5 h-5" strokeWidth={2} />
+                  </div>
+
+                  <h3 className="text-base font-semibold text-slate-900 leading-snug">
+                    {option.name}
+                  </h3>
+                  <p className="mt-1.5 text-sm text-slate-600 leading-relaxed">
+                    {option.description}
+                  </p>
+
+                  <dl className="mt-4 space-y-2 text-sm text-slate-600">
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                      <dt className="sr-only">Response time</dt>
+                      <dd>{option.responseTime}</dd>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                      <dt className="sr-only">Availability</dt>
+                      <dd>{option.availability}</dd>
+                    </div>
+                  </dl>
+
+                  {/* mt-auto keeps the detail + action block aligned across cards */}
+                  <div className="mt-auto pt-4">
+                    <p className="text-sm font-medium text-slate-900 break-words">
+                      {option.details}
+                    </p>
+
+                    <button
+                      onClick={() => {
+                        setSelectedContact(option.id);
+                        option.action();
+                      }}
+                      className={`${btn.secondary} ${btnSize.md} min-h-[44px] w-full mt-4`}
+                    >
+                      {option.actionText}
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        {/* Quick messages */}
+        <Reveal className="mt-12 lg:mt-16">
+          <div className={`${surface.card} p-5 sm:p-7`}>
+            <h3 className={heading.h3}>Start with a quick question</h3>
+            <p className="mt-1.5 text-sm text-slate-600">
+              Tap a topic and we'll open WhatsApp with the message ready to send.
+            </p>
+
+            <div className="mt-5 flex flex-wrap gap-2.5">
+              {quickMessages.map((button) => (
+                <button
+                  key={button.text}
+                  onClick={() => handleQuickMessage(button.message)}
+                  className={`${btn.secondary} ${btnSize.md} min-h-[44px]`}
+                >
+                  <MessageSquare className="w-4 h-4 text-slate-400" />
                   {button.text}
-                </motion.button>
+                </button>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </Reveal>
+      </Section>
 
-      {/* Contact Form & Office Locations */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-white to-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-3 h-8 bg-gradient-to-b from-blue-500 to-emerald-500 rounded-full" />
-                  <h2 className="text-2xl font-bold text-slate-900">
-                    Send Detailed Inquiry
-                  </h2>
+      {/* ── Enquiry form + offices ─────────────────────────────── */}
+      <section className={`${sectionY} bg-white`}>
+        <div className={container}>
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+            {/* Form */}
+            <Reveal className="lg:col-span-3">
+              <div className={`${surface.card} p-5 sm:p-8`}>
+                <div className={badge.brand}>
+                  <Send className="w-3.5 h-3.5" />
+                  Enquiry form
                 </div>
-                
-                <p className="text-slate-600 mb-8">
-                  Fill this form and we'll contact you with customized solutions
+
+                <h2 className={`mt-4 ${heading.h2}`}>Send a detailed enquiry</h2>
+                <p className="mt-3 text-slate-600 leading-relaxed">
+                  Tell us what you're planning and we'll come back with a tailored answer.
+                  Fields marked <span className="text-brand-700 font-semibold">*</span> are required.
                 </p>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-6">
+
+                <form onSubmit={handleSubmit} className="mt-8 space-y-8">
+                  {/* Group 1 — about you */}
+                  <fieldset className="space-y-5">
+                    <legend className="p-0 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      Your details
+                    </legend>
+
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      <div>
+                        <label htmlFor="contact-name" className={labelBase}>
+                          Your name <Required />
+                        </label>
+                        <input
+                          id="contact-name"
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          autoComplete="name"
+                          className={fieldBase}
+                          placeholder="Enter your full name"
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="contact-phone" className={labelBase}>
+                          Phone number <Required />
+                        </label>
+                        <input
+                          id="contact-phone"
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          required
+                          autoComplete="tel"
+                          inputMode="tel"
+                          className={fieldBase}
+                          placeholder="+91 00000 00000"
+                        />
+                        <p className="mt-1.5 text-xs text-slate-500">
+                          We'll reply on this number via WhatsApp.
+                        </p>
+                      </div>
+                    </div>
+
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Your Name *
+                      <label htmlFor="contact-email" className={labelBase}>
+                        Email address
+                        <span className="ml-1.5 font-normal text-slate-500">(optional)</span>
                       </label>
                       <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
+                        id="contact-email"
+                        type="email"
+                        name="email"
+                        value={formData.email}
                         onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Enter your full name"
+                        autoComplete="email"
+                        inputMode="email"
+                        className={fieldBase}
+                        placeholder="your@email.com"
                       />
                     </div>
-                    
+                  </fieldset>
+
+                  <div className="border-t border-slate-200" />
+
+                  {/* Group 2 — about the requirement */}
+                  <fieldset className="space-y-5">
+                    <legend className="p-0 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      About your requirement
+                    </legend>
+
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      <div>
+                        <label htmlFor="contact-business-type" className={labelBase}>
+                          Business type <Required />
+                        </label>
+                        <div className="relative">
+                          <select
+                            id="contact-business-type"
+                            name="businessType"
+                            value={formData.businessType}
+                            onChange={handleInputChange}
+                            required
+                            className={selectBase}
+                          >
+                            <option value="">Select business type</option>
+                            {businessTypes.map((type) => (
+                              <option key={type} value={type}>{type}</option>
+                            ))}
+                          </select>
+                          <ChevronDown
+                            className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
+                            aria-hidden="true"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label htmlFor="contact-district" className={labelBase}>
+                          District in Odisha <Required />
+                        </label>
+                        <div className="relative">
+                          <select
+                            id="contact-district"
+                            name="district"
+                            value={formData.district}
+                            onChange={handleInputChange}
+                            required
+                            className={selectBase}
+                          >
+                            <option value="">Select your district</option>
+                            {odishaDistricts.map((district) => (
+                              <option key={district} value={district}>{district}</option>
+                            ))}
+                          </select>
+                          <ChevronDown
+                            className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
+                            aria-hidden="true"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Phone Number *
+                      <label htmlFor="contact-service" className={labelBase}>
+                        Service interest <Required />
                       </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
+                      <div className="relative">
+                        <select
+                          id="contact-service"
+                          name="serviceInterest"
+                          value={formData.serviceInterest}
+                          onChange={handleInputChange}
+                          required
+                          className={selectBase}
+                        >
+                          <option value="">Select a service</option>
+                          {serviceInterests.map((service) => (
+                            <option key={service} value={service}>{service}</option>
+                          ))}
+                        </select>
+                        <ChevronDown
+                          className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
+                          aria-hidden="true"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="contact-message" className={labelBase}>
+                        Your message <Required />
+                      </label>
+                      <textarea
+                        id="contact-message"
+                        name="message"
+                        value={formData.message}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="+91 00000 00000"
+                        rows="5"
+                        className={`${fieldBase} resize-y min-h-[120px]`}
+                        placeholder="Briefly describe your requirements, investment capacity, and expectations..."
                       />
                     </div>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                  
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Business Type *
-                      </label>
-                      <select
-                        name="businessType"
-                        value={formData.businessType}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      >
-                        <option value="">Select Business Type</option>
-                        {businessTypes.map((type) => (
-                          <option key={type} value={type}>{type}</option>
-                        ))}
-                      </select>
+                  </fieldset>
+
+                  {/* Submit */}
+                  <div className="space-y-4">
+                    <div className={`flex items-start gap-3 p-3.5 ${surface.panel}`}>
+                      <Shield className="w-4 h-4 text-brand-600 flex-shrink-0 mt-0.5" />
+                      <p className="text-sm text-slate-600">
+                        Your information is secure and confidential. Submitting opens WhatsApp with
+                        your details pre-filled — nothing is sent until you press send there.
+                      </p>
                     </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        District in Odisha *
-                      </label>
-                      <select
-                        name="district"
-                        value={formData.district}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      >
-                        <option value="">Select Your District</option>
-                        {odishaDistricts.map((district) => (
-                          <option key={district} value={district}>{district}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Service Interest *
-                    </label>
-                    <select
-                      name="serviceInterest"
-                      value={formData.serviceInterest}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
-                      <option value="">Select Service</option>
-                      {serviceInterests.map((service) => (
-                        <option key={service} value={service}>{service}</option>
-                      ))}
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Your Message *
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows="4"
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Briefly describe your requirements, investment capacity, and expectations..."
-                    />
-                  </div>
-                  
-                  <div className="flex items-center gap-3 text-sm text-slate-600 mb-6">
-                    <Shield className="w-5 h-5 text-emerald-500" />
-                    <span>Your information is secure and confidential</span>
-                  </div>
-                  
-                  <button
-                    type="submit"
-                    className="w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
-                  >
-                    <Send className="w-5 h-5" />
-                    Send via WhatsApp
-                  </button>
-                  
-                  <div className="text-center text-sm text-slate-500">
-                    We'll contact you on WhatsApp within 5 minutes
+
+                    <button type="submit" className={`${btn.whatsapp} ${btnSize.lg} w-full`}>
+                      <Send className="w-4 h-4" />
+                      Send via WhatsApp
+                    </button>
+
+                    <p className="text-center text-sm text-slate-500">
+                      We typically reply on WhatsApp within 5 minutes.
+                    </p>
                   </div>
                 </form>
               </div>
-            </motion.div>
-            
-            {/* Office Locations */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <div className="mb-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-3 h-8 bg-gradient-to-b from-blue-500 to-emerald-500 rounded-full" />
-                  <h2 className="text-2xl font-bold text-slate-900">
-                    Our Office Locations
-                  </h2>
-                </div>
-                
-                <p className="text-slate-600 mb-8">
-                  Visit us for in-person consultation at our offices across Odisha
+            </Reveal>
+
+            {/* Offices */}
+            <Reveal delay={0.1} className="lg:col-span-2">
+              <div className="lg:sticky lg:top-24">
+                <h2 className={heading.h2}>Our offices</h2>
+                <p className="mt-3 text-slate-600 leading-relaxed">
+                  Visit us for an in-person consultation at our offices across Odisha.
                 </p>
-              </div>
-              
-              <div className="space-y-6">
-                {officeLocations.map((office, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <div className={`bg-gradient-to-br ${office.color} rounded-2xl p-6 text-white`}>
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <h3 className="text-xl font-bold mb-1">{office.city}</h3>
-                          <div className="text-white/80 text-sm">{office.type}</div>
+
+                <div className="mt-6 space-y-4">
+                  {officeLocations.map((office) => (
+                    <article key={office.city} className={`${surface.card} p-5`}>
+                      <div className="flex items-start gap-3.5">
+                        <div
+                          className={`inline-flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0 ${categoryAccent.green.chip}`}
+                        >
+                          <Building2 className="w-4 h-4" strokeWidth={2} />
                         </div>
-                        <Building className="w-6 h-6 text-white/60" />
+
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-base font-semibold text-slate-900">{office.city}</h3>
+                          <p className="text-sm text-slate-500">{office.type}</p>
+                        </div>
                       </div>
-                      
-                      <div className="space-y-4">
-                        <div className="flex items-start gap-3">
-                          <MapPin className="w-5 h-5 text-white/60 flex-shrink-0 mt-0.5" />
-                          <div className="text-white/90">{office.address}</div>
+
+                      <dl className="mt-4 space-y-2.5 text-sm">
+                        <div className="flex items-start gap-2.5">
+                          <MapPin className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" />
+                          <dd className="text-slate-600">{office.address}</dd>
                         </div>
-                        
-                        <div className="flex items-center gap-3">
-                          <Phone className="w-5 h-5 text-white/60" />
-                          <div className="text-white font-medium">{office.contact}</div>
+                        <div className="flex items-start gap-2.5">
+                          <Phone className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" />
+                          <dd>
+                            <a
+                              href="tel:+919040626617"
+                              className="inline-block py-1 -my-1 font-medium text-slate-900 hover:text-brand-700 transition-colors"
+                            >
+                              {office.contact}
+                            </a>
+                          </dd>
                         </div>
-                        
-                        <div className="flex items-center gap-3">
-                          <Clock className="w-5 h-5 text-white/60" />
-                          <div className="text-white/90">{office.timing}</div>
+                        <div className="flex items-start gap-2.5">
+                          <Clock className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" />
+                          <dd className="text-slate-600">{office.timing}</dd>
                         </div>
-                        
-                        <div className="pt-4 border-t border-white/20">
-                          <div className="text-sm font-semibold mb-2">Services Available:</div>
-                          <div className="flex flex-wrap gap-2">
-                            {office.services.map((service, idx) => (
-                              <span key={idx} className="px-3 py-1 bg-white/20 rounded-full text-sm">
-                                {service}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        
-                        {office.mapLink && (
-                          <a
-                            href={office.mapLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-medium transition-all duration-300"
-                          >
-                            <MapPin className="w-4 h-4" />
-                            View on Google Maps
-                          </a>
-                        )}
+                      </dl>
+
+                      <div className="mt-4 pt-4 border-t border-slate-100">
+                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2.5">
+                          Services available
+                        </p>
+                        <ul className="flex flex-wrap gap-2">
+                          {office.services.map((service) => (
+                            <li key={service} className={badge.neutral}>
+                              {service}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              {/* Business Hours */}
-              <div className="mt-8 bg-gradient-to-r from-blue-50 to-emerald-50 rounded-2xl p-6 border border-blue-100">
-                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-blue-600" />
-                  Business Hours
-                </h3>
-                
-                <div className="space-y-3">
-                  {[
-                    { day: "Monday - Saturday", time: "9:00 AM - 8:00 PM", type: "Office Hours" },
-                    { day: "Sunday", time: "10:00 AM - 5:00 PM", type: "WhatsApp Only" },
-                    { day: "Emergency Support", time: "24/7 Available", type: "Phone & WhatsApp" }
-                  ].map((schedule, idx) => (
-                    <div key={idx} className="flex justify-between items-center pb-3 border-b border-blue-100 last:border-0 last:pb-0">
-                      <div>
-                        <div className="font-medium text-slate-900">{schedule.day}</div>
-                        <div className="text-sm text-slate-600">{schedule.type}</div>
-                      </div>
-                      <div className="font-bold text-blue-700">{schedule.time}</div>
-                    </div>
+
+                      {office.mapLink && (
+                        <a
+                          href={office.mapLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`${btn.ghost} ${btnSize.sm} min-h-[44px] mt-3 -ml-3.5`}
+                        >
+                          <MapPin className="w-4 h-4" />
+                          View on Google Maps
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                    </article>
                   ))}
                 </div>
+
+                {/* Business hours */}
+                <div className={`mt-4 ${surface.panel} p-5`}>
+                  <h3 className="flex items-center gap-2 text-base font-semibold text-slate-900">
+                    <Clock className="w-4 h-4 text-brand-600" />
+                    Business hours
+                  </h3>
+
+                  <dl className="mt-4 divide-y divide-slate-200">
+                    {businessHours.map((schedule) => (
+                      <div
+                        key={schedule.day}
+                        className="flex items-baseline justify-between gap-4 py-3 first:pt-0 last:pb-0"
+                      >
+                        <dt>
+                          <span className="block text-sm font-medium text-slate-900">
+                            {schedule.day}
+                          </span>
+                          <span className="block text-xs text-slate-500">{schedule.type}</span>
+                        </dt>
+                        <dd className="text-sm font-semibold text-brand-700 text-right whitespace-nowrap">
+                          {schedule.time}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
               </div>
-            </motion.div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Service Departments */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Connect with Specific{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
-                Department
-              </span>
-            </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Get specialized assistance from our expert teams
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                department: "Fisheries Division",
-                contact: "Fisheries Team",
-                role: "Aquaculture Specialists",
-                services: ["PMMSY Scheme", "Fish Farm Setup", "Market Linkage"],
-                whatsappMessage: "Hello, I need help with fisheries business setup."
-              },
-              {
-                department: "MSME & Finance",
-                contact: "Finance Team",
-                role: "Business Finance Specialists",
-                services: ["DPR Preparation", "Loan Assistance", "Registration"],
-                whatsappMessage: "Hello, I need help with MSME registration and loans."
-              },
-              {
-                department: "Trading Education",
-                contact: "Trading Department",
-                role: "Expert Mentors",
-                services: ["Stock Market", "Commodities", "Forex Trading"],
-                whatsappMessage: "Hello Trading Team, I want to learn about trading courses."
-              },
-              {
-                department: "Agriculture",
-                contact: "Agriculture Team",
-                role: "Farm Experts",
-                services: ["Organic Farming", "Irrigation", "Subsidy Support"],
-                whatsappMessage: "Hello Agriculture Team, I need guidance for farm setup."
-              },
-              {
-                department: "Infrastructure",
-                contact: "Construction Team",
-                role: "Civil & Infrastructure Specialists",
-                services: ["Borewell", "Shed Construction", "Cold Storage"],
-                whatsappMessage: "Hello, I need construction services for my business."
-              },
-              {
-                department: "Government Schemes",
-                contact: "Govt. Liaison Team",
-                role: "Scheme Experts",
-                services: ["PMEGP", "CGTMSE", "PMFME", "MUKY"],
-                whatsappMessage: "Hello Scheme Team, I need help with government scheme applications."
-              }
-            ].map((dept, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 border border-slate-200 hover:shadow-xl transition-all duration-500"
-              >
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
+      {/* ── Departments ────────────────────────────────────────── */}
+      <Section tone="muted">
+        <SectionHeading
+          eyebrow="Departments"
+          title="Connect with a specific team"
+          subtitle="Get specialised assistance straight from the team that handles your domain."
+          className="mb-10 lg:mb-14"
+        />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {departments.map((dept, index) => (
+            <Reveal key={dept.department} delay={Math.min(index * 0.05, 0.25)} className="h-full">
+              <article className={`h-full flex flex-col ${surface.cardInteractive} p-5 sm:p-6`}>
+                <h3 className="text-base font-semibold text-slate-900 leading-snug">
                   {dept.department}
                 </h3>
-                
-                <div className="mb-4">
-                  <div className="font-medium text-slate-700">{dept.contact}</div>
-                  <div className="text-sm text-slate-600">{dept.role}</div>
-                </div>
-                
-                <div className="mb-6">
-                  <div className="text-sm font-medium text-slate-700 mb-2">Services:</div>
-                  <div className="flex flex-wrap gap-2">
-                    {dept.services.map((service, idx) => (
-                      <span key={idx} className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs">
-                        {service}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                
-                <button
-                  onClick={() => redirectToWhatsApp(dept.whatsappMessage)}
-                  className="w-full px-4 py-2 bg-gradient-to-r from-blue-50 to-emerald-50 text-blue-700 font-medium rounded-lg hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  Contact on WhatsApp
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+                <p className="mt-1.5 text-sm text-slate-600">
+                  <span className="font-medium text-slate-800">{dept.contact}</span>
+                  <span className="text-slate-400"> · </span>
+                  {dept.role}
+                </p>
 
-      {/* Emergency Support */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-900 to-emerald-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
-              <PhoneCall className="w-4 h-4 text-white" />
-              <span className="text-white font-bold text-sm">URGENT SUPPORT</span>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {dept.services.map((service) => (
+                    <li key={service} className={badge.brand}>
+                      {service}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-auto pt-6">
+                  <button
+                    onClick={() => redirectToWhatsApp(dept.whatsappMessage)}
+                    className={`${btn.secondary} ${btnSize.md} min-h-[44px] w-full`}
+                  >
+                    <MessageSquare className="w-4 h-4 text-slate-400" />
+                    Contact on WhatsApp
+                  </button>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* ── Urgent support ─────────────────────────────────────── */}
+      <section className={`${sectionY} bg-slate-900`}>
+        <div className={containerNarrow}>
+          <Reveal>
+            <div className={badge.onDark}>
+              <PhoneCall className="w-3.5 h-3.5" />
+              Urgent support
             </div>
-            
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Need Immediate Assistance?
+
+            <h2 className="mt-5 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+              Need immediate assistance?
             </h2>
-            
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              For urgent business queries, government scheme deadlines, or emergency consultations
+            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+              For urgent business queries, government scheme deadlines or emergency consultations,
+              reach us directly on these channels.
             </p>
-            
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                <div className="text-3xl mb-4">📞</div>
-                <h3 className="text-xl font-bold text-white mb-2">Emergency Call</h3>
-                <div className="text-2xl font-black text-white mb-3">+91 9040626617</div>
-                <p className="text-blue-200 text-sm">Available 24/7 for urgent matters</p>
+          </Reveal>
+
+          <div className="mt-10 grid sm:grid-cols-2 gap-4 sm:gap-5">
+            <Reveal>
+              <div className="h-full rounded-2xl bg-white/5 border border-white/10 p-6">
+                <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-white/10 ring-1 ring-white/20 mb-4">
+                  <Phone className="w-5 h-5 text-white" strokeWidth={2} />
+                </div>
+                <h3 className="text-base font-semibold text-white">Emergency call</h3>
+                <p className="mt-1.5 text-sm text-slate-400">Available 24/7 for urgent matters.</p>
+                <a
+                  href="tel:+919040626617"
+                  className={`${btn.onDark} ${btnSize.md} min-h-[44px] w-full mt-5`}
+                >
+                  <Phone className="w-4 h-4" />
+                  +91 9040626617
+                </a>
               </div>
-              
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                <div className="text-3xl mb-4">💬</div>
-                <h3 className="text-xl font-bold text-white mb-2">Emergency WhatsApp</h3>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <div className="h-full rounded-2xl bg-white/5 border border-white/10 p-6">
+                <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-white/10 ring-1 ring-white/20 mb-4">
+                  <MessageCircle className="w-5 h-5 text-white" strokeWidth={2} />
+                </div>
+                <h3 className="text-base font-semibold text-white">Emergency WhatsApp</h3>
+                <p className="mt-1.5 text-sm text-slate-400">Response within 2 minutes.</p>
                 <button
                   onClick={() => redirectToWhatsApp("URGENT: Need immediate business assistance")}
-                  className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300 w-full"
+                  className={`${btn.whatsapp} ${btnSize.md} min-h-[44px] w-full mt-5`}
                 >
-                  Send Emergency Message
+                  <MessageCircle className="w-4 h-4" />
+                  Send emergency message
                 </button>
-                <p className="text-blue-200 text-sm mt-3">Response within 2 minutes</p>
               </div>
-            </div>
-            
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-              <h4 className="text-lg font-bold text-white mb-4">When to use Emergency Support:</h4>
-              <div className="grid sm:grid-cols-2 gap-4 text-left">
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.12}>
+            <div className="mt-5 rounded-2xl bg-white/5 border border-white/10 p-6">
+              <h3 className="text-base font-semibold text-white">
+                When to use emergency support
+              </h3>
+              <ul className="mt-4 grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
                 {[
                   "Government scheme deadline approaching",
                   "Bank loan documentation urgency",
@@ -773,73 +890,62 @@ Please contact me for further discussion.`;
                   "Infrastructure project emergency",
                   "Training program immediate requirement",
                   "Any urgent business consultation"
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full" />
-                    <span className="text-blue-100">{item}</span>
-                  </div>
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-slate-300">
+                    <CheckCircle2 className="w-4 h-4 text-brand-400 flex-shrink-0 mt-0.5" />
+                    {item}
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-              Start Your Business Journey Today
-            </h2>
-            
-            <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Connect with us and take the first step towards building a successful business with expert guidance.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => redirectToWhatsApp("Hello Matrubhoomi Team, I'm ready to start my business journey. Please guide me.")}
-                className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
-              >
-                <MessageSquare className="w-5 h-5" />
-                Start WhatsApp Conversation
-              </button>
-              
-              <a
-                href="tel:+919040626617"
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
-              >
-                <Phone className="w-5 h-5" />
-                Schedule Callback
-              </a>
-            </div>
-            
-            <div className="mt-8 text-sm text-slate-500">
-              <div className="flex flex-wrap justify-center gap-6">
-                <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-emerald-500" />
-                  <span>Free initial consultation</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-blue-500" />
-                  <span>No commitment required</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-purple-500" />
-                  <span>Expert team available</span>
-                </div>
+      {/* ── Final CTA ──────────────────────────────────────────── */}
+      <section className={`${sectionY} bg-white`}>
+        <div className={containerNarrow}>
+          <Reveal>
+            <div className={`${surface.card} px-5 py-10 sm:px-10 sm:py-14 text-center`}>
+              <h2 className={heading.h2}>Start your business journey today</h2>
+              <p className={`mt-4 ${heading.lead} max-w-2xl mx-auto`}>
+                Connect with us and take the first step towards building a successful business
+                with expert guidance.
+              </p>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                <button
+                  onClick={() => redirectToWhatsApp("Hello Matrubhoomi Team, I'm ready to start my business journey. Please guide me.")}
+                  className={`${btn.whatsapp} ${btnSize.lg}`}
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  Start WhatsApp conversation
+                </button>
+
+                <a href="tel:+919040626617" className={`${btn.secondary} ${btnSize.lg}`}>
+                  <Phone className="w-4 h-4" />
+                  Schedule callback
+                </a>
               </div>
+
+              <ul className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2.5 text-sm text-slate-600">
+                {[
+                  "Free initial consultation",
+                  "No commitment required",
+                  "Expert team available",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-600 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

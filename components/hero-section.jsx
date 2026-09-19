@@ -8,21 +8,18 @@ import { HomeCategories } from "@/components/home-categories";
 
 export function HeroSection() {
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Hero Slider - grows to fit its content, never clips it */}
-      <section className="relative mx-4 md:mx-8 lg:mx-10 mt-4 md:mt-6 rounded-3xl overflow-hidden min-h-[640px] sm:min-h-[85vh] md:min-h-[90vh] shadow-2xl">
+    <>
+      {/* Hero slider — grows to fit its content, never clips it */}
+      <section className="relative mx-4 md:mx-6 lg:mx-8 mt-4 md:mt-6 rounded-3xl overflow-hidden min-h-[600px] sm:min-h-[80vh] lg:min-h-[85vh] shadow-lg">
         <HeroSlider />
       </section>
 
-      {/* Business Category Grid - primary navigation into every service */}
+      {/* Primary navigation into every service */}
       <HomeCategories />
 
-      {/* Main Content Container - Takes remaining space */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 relative z-10">
-        <AboutSection />
-        <FeaturesSection />
-        <CTASection />
-      </div>
-    </div>
+      <AboutSection />
+      <FeaturesSection />
+      <CTASection />
+    </>
   );
 }

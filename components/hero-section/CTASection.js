@@ -1,124 +1,110 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { MessageCircle, Phone, Mail, MapPin, Globe } from "lucide-react";
+import { serviceCategories } from "@/lib/service-categories";
+import { btn, btnSize, container } from "@/lib/ui";
+import { Reveal } from "@/components/ui/section";
+
+const CONTACT_BLOCKS = [
+  {
+    Icon: MapPin,
+    title: "Headquarters",
+    primary: "Saheed Nagar, Bhubaneswar",
+    secondary: "Berhampur, Odisha",
+  },
+  {
+    Icon: Globe,
+    title: "Website",
+    primary: "matrubhoomifarms.com",
+    secondary: "All platform links",
+  },
+  {
+    Icon: Phone,
+    title: "Support",
+    primary: "+91 9040626617",
+    secondary: "All services & domains",
+  },
+];
 
 export default function CTASection() {
   return (
-    <section className="py-16 md:py-24">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 to-blue-900 p-8 md:p-12 lg:p-16 shadow-2xl"
-      >
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.2)_1px,transparent_0)] bg-[size:40px_40px]" />
-        </div>
+    <section className="py-14 sm:py-16 lg:py-20 bg-white">
+      <div className={container}>
+        <Reveal>
+          <div className="relative overflow-hidden rounded-3xl bg-slate-900 px-6 py-12 sm:px-10 sm:py-14 lg:px-14 lg:py-16">
+            <div
+              className="absolute inset-0 opacity-[0.06]"
+              style={{
+                backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+                backgroundSize: "32px 32px",
+              }}
+              aria-hidden="true"
+            />
 
-        <div className="relative z-10">
-          <div className="text-center max-w-4xl mx-auto mb-12">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              Ready to Transform Your Business?
-            </h3>
-            
-            <p className="text-xl text-slate-300 mb-8">
-              Talk to Matrubhoomi about your business growth — one team, seven domains.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => window.open('https://wa.me/919040626617', '_blank')}
-                className="group relative overflow-hidden px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-white to-green-100 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
-                <span className="relative flex items-center justify-center gap-3">
-                  <span className="text-lg">💬</span>
-                  WhatsApp: +91 9040626617
-                  <svg className="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </span>
-              </button>
-              
-              <a
-                href="mailto:info@matrubhoomifarms.com"
-                className="px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/50 transition-all duration-300"
-              >
-                Email: contact@matrubhoomifarms.com
-              </a>
-            </div>
-          </div>
+            <div className="relative">
+              <div className="max-w-2xl mx-auto text-center">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+                  Ready to transform your business?
+                </h2>
+                <p className="mt-4 text-base sm:text-lg text-slate-300">
+                  Talk to Matrubhoomi about your business growth — one team, seven domains.
+                </p>
 
-          {/* Contact Grid */}
-          <div className="grid md:grid-cols-3 gap-6 pt-12 border-t border-white/10">
-            {[
-              {
-                icon: "🏢",
-                title: "Headquarters",
-                primary: "Saheed Nagar, Bhubaneswar",
-                secondary: "Berhampur, Odisha",
-                action: "View on Map"
-              },
-              {
-                icon: "🌐",
-                title: "Website",
-                primary: "https://matrubhoomifarms.com",
-                secondary: "All Platform Links",
-                action: "Visit Website"
-              },
-              {
-                icon: "📞",
-                title: "24x7 Support",
-                primary: "+91 9040626617",
-                secondary: "All Services & Domains",
-                action: "Call Now"
-              }
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300"
-              >
-                <div className="text-3xl mb-4">{item.icon}</div>
-                <h4 className="text-white font-bold mb-2">{item.title}</h4>
-                <div className="text-white/90 text-lg mb-1">{item.primary}</div>
-                <div className="text-white/60 text-sm mb-4">{item.secondary}</div>
-                <button className="text-sm text-blue-300 hover:text-blue-200 font-semibold">
-                  {item.action} →
-                </button>
-              </motion.div>
-            ))}
-          </div>
+                <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                  <button
+                    onClick={() => window.open("https://wa.me/919040626617", "_blank")}
+                    className={`${btn.whatsapp} ${btnSize.lg}`}
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    WhatsApp: +91 9040626617
+                  </button>
+                  <a
+                    href="mailto:info@matrubhoomifarms.com"
+                    className={`${btn.onDarkOutline} ${btnSize.lg}`}
+                  >
+                    <Mail className="w-4 h-4" />
+                    Email us
+                  </a>
+                </div>
+              </div>
 
-          {/* Services Mention */}
-          <div className="mt-12 pt-8 border-t border-white/10">
-            <div className="text-center">
-              <div className="text-white/80 text-sm mb-4">Our Comprehensive Services Include:</div>
-              <div className="flex flex-wrap justify-center gap-4">
-                {[
-                  "CA, Banking & Loans",
-                  "Farming & Farm Construction",
-                  "Real Estate",
-                  "Trading",
-                  "Software & Development",
-                  "Entrepreneur & Manufacturing",
-                  "Product & Retail",
-                  "PMEGP | CGTMSE | MKUY | PMMSY"
-                ].map((service, idx) => (
-                  <span key={idx} className="px-4 py-2 bg-white/10 rounded-full text-white/90 text-sm">
-                    {service}
-                  </span>
+              {/* Contact grid */}
+              <div className="mt-12 pt-10 border-t border-white/10 grid sm:grid-cols-3 gap-6">
+                {CONTACT_BLOCKS.map(({ Icon, title, primary, secondary }) => (
+                  <div key={title} className="text-center sm:text-left">
+                    <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-400 mb-2">
+                      <Icon className="w-3.5 h-3.5" />
+                      {title}
+                    </div>
+                    <div className="text-white font-medium">{primary}</div>
+                    <div className="text-sm text-slate-400 mt-0.5">{secondary}</div>
+                  </div>
                 ))}
+              </div>
+
+              {/* Domain chips */}
+              <div className="mt-10 pt-8 border-t border-white/10">
+                <p className="text-center text-xs font-semibold uppercase tracking-wide text-slate-400 mb-4">
+                  Our services include
+                </p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {serviceCategories.map((category) => (
+                    <span
+                      key={category.slug}
+                      className="px-3 py-1.5 rounded-full bg-white/5 ring-1 ring-white/10 text-slate-300 text-xs font-medium"
+                    >
+                      {category.shortTitle}
+                    </span>
+                  ))}
+                  <span className="px-3 py-1.5 rounded-full bg-white/5 ring-1 ring-white/10 text-slate-300 text-xs font-medium">
+                    PMEGP · CGTMSE · MKUY · PMMSY
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </motion.div>
+        </Reveal>
+      </div>
     </section>
   );
 }
