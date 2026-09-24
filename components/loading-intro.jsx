@@ -122,7 +122,7 @@ export function LoadingIntro({ onComplete, durationMs = 2600 }) {
                   className="absolute inset-0"
                 >
                   <Image
-                    src="/logo-matrubhoomi.svg"
+                    src="/logo-mark.webp"
                     alt="Matrubhoomi Logo"
                     fill
                     priority

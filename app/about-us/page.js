@@ -112,6 +112,16 @@ export default function AboutUsPage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
+            {/* Full brand mark, wordmark and all — this is the page with room for it */}
+            <Image
+              src="/logo-matrubhoomi.webp"
+              alt="Matrubhoomi Private Limited"
+              width={260}
+              height={260}
+              className="w-40 h-40 sm:w-52 sm:h-52 mx-auto mb-6 rounded-2xl"
+              priority
+            />
+
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-50 text-brand-800 ring-1 ring-brand-100 rounded-full mb-6">
               <span className="w-1.5 h-1.5 bg-brand-600 rounded-full" />
               <span className="text-xs font-semibold tracking-wide uppercase">About Matrubhoomi</span>

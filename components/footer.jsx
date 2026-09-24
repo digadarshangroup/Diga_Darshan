@@ -38,10 +38,10 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-4">
             <div className="flex items-center gap-3 mb-4">
               <Image
-                src="/logo-matrubhoomi.svg"
+                src="/logo-mark.webp"
                 alt="Matrubhoomi"
-                width={48}
-                height={48}
+                width={88}
+                height={88}
                 className="w-11 h-11"
               />
               <div className="leading-tight">

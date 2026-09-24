@@ -60,7 +60,7 @@ const jsonLd = {
   "name": "Matrubhoomi Private Limited",
   "alternateName": "Matrubhoomi",
   "url": "https://matrubhoomifarms.com",
-  "logo": "https://matrubhoomifarms.com/logo-matrubhoomi.svg",
+  "logo": "https://matrubhoomifarms.com/logo-matrubhoomi.webp",
   "description": "Complete business solutions provider in Odisha offering CA/Banking/Loans, Farming & Farm Construction, Real Estate, Trading, Software Development, Entrepreneurship/Manufacturing and Product/Retail services.",
   "address": {
     "@type": "PostalAddress",
@@ -89,8 +89,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* Favicon */}
-        <link rel="icon" type="image/svg+xml" href="/logo-matrubhoomi.svg" />
-        <link rel="apple-touch-icon" href="/logo-matrubhoomi.svg" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="/logo-mark.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         
         {/* Essential viewport */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />

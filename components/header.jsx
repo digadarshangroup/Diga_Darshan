@@ -61,10 +61,10 @@ export function Header() {
           {/* Brand */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 rounded-lg">
             <Image
-              src="/logo-matrubhoomi.svg"
+              src="/logo-mark.webp"
               alt="Matrubhoomi"
-              width={48}
-              height={48}
+              width={88}
+              height={88}
               className="w-10 h-10 sm:w-11 sm:h-11"
               priority
             />
