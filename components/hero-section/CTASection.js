@@ -21,7 +21,7 @@ const CONTACT_BLOCKS = [
   {
     Icon: Phone,
     title: "Support",
-    primary: "+91 9040626617",
+    primary: "+91 7750878444",
     secondary: "All services & domains",
   },
 ];
@@ -52,11 +52,11 @@ export default function CTASection() {
 
                 <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
                   <button
-                    onClick={() => window.open("https://wa.me/919040626617", "_blank")}
+                    onClick={() => window.open("https://wa.me/917750878444", "_blank")}
                     className={`${btn.whatsapp} ${btnSize.lg}`}
                   >
                     <MessageCircle className="w-4 h-4" />
-                    WhatsApp: +91 9040626617
+                    WhatsApp: +91 7750878444
                   </button>
                   <a
                     href="mailto:info@matrubhoomifarms.com"

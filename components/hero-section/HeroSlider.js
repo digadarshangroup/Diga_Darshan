@@ -120,7 +120,7 @@ export default function HeroSlider() {
                 <button
                   onClick={() =>
                     window.open(
-                      `https://wa.me/919040626617?text=${encodeURIComponent(
+                      `https://wa.me/917750878444?text=${encodeURIComponent(
                         `Hello Matrubhoomi Team, I'm interested in ${current.headline}.`
                       )}`,
                       "_blank"

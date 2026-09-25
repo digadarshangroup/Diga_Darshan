@@ -71,7 +71,7 @@ export default function ContactPage() {
       responseTime: "Within 5 minutes",
       availability: "24/7",
       actionText: "On WhatsApp",
-      details: "+91 9040626617",
+      details: "+91 7750878444",
       action: () => redirectToWhatsApp("Hello Matrubhoomi Team, I need to discuss about my business requirements.")
     },
     {
@@ -83,8 +83,8 @@ export default function ContactPage() {
       responseTime: "Immediate",
       availability: "9 AM - 8 PM",
       actionText: "Call Now",
-      details: "+91 9040626617",
-      action: () => window.location.href = "tel:+919040626617"
+      details: "+91 7750878444",
+      action: () => window.location.href = "tel:+917750878444"
     },
     {
       id: "email",
@@ -147,7 +147,7 @@ export default function ContactPage() {
       city: "Bhubaneswar",
       type: "Headquarters",
       address: "Saheed Nagar, Bhubaneswar, Odisha - 751007",
-      contact: "+91 9040626617",
+      contact: "+91 7750878444",
       timing: "Mon-Sat: 9:00 AM - 8:00 PM",
       services: ["All Services", "Executive Meetings", "Training Sessions"],
       mapLink: "https://maps.app.goo.gl/",
@@ -156,7 +156,7 @@ export default function ContactPage() {
       city: "Berhampur",
       type: "Registered Office",
       address: "Berhampur, Ganjam District, Odisha",
-      contact: "+91 9040626617",
+      contact: "+91 7750878444",
       timing: "Mon-Sat: 10:00 AM - 7:00 PM",
       services: ["Fisheries Support", "Agriculture", "Local Projects"],
       mapLink: "https://maps.app.goo.gl/",
@@ -165,7 +165,7 @@ export default function ContactPage() {
       city: "District Centers",
       type: "Service Centers",
       address: "Available in 30+ districts across Odisha",
-      contact: "+91 9040626617",
+      contact: "+91 7750878444",
       timing: "By Appointment",
       services: ["Field Visits", "Site Surveys", "Local Support"],
       mapLink: "",
@@ -173,7 +173,7 @@ export default function ContactPage() {
   ];
 
   const redirectToWhatsApp = (message = "Hello Matrubhoomi Team, I want to contact you regarding business services.") => {
-    const phoneNumber = "919040626617";
+    const phoneNumber = "917750878444";
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
@@ -346,9 +346,9 @@ Please contact me for further discussion.`;
                 <MessageCircle className="w-4 h-4" />
                 Message on WhatsApp
               </button>
-              <a href="tel:+919040626617" className={`${btn.onDarkOutline} ${btnSize.lg}`}>
+              <a href="tel:+917750878444" className={`${btn.onDarkOutline} ${btnSize.lg}`}>
                 <Phone className="w-4 h-4" />
-                +91 9040626617
+                +91 7750878444
               </a>
             </div>
 
@@ -704,7 +704,7 @@ Please contact me for further discussion.`;
                           <Phone className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" />
                           <dd>
                             <a
-                              href="tel:+919040626617"
+                              href="tel:+917750878444"
                               className="inline-block py-1 -my-1 font-medium text-slate-900 hover:text-brand-700 transition-colors"
                             >
                               {office.contact}
@@ -850,11 +850,11 @@ Please contact me for further discussion.`;
                 <h3 className="text-base font-semibold text-white">Emergency call</h3>
                 <p className="mt-1.5 text-sm text-slate-400">Available 24/7 for urgent matters.</p>
                 <a
-                  href="tel:+919040626617"
+                  href="tel:+917750878444"
                   className={`${btn.onDark} ${btnSize.md} min-h-[44px] w-full mt-5`}
                 >
                   <Phone className="w-4 h-4" />
-                  +91 9040626617
+                  +91 7750878444
                 </a>
               </div>
             </Reveal>
@@ -922,7 +922,7 @@ Please contact me for further discussion.`;
                   Start WhatsApp conversation
                 </button>
 
-                <a href="tel:+919040626617" className={`${btn.secondary} ${btnSize.lg}`}>
+                <a href="tel:+917750878444" className={`${btn.secondary} ${btnSize.lg}`}>
                   <Phone className="w-4 h-4" />
                   Schedule callback
                 </a>

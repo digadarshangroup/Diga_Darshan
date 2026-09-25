@@ -26,8 +26,8 @@ import { Footer } from "@/components/footer";
 import { Reveal, Section, SectionHeading } from "@/components/ui/section";
 import { badge, btn, btnSize, container, heading, surface } from "@/lib/ui";
 
-const PHONE_DISPLAY = "+91 9040626617";
-const PHONE_TEL = "+919040626617";
+const PHONE_DISPLAY = "+91 7750878444";
+const PHONE_TEL = "+917750878444";
 
 export default function PricingPage() {
   const [activeCategory, setActiveCategory] = useState("fisheries");
@@ -256,7 +256,7 @@ export default function PricingPage() {
   ];
 
   const redirectToWhatsApp = (message = "Hello Matrubhoomi Team, I want to know about your services and pricing.") => {
-    const phoneNumber = "919040626617";
+    const phoneNumber = "917750878444";
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");

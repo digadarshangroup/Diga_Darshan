@@ -17,9 +17,9 @@ import { Footer } from "@/components/footer";
 import { getCategoryBySlug, getCategoryHref, getServiceHref } from "@/lib/service-categories";
 import { accentFor, btn, btnSize, containerNarrow, surface } from "@/lib/ui";
 
-const PHONE_DISPLAY = "+91 9040626617";
-const PHONE_TEL = "+919040626617";
-const WHATSAPP_NUMBER = "919040626617";
+const PHONE_DISPLAY = "+91 7750878444";
+const PHONE_TEL = "+917750878444";
+const WHATSAPP_NUMBER = "917750878444";
 
 function redirectToWhatsApp(message) {
   const encodedMessage = encodeURIComponent(message);

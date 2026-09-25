@@ -182,7 +182,7 @@ export default function BlogPage() {
   });
 
   const redirectToWhatsApp = (message = "Hello Matrubhoomi Team, I want to learn more about your services.") => {
-    const phoneNumber = "919040626617";
+    const phoneNumber = "917750878444";
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
@@ -661,9 +661,9 @@ export default function BlogPage() {
               Start WhatsApp consultation
             </button>
 
-            <a href="tel:+919040626617" className={`${btn.secondary} ${btnSize.lg} ${TAP}`}>
+            <a href="tel:+917750878444" className={`${btn.secondary} ${btnSize.lg} ${TAP}`}>
               <Phone className="w-5 h-5" />
-              Call +91 9040626617
+              Call +91 7750878444
             </a>
           </div>
 

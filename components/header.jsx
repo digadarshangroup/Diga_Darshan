@@ -145,7 +145,7 @@ export function Header() {
 
           {/* Desktop CTA */}
           <a
-            href="tel:+919040626617"
+            href="tel:+917750878444"
             className={`hidden lg:inline-flex ${btn.primary} ${btnSize.sm} flex-shrink-0`}
           >
             <Phone className="w-3.5 h-3.5" />
@@ -239,7 +239,7 @@ export function Header() {
           ))}
 
           <a
-            href="tel:+919040626617"
+            href="tel:+917750878444"
             className={`${btn.primary} ${btnSize.lg} w-full mt-3`}
             onClick={() => setIsMenuOpen(false)}
           >

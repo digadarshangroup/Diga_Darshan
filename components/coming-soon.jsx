@@ -6,8 +6,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { btn, btnSize, containerNarrow, surface } from "@/lib/ui";
 
-const PHONE_TEL = "+919040626617";
-const PHONE_DISPLAY = "+91 9040626617";
+const PHONE_TEL = "+917750878444";
+const PHONE_DISPLAY = "+91 7750878444";
 
 /**
  * Placeholder page for a service we support but haven't written up yet.
@@ -52,7 +52,7 @@ export function ComingSoon({
             <button
               onClick={() =>
                 window.open(
-                  `https://wa.me/919040626617?text=${encodeURIComponent(whatsappMessage)}`,
+                  `https://wa.me/917750878444?text=${encodeURIComponent(whatsappMessage)}`,
                   "_blank"
                 )
               }

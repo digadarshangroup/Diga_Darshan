@@ -189,7 +189,7 @@ export default function AboutUsPage() {
                   Join Our Network
                 </Link>
                 <a
-                  href="https://wa.me/919040626617"
+                  href="https://wa.me/917750878444"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-900 border border-slate-200 font-semibold rounded-xl shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-all duration-200"
@@ -453,7 +453,7 @@ export default function AboutUsPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/919040626617"
+                href="https://wa.me/917750878444"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-white text-blue-900 font-bold rounded-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
@@ -482,7 +482,7 @@ export default function AboutUsPage() {
                 </div>
                 <div>
                   <div className="font-bold text-white mb-2">Contact</div>
-                  <div className="text-slate-300">+91 9040626617</div>
+                  <div className="text-slate-300">+91 7750878444</div>
                   <div className="text-sm">contact@matrubhoomifarms.com</div>
                 </div>
                 <div>
