@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...except the template, which carries no secrets and is the only record of
+# which variables the site needs. Ignoring it means a fresh clone has no way to
+# know NEXT_PUBLIC_HRMS_API_URL exists.
+!.env.example
 
 # vercel
 .vercel
