@@ -121,11 +121,11 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:info@matrubhoomifarms.com"
+                  href="mailto:hr@matrubhumi.net"
                   className="flex items-start gap-3 text-sm text-slate-400 hover:text-white transition-colors duration-150 break-all"
                 >
                   <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-500" />
-                  info@matrubhoomifarms.com
+                  hr@matrubhumi.net
                 </a>
               </li>
               <li className="flex items-start gap-3 text-sm text-slate-400">

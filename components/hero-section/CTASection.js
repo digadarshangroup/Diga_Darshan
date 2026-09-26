@@ -59,7 +59,7 @@ export default function CTASection() {
                     WhatsApp: +91 7750878444
                   </button>
                   <a
-                    href="mailto:info@matrubhoomifarms.com"
+                    href="mailto:hr@matrubhumi.net"
                     className={`${btn.onDarkOutline} ${btnSize.lg}`}
                   >
                     <Mail className="w-4 h-4" />

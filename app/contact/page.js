@@ -95,8 +95,8 @@ export default function ContactPage() {
       responseTime: "Within 2 hours",
       availability: "24/7",
       actionText: "Send Email",
-      details: "contact@matrubhoomifarms.com",
-      action: () => window.location.href = "mailto:contact@matrubhoomifarms.com?subject=Business Inquiry - Matrubhoomi"
+      details: "hr@matrubhumi.net",
+      action: () => window.location.href = "mailto:hr@matrubhumi.net?subject=Business Inquiry - Matrubhoomi"
     },
     {
       id: "visit",

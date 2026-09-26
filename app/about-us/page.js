@@ -483,7 +483,7 @@ export default function AboutUsPage() {
                 <div>
                   <div className="font-bold text-white mb-2">Contact</div>
                   <div className="text-slate-300">+91 7750878444</div>
-                  <div className="text-sm">contact@matrubhoomifarms.com</div>
+                  <div className="text-sm">hr@matrubhumi.net</div>
                 </div>
                 <div>
                   <div className="font-bold text-white mb-2">Website</div>

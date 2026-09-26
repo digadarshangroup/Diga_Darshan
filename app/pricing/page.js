@@ -118,7 +118,7 @@ export default function PricingPage() {
         { name: "Market Linkage", details: "Direct buyer connections with buy-back options" },
         { name: "Training & Certification", details: "Complete training program with government certification" }
       ],
-      investmentRange: "₹5 Lakhs - ₹50 Lakhs",
+      investmentRange: "₹1 Lakh - ₹2 Crores",
       roiTimeframe: "12-18 months",
       whatsappMessage: "Hello Matrubhoomi, I'm interested in fisheries business. Please share investment details and subsidy options."
     },
@@ -233,7 +233,7 @@ export default function PricingPage() {
     },
     {
       q: "What is the typical investment range for starting a fisheries business?",
-      a: "Investments range from ₹5 Lakhs for a small pond setup to ₹50 Lakhs for commercial operations. With government subsidies (up to 40%), your actual investment can be significantly lower. Book a consultation for a personalized quote."
+      a: "Investments range from ₹1 Lakh for a small pond setup to ₹2 Crores for commercial operations. With government subsidies (up to 40%), your actual investment can be significantly lower. Book a consultation for a personalized quote."
     },
     {
       q: "How long does it take to get government subsidies?",
