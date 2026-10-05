@@ -130,7 +130,9 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 text-sm text-slate-400">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-500" />
-                Berhampur, Ganjam, Odisha
+                Bramha Nagar 2nd Lane, Berhampur,
+                <br />
+                Ganjam, Odisha – 760001
               </li>
             </ul>
           </div>

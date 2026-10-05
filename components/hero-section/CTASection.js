@@ -8,9 +8,9 @@ import { Reveal } from "@/components/ui/section";
 const CONTACT_BLOCKS = [
   {
     Icon: MapPin,
-    title: "Headquarters",
-    primary: "Saheed Nagar, Bhubaneswar",
-    secondary: "Berhampur, Odisha",
+    title: "Office",
+    primary: "Bramha Nagar 2nd Lane, Berhampur",
+    secondary: "Ganjam, Odisha – 760001",
   },
   {
     Icon: Globe,

@@ -34,7 +34,7 @@ export default function AboutUsPage() {
     {
       year: "Expansion",
       title: "Bhubaneswar Presence",
-      description: "Opened a presence in Saheed Nagar, Bhubaneswar, to expand reach across Odisha.",
+      description: "Opened a presence in Bhubaneswar to expand reach across Odisha.",
       icon: "📍"
     },
     {
@@ -169,7 +169,7 @@ export default function AboutUsPage() {
                 
                 <p className="text-lg text-slate-700 leading-relaxed">
                   What started as a business consultancy firm has grown into a multi-domain
-                  platform with a presence in Saheed Nagar, Bhubaneswar, helping entrepreneurs
+                  platform with a presence in Bhubaneswar, helping entrepreneurs
                   across Odisha navigate business setup, expansion, and government scheme
                   utilization.
                 </p>
@@ -476,9 +476,9 @@ export default function AboutUsPage() {
             <div className="mt-12 pt-8 border-t border-white/20">
               <div className="grid md:grid-cols-3 gap-8 text-white/80">
                 <div>
-                  <div className="font-bold text-white mb-2">Headquarters</div>
-                  <div className="text-slate-300">Saheed Nagar, Bhubaneswar</div>
-                  <div className="text-sm">Berhampur, Odisha</div>
+                  <div className="font-bold text-white mb-2">Office</div>
+                  <div className="text-slate-300">Bramha Nagar 2nd Lane, Berhampur</div>
+                  <div className="text-sm">Ganjam, Odisha – 760001</div>
                 </div>
                 <div>
                   <div className="font-bold text-white mb-2">Contact</div>

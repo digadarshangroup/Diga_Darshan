@@ -103,12 +103,12 @@ export default function ContactPage() {
       name: "Office Visit",
       icon: Building2,
       accent: categoryAccent.violet,
-      description: "In-person consultation at our headquarters",
+      description: "In-person consultation at our Berhampur office",
       responseTime: "By appointment",
       availability: "Mon-Sat, 10 AM - 6 PM",
       actionText: "Book Appointment",
-      details: "Bhubaneswar",
-      action: () => redirectToWhatsApp("Hello, I want to book an appointment for office visit at Bhubaneswar headquarters.")
+      details: "Berhampur",
+      action: () => redirectToWhatsApp("Hello, I want to book an appointment for an office visit at your Berhampur office.")
     }
   ];
 
@@ -143,23 +143,21 @@ export default function ContactPage() {
   ];
 
   const officeLocations = [
-    {
-      city: "Bhubaneswar",
-      type: "Headquarters",
-      address: "Saheed Nagar, Bhubaneswar, Odisha - 751007",
-      contact: "+91 7750878444",
-      timing: "Mon-Sat: 9:00 AM - 8:00 PM",
-      services: ["All Services", "Executive Meetings", "Training Sessions"],
-      mapLink: "https://maps.app.goo.gl/",
-    },
+    // One office, because there is one address. This used to list a
+    // Bhubaneswar "Headquarters" alongside the Berhampur one, with a
+    // Saheed Nagar street address that is not ours.
     {
       city: "Berhampur",
       type: "Registered Office",
-      address: "Berhampur, Ganjam District, Odisha",
+      address: "Bramha Nagar 2nd Lane, Berhampur, Ganjam, Odisha – 760001",
       contact: "+91 7750878444",
       timing: "Mon-Sat: 10:00 AM - 7:00 PM",
-      services: ["Fisheries Support", "Agriculture", "Local Projects"],
-      mapLink: "https://maps.app.goo.gl/",
+      services: ["All Services", "Executive Meetings", "Training Sessions"],
+      // A real search link. The previous value was "https://maps.app.goo.gl/",
+      // which is the bare domain and opens nothing.
+      mapLink:
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent("Bramha Nagar 2nd Lane, Berhampur, Ganjam, Odisha 760001"),
     },
     {
       city: "District Centers",
