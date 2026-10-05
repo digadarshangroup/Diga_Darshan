@@ -64,10 +64,8 @@ const jsonLd = {
   "description": "Complete business solutions provider in Odisha offering CA/Banking/Loans, Farming & Farm Construction, Real Estate, Trading, Software Development, Entrepreneurship/Manufacturing and Product/Retail services.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Bramha Nagar 2nd Lane",
-    "addressLocality": "Berhampur",
+    "addressLocality": "Bhubaneswar",
     "addressRegion": "Odisha",
-    "postalCode": "760001",
     "addressCountry": "IN"
   },
   "contactPoint": {

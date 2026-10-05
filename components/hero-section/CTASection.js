@@ -9,8 +9,8 @@ const CONTACT_BLOCKS = [
   {
     Icon: MapPin,
     title: "Office",
-    primary: "Bramha Nagar 2nd Lane, Berhampur",
-    secondary: "Ganjam, Odisha – 760001",
+    primary: "Bhubaneswar, Odisha",
+    secondary: "Serving all 30 districts",
   },
   {
     Icon: Globe,

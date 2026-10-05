@@ -103,12 +103,12 @@ export default function ContactPage() {
       name: "Office Visit",
       icon: Building2,
       accent: categoryAccent.violet,
-      description: "In-person consultation at our Berhampur office",
+      description: "In-person consultation at our Bhubaneswar office",
       responseTime: "By appointment",
       availability: "Mon-Sat, 10 AM - 6 PM",
       actionText: "Book Appointment",
-      details: "Berhampur",
-      action: () => redirectToWhatsApp("Hello, I want to book an appointment for an office visit at your Berhampur office.")
+      details: "Bhubaneswar",
+      action: () => redirectToWhatsApp("Hello, I want to book an appointment for an office visit at your Bhubaneswar office.")
     }
   ];
 
@@ -143,13 +143,13 @@ export default function ContactPage() {
   ];
 
   const officeLocations = [
-    // One office, because there is one address. This used to list a
-    // Bhubaneswar "Headquarters" alongside the Berhampur one, with a
-    // Saheed Nagar street address that is not ours.
+    // One office, because there is one. This used to list two -- a
+    // Bhubaneswar "Headquarters" at a Saheed Nagar street address that is
+    // not ours, plus a Berhampur "Registered Office".
     {
-      city: "Berhampur",
-      type: "Registered Office",
-      address: "Bramha Nagar 2nd Lane, Berhampur, Ganjam, Odisha – 760001",
+      city: "Bhubaneswar",
+      type: "Office",
+      address: "Bhubaneswar, Odisha",
       contact: "+91 7750878444",
       timing: "Mon-Sat: 10:00 AM - 7:00 PM",
       services: ["All Services", "Executive Meetings", "Training Sessions"],
@@ -157,7 +157,7 @@ export default function ContactPage() {
       // which is the bare domain and opens nothing.
       mapLink:
         "https://www.google.com/maps/search/?api=1&query=" +
-        encodeURIComponent("Bramha Nagar 2nd Lane, Berhampur, Ganjam, Odisha 760001"),
+        encodeURIComponent("Matrubhoomi Private Limited, Bhubaneswar, Odisha"),
     },
     {
       city: "District Centers",

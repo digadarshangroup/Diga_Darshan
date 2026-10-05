@@ -477,8 +477,8 @@ export default function AboutUsPage() {
               <div className="grid md:grid-cols-3 gap-8 text-white/80">
                 <div>
                   <div className="font-bold text-white mb-2">Office</div>
-                  <div className="text-slate-300">Bramha Nagar 2nd Lane, Berhampur</div>
-                  <div className="text-sm">Ganjam, Odisha – 760001</div>
+                  <div className="text-slate-300">Bhubaneswar, Odisha</div>
+                  <div className="text-sm">Serving all 30 districts</div>
                 </div>
                 <div>
                   <div className="font-bold text-white mb-2">Contact</div>
